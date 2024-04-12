@@ -35,9 +35,9 @@
       @apply btn-dark bg-grey text-black;
   } */
 
-  /* .input-box {
-      @apply w-[100%] rounded-md p-4 bg-grey pl-12 border border-grey focus:bg-transparent placeholder:text-black;
-  } */
+  .input-box {
+      @apply w-[100%] rounded-md py-4 px-2 bg-[#dfe6e9] border border-gray-500 focus:bg-transparent placeholder:text-black;
+  }
 
   /* input:disabled, input:disabled ~ .input-icon{
       @apply opacity-50;

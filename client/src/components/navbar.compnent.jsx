@@ -13,7 +13,8 @@ import {
   Menu as MenuBar,
 } from "@mui/icons-material";
 import { Menu, MenuItem } from "@mui/material";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import logo from "../assets/logo.png";
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl2, setAnchorEl2] = useState(null);
@@ -42,8 +43,8 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className="flex justify-between px-3 md:px-22 lg:px-32 py-3 bg-[#205081] text-white relative">
-        <h1 className="text-md md:text-2xl">Logo</h1>
+      <div className="flex justify-between px-3 md:px-22 lg:px-28 py-3 bg-blue text-white relative">
+        <img src={logo} alt="Legal Tax Link" className="w-16" />
 
         <ul className="hidden gap-5 justify-center items-center md:flex">
           <li className="flex justify-center gap-1 cursor-pointer">
@@ -52,9 +53,12 @@ const Navbar = () => {
           <li className="flex justify-center gap-1 cursor-pointer">
             <History /> History
           </li>
-          <li className="flex justify-center gap-1 cursor-pointer">
+          <NavLink
+            to={"/tract-case-status"}
+            className="flex justify-center gap-1 cursor-pointer"
+          >
             <LocationOn /> Track Case status
-          </li>
+          </NavLink>
         </ul>
 
         <div className="flex gap-5 items-center justify-center">
@@ -83,7 +87,7 @@ const Navbar = () => {
                 className="!h-7 !w-7 cursor-pointer"
                 onClick={handleNotificaion}
               />
-              <span className="w-[0.6rem] bg-red-600 h-[0.6rem] rounded-full absolute top-0 right-1 border border-[#205081]"></span>
+              <span className="w-[0.6rem] bg-red h-[0.6rem] rounded-full absolute top-0 right-1 border border-blue"></span>
             </div>
             <Menu
               open={anchorEl3}

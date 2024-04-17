@@ -13,15 +13,17 @@ import {
   Menu as MenuBar,
 } from "@mui/icons-material";
 import { Menu, MenuItem } from "@mui/material";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl2, setAnchorEl2] = useState(null);
   const [anchorEl3, setAnchorEl3] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
+
+  const navigate = useNavigate();
   const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+    navigate(`/profile/basic-information`);
   };
 
   const handleClose = () => {
@@ -44,12 +46,16 @@ const Navbar = () => {
   return (
     <>
       <div className="flex justify-between px-3 md:px-22 lg:px-28 py-3 bg-blue text-white relative">
-        <img src={logo} alt="Legal Tax Link" className="w-16" />
+        <Link to="/">
+          <img src={logo} alt="Legal Tax Link" className="w-16" />
+        </Link>
 
         <ul className="hidden gap-5 justify-center items-center md:flex">
-          <li className="flex justify-center gap-1 cursor-pointer">
-            <Dashboard /> Dashboard
-          </li>
+          <Link to="/dashboard">
+            <li className="flex justify-center gap-1 cursor-pointer">
+              <Dashboard /> Dashboard
+            </li>
+          </Link>
           <li className="flex justify-center gap-1 cursor-pointer">
             <History /> History
           </li>
@@ -188,35 +194,10 @@ const Navbar = () => {
 
           {/* profile */}
           <div className="reltive w-full">
-            <AccountCircle className="!h-8 !w-8" onClick={handleMenu} />
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              className="mt-12"
-            >
-              <MenuItem onClick={handleClose}>
-                <div className="flex justify-between text-right gap-2">
-                  <Person />
-                  Profile
-                </div>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <div className="flex justify-between text-right gap-2">
-                  <AccountBalance /> My account
-                </div>
-              </MenuItem>
-            </Menu>
+            <AccountCircle
+              className="!h-8 !w-8 cursor-pointer"
+              onClick={handleMenu}
+            />
           </div>
           <MenuBar className="!h-8 !w-8" />
         </div>

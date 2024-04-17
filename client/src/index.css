@@ -61,11 +61,11 @@
       @apply opacity-100 pointer-events-auto;
   }
 
-  /* .sidebar-link{
-      @apply flex gap-4 items-center py-5 text-dark-grey hover:text-black;
-  } */
+  .sidebar-link{
+      @apply flex text-base md:text-xl gap-2 items-center pl-6 py-3 text-gray-dark hover:text-black ;
+  }
 
-  /* .sidebar-link.active{
-      @apply text-black border-r-2 border-black pl-6 bg-grey/50 -ml-6 md:rounded-tl-lg md:rounded-bl-lg max-md:border-none;
-  } */
+  .sidebar-link.active{
+      @apply text-white border-r-2 border-r-gray-dark  bg-blue md:rounded-tl-lg md:rounded-bl-lg max-md:border-none;
+  }
 }

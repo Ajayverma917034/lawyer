@@ -10,10 +10,22 @@ import DashboardNavbar from "../../components/dashboard/dashboard.navbar";
 import lawbook from "../../assets/icos/lawbook.png";
 import schedule from "../../assets/icos/Schedule.png";
 import { useNavigate } from "react-router-dom";
+import AddTask from "../../components/dashboard/addtask.components";
+import AddSchedule from "../../components/dashboard/addschedule.component";
+import AddReminder from "../../components/dashboard/addreminder.component";
+import { addressData } from "../profile/Address";
+import AddCase from "../../components/dashboard/addcase.component";
 
 const Dashboard = () => {
   const [addTaskOpen, setAddTaskOpen] = useState(false);
+  const [addSchedule, setAddSchedule] = useState(false);
+  const [addReminder, setAddReminder] = useState(false);
+  const [addCase, setAddCase] = useState(false);
   const navigate = useNavigate();
+
+  const handleAddTask = () => {
+    setAddTaskOpen(!addTaskOpen);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,7 +43,10 @@ const Dashboard = () => {
             <div className="flex justify-between items-center">
               <h3 className="text-2xl font-medium font-poppins">Task</h3>
               <div className="flex gap-2">
-                <button className="bg-blue text-white p-1 rounded-sm shadow-sm">
+                <button
+                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                  onClick={handleAddTask}
+                >
                   Add New <AddCircle />
                 </button>
               </div>
@@ -57,7 +72,10 @@ const Dashboard = () => {
             <div className="flex justify-between items-center">
               <h3 className="text-2xl font-medium font-poppins">Meeting</h3>
               <div className="flex gap-2">
-                <button className="bg-blue text-white p-1 rounded-sm shadow-sm">
+                <button
+                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                  onClick={() => setAddSchedule(!addSchedule)}
+                >
                   Schedule One <AddCircle />
                 </button>
               </div>
@@ -84,7 +102,10 @@ const Dashboard = () => {
             <div className="flex justify-between items-center">
               <h3 className="text-2xl font-medium font-poppins">Reminders</h3>
               <div className="flex gap-2">
-                <button className="bg-blue text-white p-1 rounded-sm shadow-sm">
+                <button
+                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                  onClick={() => setAddReminder(!addReminder)}
+                >
                   Reminder <AddCircle />
                 </button>
               </div>
@@ -110,7 +131,10 @@ const Dashboard = () => {
             <div className="flex justify-between items-center">
               <h3 className="text-2xl font-medium font-poppins">Case</h3>
               <div className="flex gap-2">
-                <button className="bg-blue text-white p-1 rounded-sm shadow-sm">
+                <button
+                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                  onClick={() => setAddCase(true)}
+                >
                   Create New <AddCircle />
                 </button>
               </div>
@@ -268,6 +292,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <AddTask open={addTaskOpen} setOpen={setAddTaskOpen} />
+      <AddSchedule open={addSchedule} setOpen={setAddSchedule} />
+      <AddReminder open={addReminder} setOpen={setAddReminder} />
+      <AddCase open={addCase} setOpen={setAddCase} />
     </>
   );
 };

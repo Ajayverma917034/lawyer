@@ -7,7 +7,7 @@ import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
 import { UploadFile } from "@mui/icons-material";
 
-const AddTask = ({ open, setOpen }) => {
+const AddCase = ({ open, setOpen }) => {
   const handleClose = () => {
     setOpen(!open);
   };
@@ -36,13 +36,13 @@ const AddTask = ({ open, setOpen }) => {
       className=""
       disableScrollLock={true}
     >
-      <h2 className="text-2xl font-medium text-center mt-4">Add New Task</h2>
+      <h2 className="text-2xl font-medium text-center mt-4">Ligation Case</h2>
       <div className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[35rem]">
         <div className="grid grid-cols-1">
           <InputField2
-            label="Task Title"
-            id="title"
-            placeholder="Enter the Title of the Task"
+            label="Name"
+            id="name"
+            placeholder="Enter the name of the case"
             data={data}
             setData={setData}
             required={"required"}
@@ -51,8 +51,8 @@ const AddTask = ({ open, setOpen }) => {
 
         <div className="grid grid-cols-1  mt-3">
           <SelectField
-            label={"Task Type"}
-            id={"taskType"}
+            label={"Practice Area"}
+            id={"practiceArea"}
             data={data}
             setData={setData}
             options={taskType}
@@ -60,7 +60,7 @@ const AddTask = ({ open, setOpen }) => {
             required={"required"}
           />
         </div>
-        <div className="grid grid-cols-1  mt-3">
+        {/* <div className="grid grid-cols-1  mt-3">
           <SelectField
             label={"Assign To"}
             id={"assignTo"}
@@ -70,14 +70,37 @@ const AddTask = ({ open, setOpen }) => {
             placeholder={""}
             required={"required"}
           />
-        </div>
+        </div> */}
         <div className="grid grid-cols-1  mt-3">
           <DateField2
-            label="Due Date"
-            id="dueDate"
-            placeholder="Select Date"
+            label="Arrival Date"
+            id="arrivalDate"
+            placeholder="Choose a date"
             data={data}
             setData={setData}
+            required={"required"}
+          />
+        </div>
+
+        <div className="grid grid-cols-1  mt-3">
+          <InputField2
+            label="Client Name"
+            id="clientName"
+            placeholder="start typing"
+            data={data}
+            setData={setData}
+            required={"required"}
+          />
+        </div>
+
+        <div className="grid grid-cols-1  mt-3">
+          <SelectField
+            label={"Client Position"}
+            id={"clientPosition"}
+            data={data}
+            setData={setData}
+            options={taskType}
+            placeholder={""}
             required={"required"}
           />
         </div>
@@ -89,6 +112,17 @@ const AddTask = ({ open, setOpen }) => {
             data={data}
             setData={setData}
             placeholder={""}
+            required={"required"}
+          />
+        </div>
+
+        <div className="grid grid-cols-1  mt-3">
+          <InputField2
+            label="Internal Ref Number"
+            id="refNumber"
+            placeholder=""
+            data={data}
+            setData={setData}
             required={"required"}
           />
         </div>
@@ -121,4 +155,4 @@ const AddTask = ({ open, setOpen }) => {
   );
 };
 
-export default AddTask;
+export default AddCase;

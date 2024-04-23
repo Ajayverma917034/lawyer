@@ -1,11 +1,13 @@
-import { Dialog, DialogTitle } from "@mui/material";
 import React, { useState } from "react";
+import { Dialog } from "@mui/material";
 import InputField2 from "../../common/InputField2";
 import SelectField from "../../common/SelectField";
 import TextField2 from "../../common/TextField2";
 import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
 import { UploadFile } from "@mui/icons-material";
+import toast from "react-hot-toast";
+import SelectField2 from "../../common/SelectField2";
 
 const AddTask = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -13,7 +15,15 @@ const AddTask = ({ open, setOpen }) => {
   };
   const [data, setData] = useState({
     title: "",
+    taskType: "",
+    assignTo: "",
+    dueDate: "",
+    description: "",
+    matterRelation: "",
+    relatedDocument: "",
   });
+
+  const [selectedDocument, setSelectedDocument] = useState([]);
 
   const taskType = [
     { key: 1, value: "Seminar", label: "Seminar" },
@@ -29,6 +39,25 @@ const AddTask = ({ open, setOpen }) => {
     { key: 1, value: "Physical", label: "Physical" },
     { key: 2, value: "Virtual", label: "Virtual" },
   ];
+
+  const handleSave = (e) => {
+    e.preventDefault();
+
+    // Proceed with saving data or making API call
+    toast.success("Task Added Successfully");
+    console.log("Data saved:", data);
+
+    // api call here
+    setOpen(!open);
+  };
+
+  const handleRelatedDocument = (e) => {
+    // Get the files from the event object
+    const files = Array.from(e.target.files);
+    // Update the state to include all selected files
+    setSelectedDocument(files);
+  };
+
   return (
     <Dialog
       onClose={handleClose}
@@ -37,7 +66,10 @@ const AddTask = ({ open, setOpen }) => {
       disableScrollLock={true}
     >
       <h2 className="text-2xl font-medium text-center mt-4">Add New Task</h2>
-      <div className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[35rem]">
+      <form
+        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[35rem]"
+        onSubmit={handleSave}
+      >
         <div className="grid grid-cols-1">
           <InputField2
             label="Task Title"
@@ -45,30 +77,30 @@ const AddTask = ({ open, setOpen }) => {
             placeholder="Enter the Title of the Task"
             data={data}
             setData={setData}
-            required={"required"}
+            required={true}
           />
         </div>
 
         <div className="grid grid-cols-1  mt-3">
-          <SelectField
+          <SelectField2
             label={"Task Type"}
             id={"taskType"}
             data={data}
             setData={setData}
             options={taskType}
-            placeholder={""}
-            required={"required"}
+            placeholder={"-- choose --"}
+            required={true}
           />
         </div>
         <div className="grid grid-cols-1  mt-3">
-          <SelectField
+          <SelectField2
             label={"Assign To"}
             id={"assignTo"}
             data={data}
             setData={setData}
             options={assignToData}
-            placeholder={""}
-            required={"required"}
+            placeholder={"-- choose --"}
+            required={true}
           />
         </div>
         <div className="grid grid-cols-1  mt-3">
@@ -78,7 +110,7 @@ const AddTask = ({ open, setOpen }) => {
             placeholder="Select Date"
             data={data}
             setData={setData}
-            required={"required"}
+            required={true}
           />
         </div>
 
@@ -89,7 +121,18 @@ const AddTask = ({ open, setOpen }) => {
             data={data}
             setData={setData}
             placeholder={""}
-            required={"required"}
+            required={true}
+          />
+        </div>
+        <div className="grid grid-cols-1  mt-3">
+          <SelectField2
+            label={"Matter/Contract relate with"}
+            id={"matterRelation"}
+            data={data}
+            setData={setData}
+            options={assignToData}
+            placeholder={"-- choose --"}
+            required={true}
           />
         </div>
         <div className="mt-5">
@@ -108,15 +151,20 @@ const AddTask = ({ open, setOpen }) => {
             id="relatedDocument"
             className="hidden"
             accept="image/png, image/jpg, image/jpeg, image/webp"
+            onChange={handleRelatedDocument}
+            multiple // Allows multiple files to be selected
           />
         </div>
 
         <div>
-          <button className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-2xl mt-4">
+          <button
+            className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-2xl mt-4"
+            type="submit"
+          >
             Save
           </button>
         </div>
-      </div>
+      </form>
     </Dialog>
   );
 };

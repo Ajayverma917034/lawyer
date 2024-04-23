@@ -1,10 +1,11 @@
-import { Dialog, DialogTitle } from "@mui/material";
 import React, { useState } from "react";
+import { Dialog } from "@mui/material";
 import InputField2 from "../../common/InputField2";
-import SelectField from "../../common/SelectField";
 import TextField2 from "../../common/TextField2";
 import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
+import SelectField2 from "../../common/SelectField2";
+import toast from "react-hot-toast";
 
 const AddSchedule = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -12,6 +13,14 @@ const AddSchedule = ({ open, setOpen }) => {
   };
   const [data, setData] = useState({
     title: "",
+    startDate: "",
+    startTime: "",
+    endDate: "",
+    endTime: "",
+    relatedMatter: "",
+    description: "",
+    location: "",
+    meetingType: "",
   });
 
   const options = [
@@ -23,6 +32,20 @@ const AddSchedule = ({ open, setOpen }) => {
     { key: 1, value: "Physical", label: "Physical" },
     { key: 2, value: "Virtual", label: "Virtual" },
   ];
+
+  const handleSave = (e) => {
+    e.preventDefault();
+
+    // Validate fields
+
+    // Proceed with saving data or making API call
+    toast.success("Meeting Scheduled Successfully");
+    console.log("Data saved:", data);
+
+    // api call here
+    handleClose();
+  };
+
   return (
     <Dialog
       onClose={handleClose}
@@ -33,7 +56,10 @@ const AddSchedule = ({ open, setOpen }) => {
       <h2 className="text-2xl font-medium text-center mt-4">
         Schedule New Meeting
       </h2>
-      <div className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw]">
+      <form
+        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw]"
+        onSubmit={handleSave}
+      >
         <div className="grid grid-cols-1">
           <InputField2
             label="Title"
@@ -41,7 +67,7 @@ const AddSchedule = ({ open, setOpen }) => {
             placeholder="Enter the Title of the Meeting"
             data={data}
             setData={setData}
-            required={"required"}
+            required={true}
           />
         </div>
         <div className="grid grid-cols-1 md:gap-10 md:grid-cols-3 mt-3">
@@ -52,7 +78,7 @@ const AddSchedule = ({ open, setOpen }) => {
               placeholder="Select Date"
               data={data}
               setData={setData}
-              required={"required"}
+              required={true}
             />
           </div>
           <TimePicker2
@@ -61,17 +87,18 @@ const AddSchedule = ({ open, setOpen }) => {
             placeholder="12:00 PM"
             data={data}
             setData={setData}
+            required={true}
           />
         </div>
         <div className="grid grid-cols-1 md:gap-10 md:grid-cols-3 mt-3">
           <div className="grid col-span-2">
-            <TimePicker2
+            <DateField2
               label="To"
               id="endDate"
               placeholder="Select Date"
               data={data}
               setData={setData}
-              required={"required"}
+              required={true}
             />
           </div>
           <TimePicker2
@@ -80,28 +107,29 @@ const AddSchedule = ({ open, setOpen }) => {
             placeholder="12:00 PM"
             data={data}
             setData={setData}
+            required={true}
           />
         </div>
 
         <div className="grid grid-cols-1  mt-3">
-          <SelectField
+          <SelectField2
             label={"Related Matter"}
-            id={"relatedMater"}
+            id={"relatedMatter"}
             data={data}
             setData={setData}
             options={options}
-            placeholder={""}
-            required={"required"}
+            placeholder={"-- choose --"}
+            required={true}
           />
         </div>
         <div className="grid grid-cols-1  mt-3">
           <TextField2
-            label={"Related Matter"}
-            id={"relatedMater"}
+            label={"Description"}
+            id={"description"}
             data={data}
             setData={setData}
             placeholder={""}
-            required={"required"}
+            required={true}
           />
         </div>
 
@@ -112,18 +140,18 @@ const AddSchedule = ({ open, setOpen }) => {
             placeholder="Enter the location of the meeting"
             data={data}
             setData={setData}
-            required={"required"}
+            required={true}
           />
         </div>
         <div className="grid grid-cols-1">
-          <SelectField
+          <SelectField2
             label={"Meeting Type"}
             id={"meetingType"}
             data={data}
             setData={setData}
             options={meetingTypeOptions}
-            placeholder={""}
-            required={"required"}
+            placeholder={"-- choose --"}
+            required={true}
           />
         </div>
         <div>
@@ -131,7 +159,7 @@ const AddSchedule = ({ open, setOpen }) => {
             Save
           </button>
         </div>
-      </div>
+      </form>
     </Dialog>
   );
 };

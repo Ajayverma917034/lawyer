@@ -1,6 +1,13 @@
 import React from "react";
 
-const TimePicker2 = ({ label, id, data, setData, placeholder, required }) => {
+const TimePicker2 = ({
+  label,
+  id,
+  data,
+  setData,
+  placeholder,
+  required = false,
+}) => {
   const value = data[id] || "12:00"; // Default to 12:00 PM in 24-hour format
 
   const handleChange = (e) => {
@@ -9,7 +16,7 @@ const TimePicker2 = ({ label, id, data, setData, placeholder, required }) => {
 
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className={`text-xl ${required}`}>
+      <label htmlFor={id} className={`text-xl ${required ? "required" : ""}`}>
         {label}
       </label>
       <input
@@ -18,8 +25,9 @@ const TimePicker2 = ({ label, id, data, setData, placeholder, required }) => {
         id={id}
         name={id}
         onChange={handleChange}
-        value={value}
+        value={data[id]}
         placeholder={placeholder}
+        required={required}
       />
     </div>
   );

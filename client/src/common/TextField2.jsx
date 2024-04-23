@@ -1,11 +1,18 @@
 import React from "react";
-const TextField2 = ({ label, id, data, setData, placeholder, required }) => {
+const TextField2 = ({
+  label,
+  id,
+  data,
+  setData,
+  placeholder,
+  required = false,
+}) => {
   const handleChange = (e) => {
     setData({ ...data, [id]: e.target.value });
   };
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className={`text-xl ${required}`}>
+      <label htmlFor={id} className={`text-xl ${required ? "required" : ""}`}>
         {" "}
         {label}
       </label>
@@ -17,7 +24,7 @@ const TextField2 = ({ label, id, data, setData, placeholder, required }) => {
         value={data[id]}
         placeholder={placeholder}
         rows={5}
-        required
+        required={required}
       />
     </div>
   );

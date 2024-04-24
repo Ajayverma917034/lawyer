@@ -53,7 +53,7 @@ const AllTasks = () => {
   return (
     <>
       <DashboardNavbar />
-      <div className="px-3 md:px-22 lg:px-28 py-3 bg-wihite-light min-h-screen">
+      <div className="px-3 md:px-22 lg:px-28 py-3 bg-white-light min-h-screen">
         <div className="flex justify-between items-center">
           <h1 className=" text-2xl md:text-3xl mt-5 md:mt-3">Tasks</h1>
           <div className="flex gap-2">
@@ -76,7 +76,7 @@ const AllTasks = () => {
                 <th class="px-4 py-2">Matter Name</th>
               </tr>
             </thead>
-            <tbody class="text-gray-700 bg-wihite-light">
+            <tbody class="text-gray-700 bg-white-light">
               <tr>
                 <td class="px-4 py-2 border-r">1</td>
                 <td class="px-4 py-2 border-r">Estate Planning Seminar</td>
@@ -105,10 +105,10 @@ const AllTasks = () => {
               Show 0 out of 0 entries
             </p>
             <div className="flex">
-              <button className="p-2 bg-wihite-light border border-gray-light rounded-tl-md rounded-bl-md">
+              <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
                 Previous
               </button>
-              <button className="p-2 bg-wihite-light border border-gray-light rounded-tr-md rounded-br-md">
+              <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
                 Next
               </button>
             </div>

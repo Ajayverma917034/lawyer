@@ -14,6 +14,9 @@ import BasicInfo from "./pages/profile/BasicInfo";
 import PersonalInfo from "./pages/profile/PersonalInfo";
 import Address from "./pages/profile/Address";
 import UpdatePassword from "./pages/profile/UpdatePassword";
+import Persons from "./pages/contacts/Persons";
+import DashboardNavbar from "./components/dashboard/dashboard.navbar";
+import Companies from "./pages/contacts/Companies";
 const App = () => {
   return (
     <Routes>
@@ -32,6 +35,11 @@ const App = () => {
           <Route path="personal-information" element={<PersonalInfo />} />
           <Route path="update-password" element={<UpdatePassword />} />
           <Route path="address" element={<Address />} />
+        </Route>
+
+        <Route path="contacts" element={<DashboardNavbar />}>
+          <Route path="person" element={<Persons />} />
+          <Route path="companies" element={<Companies />} />
         </Route>
       </Route>
     </Routes>

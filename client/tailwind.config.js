@@ -20,7 +20,7 @@ export default {
       'black': '#000000',
       'white': '#ffffff',
       'red': '#d63031',
-      'wihite-light': '#f3f3f3',
+      'white-light': '#f3f3f3',
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
 

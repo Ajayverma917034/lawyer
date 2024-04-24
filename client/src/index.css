@@ -29,13 +29,14 @@
       @apply block mx-auto;
   }
 
-  /* .btn-dark{
-      @apply whitespace-nowrap bg-black text-white rounded-full py-3 px-6 text-xl capitalize hover:bg-opacity-80;
-  }
+   .btn-dark{
+      @apply whitespace-nowrap bg-blue text-white rounded-md py-1 px-3 text-base capitalize hover:bg-opacity-80;
+    }
+  
 
   .btn-light{
-      @apply btn-dark bg-grey text-black;
-  } */
+      @apply btn-dark bg-blue text-white;
+  } 
 
   /* .input-box {
       @apply w-[100%] rounded-md py-4 px-2 bg-[#dfe6e9] border border-gray-500 focus:bg-transparent placeholder:text-black;

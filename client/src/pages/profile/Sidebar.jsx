@@ -43,7 +43,7 @@ const Sidebar = () => {
     pageStateTap.current.click();
   }, [pageState]);
   return (
-    <section className="relative flex gap-10 py-0 px-3 md:px-22 lg:px-28  m-0 max-md:flex-col bg-wihite-light">
+    <section className="relative flex gap-10 py-0 px-3 md:px-22 lg:px-28  m-0 max-md:flex-col bg-white-light">
       <div className="skicky top-[80px] z-30">
         <div className="relative md:hidden bg-white py-1 border-b border-grey flex flex-nowrap overflow-x-auto ">
           <button
@@ -66,7 +66,7 @@ const Sidebar = () => {
 
         <div
           className={
-            "min-w-[200px] min-h-[calc(100vh-64px)] bg-white md:bg-wihite-light md:h-cover md:sticky top-24 overflow-y-auto pt-6 md:pr-0 md:border-gray-light md:border-r absolute max-md:top-[64px]  max-md:px-16 max-md:-ml-7 duration-500 " +
+            "min-w-[200px] min-h-[calc(100vh-64px)] bg-white md:bg-white-light md:h-cover md:sticky top-24 overflow-y-auto pt-6 md:pr-0 md:border-gray-light md:border-r absolute max-md:top-[64px]  max-md:px-16 max-md:-ml-7 duration-500 " +
             (!showSideNav
               ? "max-md:opacity-0 max-md:pointer-events-none"
               : "opacity-100 pointer-events-auto")

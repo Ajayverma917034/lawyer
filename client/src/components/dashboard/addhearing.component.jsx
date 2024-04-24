@@ -5,18 +5,18 @@ import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
 import SelectField2 from "../../common/SelectField2";
 
-const AddReminder = ({ open, setOpen }) => {
+const AddHearing = ({ open, setOpen }) => {
   const handleClose = () => {
     setOpen(!open);
   };
 
   const [data, setData] = useState({
-    title: "",
-    reminderDate: "",
-    reminderTime: "",
-    repeat: "",
-    recipients: "",
-    summary: "",
+    name: "",
+    hearingType: "",
+    hearingDate: "",
+    hearingTime: "",
+    assignee: "",
+    timeSpent: "",
   });
 
   const options = [
@@ -42,30 +42,38 @@ const AddReminder = ({ open, setOpen }) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <h2 className="text-2xl font-medium mt-4 text-center">
-        Reminder Meeting
-      </h2>
+    <Dialog onClose={handleClose} open={open} disableScrollLock={true}>
+      <h2 className="text-2xl font-medium mt-4 text-center">Add Hearing</h2>
       <form
-        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw]"
+        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[35vw]"
         onSubmit={handleSave}
       >
         <div className="grid grid-cols-1">
           <InputField2
-            label="Reminder Title"
-            id="title"
-            placeholder="Enter the Title of the Meeting"
+            label="Name"
+            id="name"
+            placeholder=""
             data={data}
             setData={setData}
             required={true}
           />
         </div>
-        <div className="grid grid-cols-1 md:gap-10 md:grid-cols-3 mt-3">
-          <div className="grid col-span-2">
+        <div className="grid grid-cols-1">
+          <InputField2
+            label="Hearing Type"
+            id="hearingType"
+            placeholder=""
+            data={data}
+            setData={setData}
+            required={true}
+          />
+        </div>
+        <div className="grid grid-cols-1 md:gap-10 md:grid-cols-2 mt-3">
+          <div className="grid col-span-1">
             <DateField2
-              label="Reminder On"
-              id="reminderDate"
-              placeholder="Select Date"
+              label="Hearing Date"
+              id="hearingDate"
+              placeholder=""
               data={data}
               setData={setData}
               required={true}
@@ -73,43 +81,28 @@ const AddReminder = ({ open, setOpen }) => {
           </div>
           <TimePicker2
             label="Time"
-            id="reminderTime"
-            placeholder="12:00 PM"
+            id="hearingTime"
+            placeholder=""
             data={data}
             setData={setData}
             required={true}
           />
         </div>
 
-        <div className="grid grid-cols-1 md:gap-10 md:grid-cols-3 mt-3">
-          <div className="grid col-span-2">
-            <SelectField2
-              label="Repeat"
-              id="repeat"
-              data={data}
-              setData={setData}
-              options={repeadMode}
-              placeholder="-- choose --"
-              required={true}
-            />
-          </div>
-        </div>
-
         <div className="grid grid-cols-1  mt-3">
-          <SelectField2
-            label="Recipients"
-            id="recipients"
+          <InputField2
+            label="Assignee(s)"
+            id="assignee"
             data={data}
             setData={setData}
-            options={options}
-            placeholder="-- choose --"
+            placeholder=""
             required={true}
           />
         </div>
         <div className="grid grid-cols-1  mt-3">
           <InputField2
-            label="Summary"
-            id="summary"
+            label="Time Spent"
+            id="timeSpent"
             data={data}
             setData={setData}
             placeholder=""
@@ -130,4 +123,4 @@ const AddReminder = ({ open, setOpen }) => {
   );
 };
 
-export default AddReminder;
+export default AddHearing;

@@ -15,11 +15,13 @@ import AddSchedule from "../../components/dashboard/addschedule.component";
 import AddReminder from "../../components/dashboard/addreminder.component";
 import { addressData } from "../profile/Address";
 import AddCase from "../../components/dashboard/addcase.component";
+import AddHearing from "../../components/dashboard/addhearing.component";
 
 const Dashboard = () => {
   const [addTaskOpen, setAddTaskOpen] = useState(false);
   const [addSchedule, setAddSchedule] = useState(false);
   const [addReminder, setAddReminder] = useState(false);
+  const [addHearing, setAddHearing] = useState(false);
   const [addCase, setAddCase] = useState(false);
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ const Dashboard = () => {
   return (
     <>
       <DashboardNavbar />
-      <div className="px-3 md:px-22 lg:px-28 py-3 bg-wihite-light min-h-screen">
+      <div className="px-3 md:px-22 lg:px-28 py-3 bg-white-light min-h-screen">
         <h1 className=" text-2xl md:text-3xl mt-5 md:mt-3">
           Welcome Ajay Verma
         </h1>
@@ -160,7 +162,10 @@ const Dashboard = () => {
             <div className="flex justify-between items-center">
               <h3 className="text-2xl font-medium font-poppins">Hearing</h3>
               <div className="flex gap-2">
-                <button className="bg-blue text-white p-1 rounded-sm shadow-sm">
+                <button
+                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                  onClick={() => setAddHearing(!addHearing)}
+                >
                   Add Hearing <AddCircle />
                 </button>
               </div>
@@ -193,7 +198,7 @@ const Dashboard = () => {
                 <th class="px-4 py-2">Status</th>
               </tr>
             </thead>
-            <tbody class="text-gray-700 bg-wihite-light">
+            <tbody class="text-gray-700 bg-white-light">
               <tr className="border-b border-gray">
                 <td class=" px-4 py-2">1</td>
                 <td class=" px-4 py-2">Food</td>
@@ -215,10 +220,10 @@ const Dashboard = () => {
               Show 0 out of 0 entries
             </p>
             <div className="flex">
-              <button className="p-2 bg-wihite-light border border-gray-light rounded-tl-md rounded-bl-md">
+              <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
                 Previous
               </button>
-              <button className="p-2 bg-wihite-light border border-gray-light rounded-tr-md rounded-br-md">
+              <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
                 Next
               </button>
             </div>
@@ -244,7 +249,7 @@ const Dashboard = () => {
                 <th className="px-4 py-2">Comment</th>
               </tr>
             </thead>
-            <tbody className="text-gray-700 bg-wihite-light">
+            <tbody className="text-gray-700 bg-white-light">
               <tr className="border-b border-gray">
                 <td className="px-4 py-2">Monday</td>
                 <td className="px-4 py-2">2024-04-16</td>
@@ -282,10 +287,10 @@ const Dashboard = () => {
               Show 0 out of 0 entries
             </p>
             <div className="flex">
-              <button className="p-2 bg-wihite-light border border-gray-light rounded-tl-md rounded-bl-md">
+              <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
                 Previous
               </button>
-              <button className="p-2 bg-wihite-light border border-gray-light rounded-tr-md rounded-br-md">
+              <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
                 Next
               </button>
             </div>
@@ -296,6 +301,7 @@ const Dashboard = () => {
       <AddSchedule open={addSchedule} setOpen={setAddSchedule} />
       <AddReminder open={addReminder} setOpen={setAddReminder} />
       <AddCase open={addCase} setOpen={setAddCase} />
+      <AddHearing open={addHearing} setOpen={setAddHearing} />
     </>
   );
 };

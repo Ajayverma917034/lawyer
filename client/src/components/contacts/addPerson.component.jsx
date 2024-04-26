@@ -2,7 +2,6 @@ import { Dialog } from "@mui/material";
 import React, { useState } from "react";
 import InputField2 from "../../common/InputField2";
 import SelectField2 from "../../common/SelectField2";
-import TextField2 from "../../common/TextField2";
 import { UploadFile } from "@mui/icons-material";
 
 const AddPerson = ({ open, setOpen }) => {

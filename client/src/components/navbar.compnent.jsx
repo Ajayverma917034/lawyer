@@ -20,7 +20,24 @@ const Navbar = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
   const [anchorEl3, setAnchorEl3] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
+  const [showContact, setShowContact] = useState(null);
+  const [showMatter, setShowMatter] = useState(null);
 
+  const handleShowMatter = (event) => {
+    setShowMatter(event.currentTarget);
+  };
+
+  const handleCloseMatter = () => {
+    setShowMatter(null);
+  };
+
+  const handleShowContact = (event) => {
+    setShowContact(event.currentTarget);
+  };
+
+  const handleCloseContact = () => {
+    setShowContact(null);
+  };
   const navigate = useNavigate();
   const handleMenu = (event) => {
     navigate(`/profile/basic-information`);
@@ -50,20 +67,116 @@ const Navbar = () => {
           <img src={logo} alt="Legal Tax Link" className="w-16" />
         </Link>
 
-        <ul className="hidden gap-5 justify-center items-center md:flex">
+        <ul className="hidden gap-10 justify-center items-center md:flex">
           <Link to="/dashboard">
             <li className="flex justify-center gap-1 cursor-pointer">
-              <Dashboard /> Dashboard
+              Dashboard
             </li>
           </Link>
-          <li className="flex justify-center gap-1 cursor-pointer">
-            <History /> History
-          </li>
+          <div>
+            <li
+              className="flex justify-center gap-1 cursor-pointer"
+              onClick={handleShowContact}
+            >
+              Contacts
+            </li>
+
+            <Menu
+              open={showContact}
+              anchorEl={showContact}
+              disableScrollLock={true}
+              id="menu-notification"
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              className="mt-12 w-full"
+              onClose={handleCloseContact}
+            >
+              <div className="flex flex-col">
+                <NavLink
+                  to="/contacts/person"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseContact}
+                >
+                  Person
+                </NavLink>
+                <NavLink
+                  to="/contacts/companies"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseContact}
+                >
+                  Company
+                </NavLink>
+              </div>
+            </Menu>
+          </div>
+          <div>
+            <li
+              className="flex justify-center gap-1 cursor-pointer"
+              onClick={handleShowMatter}
+            >
+              Matter
+            </li>
+
+            <Menu
+              open={showMatter}
+              anchorEl={showMatter}
+              disableScrollLock={true}
+              id="menu-notification"
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              className="mt-12 w-full"
+              onClose={handleCloseMatter}
+            >
+              <div className="flex flex-col">
+                <NavLink
+                  to="/matter/corporate"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseMatter}
+                >
+                  Corporate
+                </NavLink>
+                <NavLink
+                  to="/matter/litigation-case"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseMatter}
+                >
+                  Litigation Case
+                </NavLink>
+                <NavLink
+                  to="/matter/intellectual-property"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseMatter}
+                >
+                  Intellectual Property
+                </NavLink>
+              </div>
+            </Menu>
+          </div>
           <NavLink
             to={"/tract-case-status"}
             className="flex justify-center gap-1 cursor-pointer"
           >
-            <LocationOn /> Track Case status
+            Task
+          </NavLink>
+          <NavLink
+            to={"/report"}
+            className="flex justify-center gap-1 cursor-pointer"
+          >
+            Report
           </NavLink>
         </ul>
 
@@ -150,48 +263,6 @@ const Navbar = () => {
             </Menu>
           </div>
 
-          {/* setting */}
-          <div className="w-full">
-            <Settings
-              className="!h-8 !w-8 cursor-pointer"
-              onClick={handleMenuSetting}
-            />
-            <Menu
-              open={anchorEl2}
-              anchorEl={anchorEl2}
-              id="menu-setting"
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              className="mt-12 w-full"
-              onClose={handleCloseSetting}
-            >
-              <div className="w-full md:w-[300px] h-full bg-white rounded">
-                <h5 className="text-center text-[20px] text-black p-3">
-                  Settings
-                </h5>
-
-                <div className="  border border-b-[#0000000f]">
-                  <div className="text-black flex min-w-[15rem] gap-3 p-3 border-b border-gray-500 cursor-pointer hover:bg-[#205081] hover:text-white text-xl items-center font-medium">
-                    <Password /> Manage Password
-                  </div>
-                  <div className="text-black flex min-w-[15rem] gap-3 p-3 border-b border-gray-500 cursor-pointer hover:bg-[#205081] hover:text-white text-xl items-center font-medium">
-                    <Settings /> Manage Nofitications
-                  </div>
-                  <div className="text-black flex min-w-[15rem] gap-3 p-3 border-b border-gray-500 cursor-pointer hover:bg-[#205081] hover:text-white text-xl items-center font-medium">
-                    <Password /> Manage Password
-                  </div>
-                </div>
-              </div>
-            </Menu>
-          </div>
-
           {/* profile */}
           <div className="reltive w-full">
             <AccountCircle
@@ -199,7 +270,7 @@ const Navbar = () => {
               onClick={handleMenu}
             />
           </div>
-          <MenuBar className="!h-8 !w-8" />
+          <MenuBar className="!h-8 !w-8 md:!hidden" />
         </div>
       </div>
       <Outlet />

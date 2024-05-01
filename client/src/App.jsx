@@ -22,6 +22,8 @@ import LitigationCase from "./pages/matter/LitigationCase";
 import IntellectualProperty from "./pages/matter/IntellectualProperty";
 import ContractAndDocument from "./pages/contract/ContractAndDocument";
 import Report from "./pages/report/Report";
+import ContractDetails from "./pages/contract/ContractDetail";
+import CreateContract from "./pages/contract/CreateContract";
 const App = () => {
   return (
     <Routes>
@@ -58,6 +60,8 @@ const App = () => {
         <Route path="contracts" element={<DashboardNavbar />}>
           <Route path="contract" element={<ContractAndDocument />} />
           <Route path="document" element={<ContractAndDocument />} />
+          <Route path="remote-work-aggrement" element={<ContractDetails />} />
+          <Route path="modal-creation/:id" element={<CreateContract />} />
         </Route>
 
         <Route path="report" element={<DashboardNavbar />}>

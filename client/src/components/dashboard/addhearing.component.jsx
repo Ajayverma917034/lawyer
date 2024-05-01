@@ -43,9 +43,11 @@ const AddHearing = ({ open, setOpen }) => {
 
   return (
     <Dialog onClose={handleClose} open={open} disableScrollLock={true}>
-      <h2 className="text-2xl font-medium mt-4 text-center">Add Hearing</h2>
+      <h2 className="text-[18px] md:text-2xl font-medium mt-4 text-center border-b border-gray-light pb-3">
+        Add Hearing
+      </h2>
       <form
-        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[35vw]"
+        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[39vw] overflow-y-auto"
         onSubmit={handleSave}
       >
         <div className="grid grid-cols-1">

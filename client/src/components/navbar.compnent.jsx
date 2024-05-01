@@ -167,7 +167,7 @@ const Navbar = () => {
             </Menu>
           </div>
           <NavLink
-            to={"/tract-case-status"}
+            to="/dashboard/tasks"
             className="flex justify-center gap-1 cursor-pointer"
           >
             Task
@@ -212,6 +212,7 @@ const Navbar = () => {
               open={anchorEl3}
               anchorEl={anchorEl3}
               id="menu-notification"
+              disableScrollLock={true}
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",

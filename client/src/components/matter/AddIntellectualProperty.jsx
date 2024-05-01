@@ -107,7 +107,7 @@ const AddIntellectualProperty = ({ open, setOpen }) => {
         Add New Intellectual Property
       </h2>
       <form
-        className="flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[40vw] overflow-y-auto"
+        className="flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[39vw] overflow-y-auto"
         onSubmit={handleSave}
       >
         <div className="p-3 md:px-10 flex gap-2 flex-col">

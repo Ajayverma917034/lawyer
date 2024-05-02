@@ -27,6 +27,7 @@ export default {
     },
     fontFamily: {
       poppins: ["'Poppins'", "sans-serif"],
+      serif: ['"Merriweather"', 'serif'],
     },
     extend: {
       keyframes: {

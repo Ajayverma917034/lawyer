@@ -1,9 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardNavbar from "../../components/dashboard/dashboard.navbar";
 import { FileDownloadOutlined } from "@mui/icons-material";
 import xlsx from "json-as-xlsx";
+import axios from "axios";
+import { filterPaginationData } from "../../common/filter-pagination-data";
+import { formatDate } from "../../common/date-formater";
+import LoadPrevBtn from "../../common/LoadPreBtn";
+import LoadNextBtn from "../../common/LoadNextBtn";
 
 const AllHearings = () => {
+  const [hearings, setHearings] = useState(null);
+  const [limit, setLimit] = useState(1);
+
+  const fetchHearings = ({ page = 1 }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(
+        `${import.meta.env.VITE_SERVER}/get-hearings`,
+        { page, limit },
+        config
+      )
+      .then(async ({ data }) => {
+        let formatData = await filterPaginationData({
+          state: hearings,
+          data: data.hearings,
+          page,
+          countRoute: "/all-hearing-count",
+        });
+        setHearings(formatData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchHearings({ page: 1 });
+  }, []);
+
   const data = [
     {
       sheet: "Sheet 1",
@@ -71,49 +111,55 @@ const AllHearings = () => {
               <thead class="bg-blue text-white">
                 <tr>
                   <th class="px-4 py-2 border-r">ID</th>
-                  <th class="px-4 py-2 border-r">Title</th>
+                  <th class="px-4 py-2 border-r">Name</th>
                   <th class="px-4 py-2 border-r">Type</th>
-                  <th class="px-4 py-2 border-r">Last Date</th>
-                  <th class="px-4 py-2">Matter Name</th>
+                  <th class="px-4 py-2 border-r">Hearing Date</th>
+                  <th class="px-4 py-2 border-r">Hearing Time</th>
+                  <th class="px-4 py-2 border-r">Assignee'(s)</th>
+                  <th class="px-4 py-2">Time Spent</th>
                 </tr>
               </thead>
               <tbody class="text-gray-700 bg-white-light">
-                <tr>
-                  <td class="px-4 py-2 border-r">1</td>
-                  <td class="px-4 py-2 border-r">Estate Planning Seminar</td>
-                  <td class="px-4 py-2 border-r">Seminar</td>
-                  <td class="px-4 py-2 border-r">2024-05-20</td>
-                  <td class="px-4 py-2">Estate Law</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 border-r">2</td>
-                  <td class="px-4 py-2 border-r">Contract Law Basics</td>
-                  <td class="px-4 py-2 border-r">Workshop</td>
-                  <td class="px-4 py-2 border-r">2024-06-15</td>
-                  <td class="px-4 py-2">Commercial Law</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 border-r">3</td>
-                  <td class="px-4 py-2 border-r">
-                    Intellectual Property Rights
-                  </td>
-                  <td class="px-4 py-2 border-r">Course</td>
-                  <td class="px-4 py-2 border-r">2024-07-10</td>
-                  <td class="px-4 py-2">IP Law</td>
-                </tr>
+                {!hearings ? (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      No data found
+                    </td>
+                  </tr>
+                ) : (
+                  hearings.results?.map((hearing, index) => (
+                    <tr key={index}>
+                      <td class="px-4 py-2 border-r">{index + 1}</td>
+                      <td class="px-4 py-2 border-r">{hearing.name}</td>
+                      <td class="px-4 py-2 border-r">{hearing.hearingType}</td>
+                      <td class="px-4 py-2 border-r">
+                        {formatDate(hearing.hearingDate)}
+                      </td>
+                      <td class="px-4 py-2 border-r">{hearing.hearingTime}</td>
+
+                      <td class="px-4 py-2 border-r">{hearing.assignee}</td>
+                      <td class="px-4 py-2">{hearing.timeSpent}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
             <div className="flex justify-between mt-3 items-center">
               <p className="text-base sm:text-xl font-semibold">
-                Show 0 out of 0 entries
+                Show {(hearings?.page - 1) * limit + hearings?.results.length}{" "}
+                out of {hearings ? hearings.totalDocs : 0} entries
               </p>
               <div className="flex">
-                <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
-                  Previous
-                </button>
-                <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
-                  Next
-                </button>
+                <LoadPrevBtn
+                  limit={limit}
+                  state={hearings}
+                  fetchDataFun={fetchHearings}
+                />
+                <LoadNextBtn
+                  limit={limit}
+                  state={hearings}
+                  fetchDataFun={fetchHearings}
+                />
               </div>
             </div>
           </div>

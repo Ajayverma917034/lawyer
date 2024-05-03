@@ -178,7 +178,10 @@ const Dashboard = () => {
               <span className="mt-1">There is no task for today</span>
             </div>
             <div className="flex justify-end">
-              <button className="font-md font-medium text-sm">
+              <button
+                className="font-md font-medium text-sm"
+                onClick={() => navigate("/dashboard/hearings")}
+              >
                 See All Hearings{" "}
                 <ArrowCircleRightOutlined className="text-sm text-blue" />
               </button>

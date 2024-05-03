@@ -1,9 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardNavbar from "../../components/dashboard/dashboard.navbar";
-import { FileDownloadOutlined } from "@mui/icons-material";
 import xlsx from "json-as-xlsx";
+import axios from "axios";
+import { filterPaginationData } from "../../common/filter-pagination-data";
+import { formatDate } from "../../common/date-formater";
+import LoadPrevBtn from "../../common/LoadPreBtn";
+import LoadNextBtn from "../../common/LoadNextBtn";
 
 const AllMeetings = () => {
+  const [meetings, setMeetings] = useState(null);
+  const [limit, setLimit] = useState(1);
+
+  const fetchMeetings = ({ page = 1 }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(
+        `${import.meta.env.VITE_SERVER}/get-meetings`,
+        { page, limit },
+        config
+      )
+      .then(async ({ data }) => {
+        let formatData = await filterPaginationData({
+          state: meetings,
+          data: data.meetings,
+          page,
+          countRoute: "/all-meeting-count",
+        });
+        setMeetings(formatData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const data = [
     {
       sheet: "Sheet 1",
@@ -50,6 +85,9 @@ const AllMeetings = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    fetchMeetings({ page: 1 });
+  }, []);
   return (
     <>
       <DashboardNavbar />
@@ -82,60 +120,49 @@ const AllMeetings = () => {
                 </tr>
               </thead>
               <tbody class="text-gray-700 bg-white-light">
-                <tr>
-                  <td class="px-4 py-2 border-r">1</td>
-                  <td class="px-4 py-2 border-r">Estate Planning Seminar</td>
-                  <td class="px-4 py-2 border-r">2024-05-18</td>
-                  <td class="px-4 py-2 border-r">10:00 AM</td>
-                  <td class="px-4 py-2 border-r">2024-05-20</td>
-                  <td class="px-4 py-2 border-r">04:00 PM</td>
-                  <td class="px-4 py-2 border-r">
-                    An overview of estate planning techniques.
-                  </td>
-                  <td class="px-4 py-2 border-r">Conference Room A</td>
-                  <td class="px-4 py-2">Seminar</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 border-r">2</td>
-                  <td class="px-4 py-2 border-r">Contract Law Basics</td>
-                  <td class="px-4 py-2 border-r">2024-06-12</td>
-                  <td class="px-4 py-2 border-r">09:00 AM</td>
-                  <td class="px-4 py-2 border-r">2024-06-15</td>
-                  <td class="px-4 py-2 border-r">12:00 PM</td>
-                  <td class="px-4 py-2 border-r">
-                    Introduction to fundamental contract law principles.
-                  </td>
-                  <td class="px-4 py-2 border-r">Conference Room B</td>
-                  <td class="px-4 py-2">Workshop</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 border-r">3</td>
-                  <td class="px-4 py-2 border-r">
-                    Intellectual Property Rights
-                  </td>
-                  <td class="px-4 py-2 border-r">2024-07-08</td>
-                  <td class="px-4 py-2 border-r">01:00 PM</td>
-                  <td class="px-4 py-2 border-r">2024-07-10</td>
-                  <td class="px-4 py-2 border-r">03:00 PM</td>
-                  <td class="px-4 py-2 border-r">
-                    Detailed discussion on the protection of IP rights.
-                  </td>
-                  <td class="px-4 py-2 border-r">Conference Room C</td>
-                  <td class="px-4 py-2">Course</td>
-                </tr>
+                {!meetings ? (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      No data found
+                    </td>
+                  </tr>
+                ) : (
+                  meetings.results?.map((meeting, index) => (
+                    <tr key={index}>
+                      <td class="px-4 py-2 border-r">{index + 1}</td>
+                      <td class="px-4 py-2 border-r">{meeting.title}</td>
+                      <td class="px-4 py-2 border-r">
+                        {formatDate(meeting.startDate)}
+                      </td>
+                      <td class="px-4 py-2 border-r">{meeting.startTime}</td>
+                      <td class="px-4 py-2 border-r">
+                        {formatDate(meeting.endDate)}
+                      </td>
+                      <td class="px-4 py-2 border-r">{meeting.endTime}</td>
+                      <td class="px-4 py-2 border-r">{meeting.description}</td>
+                      <td class="px-4 py-2 border-r">{meeting.location}</td>
+                      <td class="px-4 py-2">{meeting.meetingType}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
             <div className="flex justify-between mt-3 items-center">
               <p className="text-base sm:text-xl font-semibold">
-                Show 0 out of 0 entries
+                Show {(meetings?.page - 1) * limit + meetings?.results.length}{" "}
+                out of {meetings ? meetings.totalDocs : 0} entries
               </p>
               <div className="flex">
-                <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
-                  Previous
-                </button>
-                <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
-                  Next
-                </button>
+                <LoadPrevBtn
+                  limit={limit}
+                  state={meetings}
+                  fetchDataFun={fetchMeetings}
+                />
+                <LoadNextBtn
+                  limit={limit}
+                  state={meetings}
+                  fetchDataFun={fetchMeetings}
+                />
               </div>
             </div>
           </div>

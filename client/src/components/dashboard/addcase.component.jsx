@@ -7,7 +7,8 @@ import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
 import { UploadFile } from "@mui/icons-material";
 import SelectField2 from "../../common/SelectField2";
-
+import axios from "axios";
+import toast from "react-hot-toast";
 const AddCase = ({ open, setOpen }) => {
   const handleClose = () => {
     setOpen(!open);
@@ -37,9 +38,25 @@ const AddCase = ({ open, setOpen }) => {
     { key: 2, value: "Virtual", label: "Virtual" },
   ];
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    console.log(data);
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_SERVER}/create-case`, data, config)
+      .then(({ data }) => {
+        toast.success("Case Added Successfully");
+      })
+      .then((err) => {
+        console.log(err);
+      });
+    handleClose();
   };
   return (
     <Dialog

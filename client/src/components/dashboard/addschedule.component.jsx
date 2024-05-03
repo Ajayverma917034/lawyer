@@ -6,6 +6,7 @@ import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
 import SelectField2 from "../../common/SelectField2";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const AddSchedule = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -17,7 +18,7 @@ const AddSchedule = ({ open, setOpen }) => {
     startTime: "",
     endDate: "",
     endTime: "",
-    relatedMatter: "",
+    relatedMatter: [],
     description: "",
     location: "",
     meetingType: "",
@@ -37,9 +38,39 @@ const AddSchedule = ({ open, setOpen }) => {
     e.preventDefault();
 
     // Validate fields
+    if (
+      data.title === "" ||
+      data.startDate === "" ||
+      data.startTime === "" ||
+      data.endDate === "" ||
+      data.endTime === "" ||
+      // data.relatedMatter === "" ||
+      data.description === "" ||
+      data.location === "" ||
+      data.meetingType === ""
+    ) {
+      toast.error("Please fill all the fields");
+      return;
+    }
 
     // Proceed with saving data or making API call
-    toast.success("Meeting Scheduled Successfully");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_SERVER}/create-meeting`, data, config)
+      .then(({ data }) => {
+        // console.log(data);
+        toast.success("Meeting Scheduled Successfully");
+      })
+      .then((err) => {
+        console.log(err);
+      });
+
     console.log("Data saved:", data);
 
     // api call here

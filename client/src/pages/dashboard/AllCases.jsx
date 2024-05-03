@@ -1,9 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardNavbar from "../../components/dashboard/dashboard.navbar";
 import { FileDownloadOutlined } from "@mui/icons-material";
 import xlsx from "json-as-xlsx";
+import axios from "axios";
+import { filterPaginationData } from "../../common/filter-pagination-data";
+import { formatDate } from "../../common/date-formater";
+import LoadPrevBtn from "../../common/LoadPreBtn";
+import LoadNextBtn from "../../common/LoadNextBtn";
 
 const AllCases = () => {
+  const [cases, setCases] = useState(null);
+  const [limit, setLimit] = useState(1);
+
+  const fetchCases = ({ page = 1 }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_SERVER}/get-cases`, { page, limit }, config)
+      .then(async ({ data }) => {
+        let formatData = await filterPaginationData({
+          state: cases,
+          data: data.cases,
+          page,
+          countRoute: "/all-case-count",
+        });
+        setCases(formatData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const data = [
     {
       sheet: "Sheet 1",
@@ -50,6 +81,10 @@ const AllCases = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    fetchCases({ page: 1 });
+  }, []);
   return (
     <>
       <DashboardNavbar />
@@ -71,49 +106,57 @@ const AllCases = () => {
               <thead class="bg-blue text-white">
                 <tr>
                   <th class="px-4 py-2 border-r">ID</th>
-                  <th class="px-4 py-2 border-r">Title</th>
-                  <th class="px-4 py-2 border-r">Type</th>
-                  <th class="px-4 py-2 border-r">Last Date</th>
-                  <th class="px-4 py-2">Matter Name</th>
+                  <th class="px-4 py-2 border-r">Name</th>
+                  <th class="px-4 py-2 border-r">Practice Area</th>
+                  <th class="px-4 py-2 border-r">Arrival Date</th>
+                  <th class="px-4 py-2 border-r">Client Name</th>
+                  <th class="px-4 py-2 border-r">Client Position</th>
+                  <th class="px-4 py-2 border-r">Ref Number</th>
+                  <th class="px-4 py-2">Description</th>
                 </tr>
               </thead>
               <tbody class="text-gray-700 bg-white-light">
-                <tr>
-                  <td class="px-4 py-2 border-r">1</td>
-                  <td class="px-4 py-2 border-r">Estate Planning Seminar</td>
-                  <td class="px-4 py-2 border-r">Seminar</td>
-                  <td class="px-4 py-2 border-r">2024-05-20</td>
-                  <td class="px-4 py-2">Estate Law</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 border-r">2</td>
-                  <td class="px-4 py-2 border-r">Contract Law Basics</td>
-                  <td class="px-4 py-2 border-r">Workshop</td>
-                  <td class="px-4 py-2 border-r">2024-06-15</td>
-                  <td class="px-4 py-2">Commercial Law</td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-2 border-r">3</td>
-                  <td class="px-4 py-2 border-r">
-                    Intellectual Property Rights
-                  </td>
-                  <td class="px-4 py-2 border-r">Course</td>
-                  <td class="px-4 py-2 border-r">2024-07-10</td>
-                  <td class="px-4 py-2">IP Law</td>
-                </tr>
+                {!cases ? (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      No data found
+                    </td>
+                  </tr>
+                ) : (
+                  cases.results?.map((item, index) => (
+                    <tr key={index}>
+                      <td class="px-4 py-2 border-r">{index + 1}</td>
+                      <td class="px-4 py-2 border-r">{item.name}</td>
+                      <td class="px-4 py-2 border-r">{item.practiceArea}</td>
+                      <td class="px-4 py-2 border-r">
+                        {formatDate(item.arrivalDate)}
+                      </td>
+                      <td class="px-4 py-2 border-r">{item.clientName}</td>
+
+                      <td class="px-4 py-2 border-r">{item.clientPosition}</td>
+                      <td class="px-4 py-2 border-r">{item.refNumber}</td>
+                      <td class="px-4 py-2">{item.description}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
             <div className="flex justify-between mt-3 items-center">
               <p className="text-base sm:text-xl font-semibold">
-                Show 0 out of 0 entries
+                Show {(cases?.page - 1) * limit + cases?.results.length} out of{" "}
+                {cases ? cases.totalDocs : 0} entries
               </p>
               <div className="flex">
-                <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
-                  Previous
-                </button>
-                <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
-                  Next
-                </button>
+                <LoadPrevBtn
+                  limit={limit}
+                  state={cases}
+                  fetchDataFun={fetchCases}
+                />
+                <LoadNextBtn
+                  limit={limit}
+                  state={cases}
+                  fetchDataFun={fetchCases}
+                />
               </div>
             </div>
           </div>

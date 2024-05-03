@@ -4,6 +4,8 @@ import InputField2 from "../../common/InputField2";
 import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
 import SelectField2 from "../../common/SelectField2";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const AddReminder = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -34,9 +36,37 @@ const AddReminder = ({ open, setOpen }) => {
     e.preventDefault();
 
     // Proceed with saving data or making API call
-    console.log("Data saved:", data);
+    if (
+      !data.title ||
+      !data.reminderDate ||
+      !data.reminderTime ||
+      !data.repeat ||
+      !data.recipients ||
+      !data.summary
+    ) {
+      toast.error("Please fill all the fields");
+      return;
+    }
 
     // api call here
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_SERVER}/create-reminder`, data, config)
+      .then(({ data }) => {
+        // console.log(data);
+        toast.success("Reminder Added Successfully");
+      })
+      .then((err) => {
+        console.log(err);
+      });
+
+    console.log("Data saved:", data);
 
     handleClose();
   };

@@ -8,6 +8,7 @@ import TimePicker2 from "../../common/TimePicker2";
 import { UploadFile } from "@mui/icons-material";
 import toast from "react-hot-toast";
 import SelectField2 from "../../common/SelectField2";
+import axios from "axios";
 
 const AddTask = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -44,8 +45,24 @@ const AddTask = ({ open, setOpen }) => {
     e.preventDefault();
 
     // Proceed with saving data or making API call
-    toast.success("Task Added Successfully");
-    console.log("Data saved:", data);
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_SERVER}/create-task`, data, config)
+      .then(({ data }) => {
+        // console.log(data);
+        toast.success("Task Added Successfully");
+      })
+      .then((err) => {
+        console.log(err);
+      });
+    // console.log("Data saved:", data);
 
     // api call here
     setOpen(!open);

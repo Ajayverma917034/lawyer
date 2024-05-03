@@ -4,6 +4,8 @@ import InputField2 from "../../common/InputField2";
 import DateField2 from "../../common/DateField2";
 import TimePicker2 from "../../common/TimePicker2";
 import SelectField2 from "../../common/SelectField2";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const AddHearing = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -30,14 +32,39 @@ const AddHearing = ({ open, setOpen }) => {
     { key: 3, value: "Monthly", label: "Monthly" },
   ];
 
+  const assigneeData = [
+    { key: 1, value: "Ajay Verma", label: "Ajay Verma" },
+    { key: 2, value: "Harshit Kaushal", label: "Harshit Kaushal" },
+  ];
   const handleSave = (e) => {
     e.preventDefault();
-
     // Proceed with saving data or making API call
-    console.log("Data saved:", data);
+    if (
+      !data.name ||
+      !data.hearingType ||
+      !data.hearingDate ||
+      !data.hearingTime ||
+      !data.assignee ||
+      !data.timeSpent
+    ) {
+      toast.error("All fields are required");
+      return;
+    }
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
 
-    // api call here
-
+    axios
+      .post(`${import.meta.env.VITE_SERVER}/create-hearing`, data, config)
+      .then(({ data }) => {
+        toast.success("Hearing Added Successfully");
+      })
+      .then((err) => {
+        console.log(err);
+      });
     handleClose();
   };
 
@@ -92,12 +119,13 @@ const AddHearing = ({ open, setOpen }) => {
         </div>
 
         <div className="grid grid-cols-1  mt-3">
-          <InputField2
+          <SelectField2
             label="Assignee(s)"
             id="assignee"
+            options={assigneeData}
+            placeholder="--- choose ---"
             data={data}
             setData={setData}
-            placeholder=""
             required={true}
           />
         </div>

@@ -6,8 +6,10 @@ import {
   Password,
   Settings,
 } from "@mui/icons-material";
-import { Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 const DashboardNavbar = () => {
+  const [showContact, setShowContact] = useState(null);
+  const [showMatter, setShowMatter] = useState(null);
   const [open, setOpen] = React.useState(false);
   const [anchorEl2, setAnchorEl2] = useState(null);
 
@@ -24,6 +26,23 @@ const DashboardNavbar = () => {
   const handleNaviagte = () => {
     toggleDrawer();
   };
+
+  const handleShowMatter = (event) => {
+    setShowMatter(event.currentTarget);
+  };
+
+  const handleCloseMatter = () => {
+    setShowMatter(null);
+  };
+
+  const handleShowContact = (event) => {
+    setShowContact(event.currentTarget);
+  };
+
+  const handleCloseContact = () => {
+    setShowContact(null);
+  };
+  const navigate = useNavigate();
 
   const navData = [
     {
@@ -44,21 +63,113 @@ const DashboardNavbar = () => {
             open ? "block sm:flex" : "hidden sm:flex"
           } `}
         >
-          <li className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
-            History{" "}
-          </li>
-          <li
-            className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
-            onClick={handleNaviagte}
+          <NavLink to="/dashboard" className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
+            Dashboard{" "}
+          </NavLink>
+          <NavLink
+            to={"/contracts"}
+            className="text-2xl md:text-xl sm:text-base capitalize flex sm:block cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
           >
-            Search Case{" "}
-          </li>
-          <li className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
-            Track case status{" "}
-          </li>
-          <li className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
-            Billing <ArrowDropDown />
-          </li>
+            Contracts
+          </NavLink>
+          <NavLink
+            to="/tasks"
+            className="text-2xl md:text-xl sm:text-base capitalize flex sm:block cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+          >
+            Task{" "}
+          </NavLink>
+          {/* <div className="flex items-center justify-center w-full"> */}
+            <li
+              className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+              onClick={handleShowMatter}
+            >
+              Matter <ArrowDropDown />
+            </li>
+            <Menu
+              open={showMatter}
+              anchorEl={showMatter}
+              disableScrollLock={true}
+              id="menu-notification"
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              className="mt-12 w-full"
+              onClose={handleCloseMatter}
+            >
+              <div className="flex flex-col">
+                <NavLink
+                  to="/matter/corporate"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseMatter}
+                >
+                  Corporate
+                </NavLink>
+                <NavLink
+                  to="/matter/litigation-case"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseMatter}
+                >
+                  Litigation Case
+                </NavLink>
+                <NavLink
+                  to="/matter/intellectual-property"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseMatter}
+                >
+                  Intellectual Property
+                </NavLink>
+              </div>
+            </Menu>
+          {/* </div> */}
+          {/* <div className="flex items-center justify-center"> */}
+            <li
+              className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+              onClick={handleShowContact}
+            >
+              Contacts <ArrowDropDown />
+            </li>
+            <Menu
+              open={showContact}
+              anchorEl={showContact}
+              disableScrollLock={true}
+              id="menu-notification"
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              className="mt-12 w-full"
+              onClose={handleCloseContact}
+            >
+              <div className="flex flex-col">
+                <NavLink
+                  to="/contacts/person"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseContact}
+                >
+                  Person
+                </NavLink>
+                <NavLink
+                  to="/contacts/companies"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseContact}
+                >
+                  Company
+                </NavLink>
+              </div>
+            </Menu>
+          {/* </div> */}
+
           <li
             className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
             onClick={handleMenuSetting}
@@ -68,6 +179,7 @@ const DashboardNavbar = () => {
           <Menu
             open={anchorEl2}
             anchorEl={anchorEl2}
+            disableScrollLock={true}
             id="menu-setting"
             anchorOrigin={{
               vertical: "top",

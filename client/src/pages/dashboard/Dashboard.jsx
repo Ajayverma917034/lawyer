@@ -7,15 +7,22 @@ import {
 } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import DashboardNavbar from "../../components/dashboard/dashboard.navbar";
-import lawbook from "../../assets/icos/lawbook.png";
-import schedule from "../../assets/icos/Schedule.png";
+import hearingIcon from "../../assets/icos/lawbook.png";
+import scheduleIcon from "../../assets/icos/Schedule.png";
+import caseIcon from '../../assets/icos/Law.png'
+import notificationIcon from '../../assets/icos/Notification.png'
+import taskIcon from '../../assets/icos/Task.png'
 import { useNavigate } from "react-router-dom";
 import AddTask from "../../components/dashboard/addtask.components";
 import AddSchedule from "../../components/dashboard/addschedule.component";
 import AddReminder from "../../components/dashboard/addreminder.component";
-import { addressData } from "../profile/Address";
 import AddCase from "../../components/dashboard/addcase.component";
 import AddHearing from "../../components/dashboard/addhearing.component";
+import axios from "axios";
+import { filterPaginationData } from "../../common/filter-pagination-data";
+import { formatDate } from "../../common/date-formater";
+import LoadPrevBtn from "../../common/LoadPreBtn";
+import LoadNextBtn from "../../common/LoadNextBtn";
 
 const Dashboard = () => {
   const [addTaskOpen, setAddTaskOpen] = useState(false);
@@ -24,10 +31,44 @@ const Dashboard = () => {
   const [addHearing, setAddHearing] = useState(false);
   const [addCase, setAddCase] = useState(false);
   const navigate = useNavigate();
+  const [hearings, setHearing] = useState(null);
+  const [limit, setLimit] = useState(1);
 
   const handleAddTask = () => {
     setAddTaskOpen(!addTaskOpen);
   };
+
+  const fetchHearings = ({ page = 1 }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    axios
+      .post(
+        `${import.meta.env.VITE_SERVER}/get-hearings`,
+        { page, limit },
+        config
+      )
+      .then(async ({ data }) => {
+        let formatData = await filterPaginationData({
+          state: hearings,
+          data: data.hearings,
+          page,
+          countRoute: "/all-hearing-count",
+        });
+        setHearing(formatData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchHearings({ page: 1 });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,14 +97,14 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-              <TaskOutlined className="text-blue !text-[6rem]" />
+            <img src={taskIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
               <p className="font-medium text-gray-dark text-xl">Task</p>
               <span className="mt-1">There is no task for today</span>
             </div>
             <div className="flex justify-end">
               <button
                 className="font-md font-medium text-sm"
-                onClick={() => navigate("/dashboard/tasks")}
+                onClick={() => navigate("/tasks")}
               >
                 See All Task{" "}
                 <ArrowCircleRightOutlined className="text-sm text-blue" />
@@ -86,7 +127,7 @@ const Dashboard = () => {
 
             <div className="flex flex-col justify-center items-center h-full">
               {/* <TaskOutlined className="text-blue !text-[6rem]"/> */}
-              <img src={schedule} alt="Meeting" className="w-16 h-16" />
+              <img src={scheduleIcon} alt="Meeting" className="w-16 h-16" />
               <p className="font-medium text-gray-dark text-xl">Metting</p>
               <span className="mt-1">There is no meeting for today</span>
             </div>
@@ -115,7 +156,7 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-              <NotificationsActiveOutlined className="text-blue !text-[6rem]" />
+            <img src={notificationIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
               <p className="font-medium text-gray-dark text-xl">Reminder</p>
               <span className="mt-1">There is no reminder for today</span>
             </div>
@@ -144,8 +185,8 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-              <GavelOutlined className="text-blue !text-[6rem]" />
-              <p className="font-medium text-gray-dark text-xl">Task</p>
+            <img src={caseIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
+              <p className="font-medium text-gray-dark text-xl">Case</p>
               <span className="mt-1">There is no case for today</span>
             </div>
             <div className="flex justify-end">
@@ -173,7 +214,7 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-              <img src={lawbook} alt="Meeting" className="w-[6rem] h-[6rem]" />
+              <img src={hearingIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
               <p className="font-medium text-gray-dark text-xl">Hearing</p>
               <span className="mt-1">There is no task for today</span>
             </div>
@@ -189,7 +230,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
+        {/* <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
           <h3 className="font-medium text-2xl mb-2">My Expenses</h3>
           <table class="table-auto w-full">
             <thead class="bg-blue text-white">
@@ -231,71 +272,65 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
           <h3 className="font-medium text-2xl mb-2">My Hearings</h3>
           <table className="table-auto w-full">
-            <thead className="bg-blue text-white">
+            <thead class="bg-blue text-white">
               <tr>
-                <th className="px-4 py-2">Day</th>
-                <th className="px-4 py-2">Date</th>
-                <th className="px-4 py-2">Time</th>
-                <th className="px-4 py-2">Hearing Type</th>
-                <th className="px-4 py-2">Court</th>
-                <th className="px-4 py-2">Court Region</th>
-                <th className="px-4 py-2">Litigation Case</th>
-                <th className="px-4 py-2">Stage</th>
-                <th className="px-4 py-2">Opponent Lawyer</th>
-                <th className="px-4 py-2">Filed On</th>
-                <th className="px-4 py-2">External/Court Reference - Date</th>
-                <th className="px-4 py-2">Comment</th>
+                <th class="px-4 py-2 border-r">ID</th>
+                <th class="px-4 py-2 border-r">Name</th>
+                <th class="px-4 py-2 border-r">Type</th>
+                <th class="px-4 py-2 border-r">Hearing Date</th>
+                <th class="px-4 py-2 border-r">Hearing Time</th>
+                <th class="px-4 py-2 border-r">Assignee'(s)</th>
+                <th class="px-4 py-2">Time Spent</th>
               </tr>
             </thead>
-            <tbody className="text-gray-700 bg-white-light">
-              <tr className="border-b border-gray">
-                <td className="px-4 py-2">Monday</td>
-                <td className="px-4 py-2">2024-04-16</td>
-                <td className="px-4 py-2">10:00 AM</td>
-                <td className="px-4 py-2">Type A</td>
-                <td className="px-4 py-2">District Court</td>
-                <td className="px-4 py-2">North</td>
-                <td className="px-4 py-2">123/2024</td>
-                <td className="px-4 py-2">Pre-trial</td>
-                <td className="px-4 py-2">John Doe</td>
-                <td className="px-4 py-2">2024-04-10</td>
-                <td className="px-4 py-2">2024-04-15</td>
-                <td className="px-4 py-2">Lorem ipsum dolor sit amet.</td>
-              </tr>
-              <tr className="border-b border-gray">
-                <td className="px-4 py-2">Tuesday</td>
-                <td className="px-4 py-2">2024-04-17</td>
-                <td className="px-4 py-2">11:00 AM</td>
-                <td className="px-4 py-2">Type B</td>
-                <td className="px-4 py-2">Supreme Court</td>
-                <td className="px-4 py-2">South</td>
-                <td className="px-4 py-2">456/2024</td>
-                <td className="px-4 py-2">Trial</td>
-                <td className="px-4 py-2">Jane Smith</td>
-                <td className="px-4 py-2">2024-04-12</td>
-                <td className="px-4 py-2">2024-04-20</td>
-                <td className="px-4 py-2">
-                  Duis aute irure dolor in reprehenderit.
-                </td>
-              </tr>
+            <tbody class="text-gray-700 bg-white-light">
+              {!hearings ? (
+                <tr>
+                  <td colSpan="5" className="text-center">
+                    No data found
+                  </td>
+                </tr>
+              ) : (
+                hearings.results?.map((hearing, index) => (
+                  <tr key={index}>
+                    <td class="px-4 py-2 border-r">{index + 1}</td>
+                    <td class="px-4 py-2 border-r">{hearing.name}</td>
+                    <td class="px-4 py-2 border-r">{hearing.hearingType}</td>
+                    <td class="px-4 py-2 border-r">
+                      {formatDate(hearing.hearingDate)}
+                    </td>
+                    <td class="px-4 py-2 border-r">{hearing.hearingTime}</td>
+
+                    <td class="px-4 py-2 border-r">{hearing.assignee}</td>
+                    <td class="px-4 py-2">{hearing.timeSpent}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
           <div className="flex justify-between mt-3 items-center">
             <p className="text-base sm:text-xl font-semibold">
-              Show 0 out of 0 entries
+              Show {(hearings?.page - 1) * limit + hearings?.results.length} out
+              of {hearings ? hearings.totalDocs : 0} entries
             </p>
             <div className="flex">
-              <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
-                Previous
-              </button>
-              <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
-                Next
-              </button>
+              <div className="flex">
+                <LoadPrevBtn
+                  limit={limit}
+                  state={hearings}
+                  fetchDataFun={fetchHearings}
+                />
+                <LoadNextBtn
+                  limit={limit}
+                  state={hearings}
+                  fetchDataFun={fetchHearings}
+                />
+              </div>
             </div>
           </div>
         </div>

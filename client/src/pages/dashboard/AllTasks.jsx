@@ -82,7 +82,6 @@ const AllTasks = () => {
   // console.log((tasks?.page - 1) * limit + tasks?.results.length);
   return (
     <>
-      <DashboardNavbar />
       <div className="px-3 md:px-22 lg:px-28 py-3 bg-white-light min-h-screen">
         <div className="flex justify-between items-center">
           <h1 className=" text-2xl md:text-3xl mt-5 md:mt-3">Tasks</h1>

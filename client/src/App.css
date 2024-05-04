@@ -2,3 +2,7 @@
   content: " *";
   color: red;
 }
+.active {
+  background-color: #0965fb;
+  color: white;
+}

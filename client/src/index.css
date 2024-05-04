@@ -69,4 +69,7 @@
   .sidebar-link.active{
       @apply text-white border-r-2 border-r-gray-dark  bg-blue md:rounded-tl-lg md:rounded-bl-lg max-md:border-none;
   }
+  .active{
+        @apply bg-blue text-white !important; 
+  }
 }

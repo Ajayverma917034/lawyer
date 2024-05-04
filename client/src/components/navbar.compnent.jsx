@@ -1,51 +1,22 @@
 import React, { useState } from "react";
 import {
   AccountCircle,
-  Dashboard,
-  History,
   Notifications,
-  LocationOn,
-  Settings,
   Search,
-  Person,
-  AccountBalance,
-  Password,
   Menu as MenuBar,
 } from "@mui/icons-material";
-import { Menu, MenuItem } from "@mui/material";
+import { Menu } from "@mui/material";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [anchorEl2, setAnchorEl2] = useState(null);
   const [anchorEl3, setAnchorEl3] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
-  const [showContact, setShowContact] = useState(null);
-  const [showMatter, setShowMatter] = useState(null);
-
-  const handleShowMatter = (event) => {
-    setShowMatter(event.currentTarget);
-  };
-
-  const handleCloseMatter = () => {
-    setShowMatter(null);
-  };
-
-  const handleShowContact = (event) => {
-    setShowContact(event.currentTarget);
-  };
-
-  const handleCloseContact = () => {
-    setShowContact(null);
-  };
+  const [showTools, setShowTools] = useState(false)
   const navigate = useNavigate();
   const handleMenu = (event) => {
     navigate(`/profile/basic-information`);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   const handleNotificaion = (event) => {
     setAnchorEl3(event.currentTarget);
   };
@@ -54,12 +25,13 @@ const Navbar = () => {
     setAnchorEl3(null);
   };
 
-  const handleMenuSetting = (event) => {
-    setAnchorEl2(event.currentTarget);
-  };
-  const handleCloseSetting = () => {
-    setAnchorEl2(null);
-  };
+  const handleShowTools = (event) => {
+    setShowTools(event.currentTarget);
+  }
+
+  const handleCloseTools = () => {
+    setShowTools(null)
+  }
   return (
     <>
       <div className="flex justify-between px-3 md:px-22 lg:px-28 py-3 bg-blue text-white relative">
@@ -69,21 +41,17 @@ const Navbar = () => {
 
         <ul className="hidden gap-10 justify-center items-center md:flex">
           <Link to="/dashboard">
-            <li className="flex justify-center gap-1 cursor-pointer">
+            <li className="flex justify-center gap-1 text-xl cursor-pointer">
               Dashboard
             </li>
           </Link>
-          <div>
-            <li
-              className="flex justify-center gap-1 cursor-pointer"
-              onClick={handleShowContact}
-            >
-              Contacts
+          <div >
+            <li className="flex justify-center gap-1 text-xl cursor-pointer" onClick={handleShowTools}>
+            Tools
             </li>
-
             <Menu
-              open={showContact}
-              anchorEl={showContact}
+              open={showTools}
+              anchorEl={showTools}
               disableScrollLock={true}
               id="menu-notification"
               anchorOrigin={{
@@ -96,88 +64,36 @@ const Navbar = () => {
                 horizontal: "right",
               }}
               className="mt-12 w-full"
-              onClose={handleCloseContact}
+              onClose={handleCloseTools}
             >
               <div className="flex flex-col">
+                
                 <NavLink
-                  to="/contacts/person"
+                  to="/gst-calculator"
                   className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseContact}
+                  onClick={handleCloseTools }
                 >
-                  Person
+                  GST Calculator
                 </NavLink>
-                <NavLink
-                  to="/contacts/companies"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseContact}
-                >
-                  Company
-                </NavLink>
+            
               </div>
             </Menu>
           </div>
-          <div>
-            <li
-              className="flex justify-center gap-1 cursor-pointer"
-              onClick={handleShowMatter}
-            >
-              Matter
+          <Link to="/documents">
+            <li className="flex justify-center gap-1 text-xl cursor-pointer">
+              Documents
             </li>
-
-            <Menu
-              open={showMatter}
-              anchorEl={showMatter}
-              disableScrollLock={true}
-              id="menu-notification"
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              className="mt-12 w-full"
-              onClose={handleCloseMatter}
-            >
-              <div className="flex flex-col">
-                <NavLink
-                  to="/matter/corporate"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseMatter}
-                >
-                  Corporate
-                </NavLink>
-                <NavLink
-                  to="/matter/litigation-case"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseMatter}
-                >
-                  Litigation Case
-                </NavLink>
-                <NavLink
-                  to="/matter/intellectual-property"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseMatter}
-                >
-                  Intellectual Property
-                </NavLink>
-              </div>
-            </Menu>
-          </div>
-          <NavLink
-            to="/dashboard/tasks"
-            className="flex justify-center gap-1 cursor-pointer"
-          >
-            Task
-          </NavLink>
-          <NavLink
-            to={"/report"}
-            className="flex justify-center gap-1 cursor-pointer"
-          >
-            Report
-          </NavLink>
+          </Link>
+          <Link to="/about-us">
+            <li className="flex justify-center gap-1 text-xl cursor-pointer">
+              About Us
+            </li>
+          </Link>
+          <Link to="/contact">
+            <li className="flex justify-center gap-1 text-xl cursor-pointer">
+              Contact 
+            </li>
+          </Link>
         </ul>
 
         <div className="flex gap-5 items-center justify-center">

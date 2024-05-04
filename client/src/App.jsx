@@ -24,6 +24,9 @@ import ContractAndDocument from "./pages/contract/ContractAndDocument";
 import Report from "./pages/report/Report";
 import ContractDetails from "./pages/contract/ContractDetail";
 import CreateContract from "./pages/contract/CreateContract";
+import Documents from "./pages/documents/Documents";
+import GstCalculator from "./pages/tools/GstCalculator";
+import About from "./pages/about/About";
 const App = () => {
   return (
     <Routes>
@@ -31,7 +34,7 @@ const App = () => {
         <Route index element={<Home />} />
 
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="dashboard/tasks" element={<AllTasks />} />
+        
         <Route path="dashboard/meetings" element={<AllMeetings />} />
         <Route path="dashboard/reminders" element={<AllReminders />} />
         <Route path="dashboard/cases" element={<AllCases />} />
@@ -58,15 +61,24 @@ const App = () => {
         </Route>
 
         <Route path="contracts" element={<DashboardNavbar />}>
+          <Route index element={<ContractAndDocument />} />
           <Route path="contract" element={<ContractAndDocument />} />
           <Route path="document" element={<ContractAndDocument />} />
           <Route path="remote-work-aggrement" element={<ContractDetails />} />
           <Route path="modal-creation/:id" element={<CreateContract />} />
         </Route>
-
+        <Route path="tasks" element={<DashboardNavbar/>}>
+          <Route index element={<AllTasks />} />
+        </Route>
+        <Route path="documents" element={<Documents/>}/>
+        <Route path="gst-calculator" element={<GstCalculator />}/>
         <Route path="report" element={<DashboardNavbar />}>
           <Route index element={<Report />} />
         </Route>
+
+        <Route path="about-us" element={<About/>} />
+        <Route path="contact" element={<About/>} />
+
       </Route>
     </Routes>
   );

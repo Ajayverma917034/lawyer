@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Dialog } from "@mui/material";
 import InputField2 from "../../common/InputField2";
-import SelectField from "../../common/SelectField";
 import TextField2 from "../../common/TextField2";
 import DateField2 from "../../common/DateField2";
-import TimePicker2 from "../../common/TimePicker2";
 import { UploadFile } from "@mui/icons-material";
 import toast from "react-hot-toast";
 import SelectField2 from "../../common/SelectField2";
@@ -52,14 +50,17 @@ const AddTask = ({ open, setOpen }) => {
       },
       withCredentials: true,
     };
+    let loading = toast.loading("Adding Task...");
 
     axios
       .post(`${import.meta.env.VITE_SERVER}/create-task`, data, config)
       .then(({ data }) => {
+        toast.dismiss(loading);
         // console.log(data);
         toast.success("Task Added Successfully");
       })
       .then((err) => {
+        toast.dismiss(loading);
         console.log(err);
       });
     // console.log("Data saved:", data);

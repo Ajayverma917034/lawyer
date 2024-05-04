@@ -56,13 +56,15 @@ const AddHearing = ({ open, setOpen }) => {
       },
       withCredentials: true,
     };
-
+    let loading = toast.loading("Adding Hearing...");
     axios
       .post(`${import.meta.env.VITE_SERVER}/create-hearing`, data, config)
       .then(({ data }) => {
+        toast.dismiss(loading);
         toast.success("Hearing Added Successfully");
       })
       .then((err) => {
+        toast.dismiss(loading);
         console.log(err);
       });
     handleClose();

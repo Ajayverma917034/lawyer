@@ -60,14 +60,16 @@ const AddSchedule = ({ open, setOpen }) => {
       },
       withCredentials: true,
     };
-
+    let loading = toast.loading("Adding Meeting...");
     axios
       .post(`${import.meta.env.VITE_SERVER}/create-meeting`, data, config)
       .then(({ data }) => {
         // console.log(data);
+        toast.dismiss(loading);
         toast.success("Meeting Scheduled Successfully");
       })
       .then((err) => {
+        toast.dismiss(loading);
         console.log(err);
       });
 

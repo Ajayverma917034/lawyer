@@ -1,10 +1,8 @@
 import { Dialog, DialogTitle } from "@mui/material";
 import React, { useState } from "react";
 import InputField2 from "../../common/InputField2";
-import SelectField from "../../common/SelectField";
 import TextField2 from "../../common/TextField2";
 import DateField2 from "../../common/DateField2";
-import TimePicker2 from "../../common/TimePicker2";
 import { UploadFile } from "@mui/icons-material";
 import SelectField2 from "../../common/SelectField2";
 import axios from "axios";
@@ -40,7 +38,7 @@ const AddCase = ({ open, setOpen }) => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-
+    let loading = toast.loading("Adding Case...");
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -51,9 +49,11 @@ const AddCase = ({ open, setOpen }) => {
     axios
       .post(`${import.meta.env.VITE_SERVER}/create-case`, data, config)
       .then(({ data }) => {
+        toast.dismiss(loading);
         toast.success("Case Added Successfully");
       })
       .then((err) => {
+        toast.dismiss(loading);
         console.log(err);
       });
     handleClose();

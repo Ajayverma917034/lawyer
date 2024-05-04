@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Menu, MenuItem } from "@mui/material";
+import { Menu } from "@mui/material";
 import {
   ArrowDropDown,
   Menu as MenuIcon,
   Password,
   Settings,
 } from "@mui/icons-material";
-import { Drawer } from "@mui/material";
 import { Outlet } from "react-router-dom";
 const DashboardNavbar = () => {
   const [open, setOpen] = React.useState(false);

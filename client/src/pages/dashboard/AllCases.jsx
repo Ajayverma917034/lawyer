@@ -119,10 +119,10 @@ const AllCases = () => {
                 {!cases ? (
                   <tr>
                     <td colSpan="5" className="text-center">
-                      No data found
+                      Data Loading...
                     </td>
                   </tr>
-                ) : (
+                ) : cases.results?.length ? (
                   cases.results?.map((item, index) => (
                     <tr key={index}>
                       <td class="px-4 py-2 border-r">{index + 1}</td>
@@ -138,6 +138,12 @@ const AllCases = () => {
                       <td class="px-4 py-2">{item.description}</td>
                     </tr>
                   ))
+                ) : (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      No data found
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>

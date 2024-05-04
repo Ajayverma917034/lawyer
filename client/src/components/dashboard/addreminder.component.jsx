@@ -55,14 +55,16 @@ const AddReminder = ({ open, setOpen }) => {
       },
       withCredentials: true,
     };
-
+    let loading = toast.loading("Adding Reminder...");
     axios
       .post(`${import.meta.env.VITE_SERVER}/create-reminder`, data, config)
       .then(({ data }) => {
+        toast.dismiss(loading);
         // console.log(data);
         toast.success("Reminder Added Successfully");
       })
       .then((err) => {
+        toast.dismiss(loading);
         console.log(err);
       });
 

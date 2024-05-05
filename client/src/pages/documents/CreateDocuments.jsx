@@ -1,25 +1,15 @@
 import React, { useRef, useState } from "react";
-import ProgressBar from "../../components/contract/ProgressBar";
-import FormStepper from "../../components/contract/FormStepper";
-import LeaveContract from "../../components/contract/contracts-type/LeaveContract";
-import ReactToPrint, { useReactToPrint } from "react-to-print";
+import { useReactToPrint } from "react-to-print";
+import ProgressBar from "../../components/documents/ProgressBar";
+import LeaveContract from "../../components/documents/documents-type/LeaveContract";
+import FormStepper from "../../components/documents/FormStepper";
 
-const CreateContract = () => {
+const CreateDocument = () => {
   const [formData, setFormData] = useState({});
   const [progress, setProgress] = useState(0);
 
   const handleFormDataChange = (data) => {
     setFormData(data);
-    // Calculate progress based on filled fields
-    const filledFieldsCount = Object.values(data).filter(
-      (value) => value.trim() !== ""
-    ).length;
-    setProgress((filledFieldsCount / getTotalFieldsCount()) * 100);
-  };
-
-  const getTotalFieldsCount = () => {
-    // Sum of all fields in all steps
-    return steps.reduce((total, step) => total + step.fields.length, 0);
   };
 
   const componentRef = useRef();
@@ -196,4 +186,4 @@ const CreateContract = () => {
   );
 };
 
-export default CreateContract;
+export default CreateDocument;

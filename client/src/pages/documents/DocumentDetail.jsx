@@ -1,13 +1,17 @@
 import { Star } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
 import previewImage from "../../assets/letter-requesting-parental-leave-in.png";
 import { useNavigate } from "react-router-dom";
 
-const ContractDetail = () => {
+const DocumentDetails = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/contracts/modal-creation/remote-work-aggrement");
+    navigate("/documents/modal-creation/remote-work-aggrement");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="w-full bg-white-light min-h-screen px-3 md:px-22 lg:px-28 pt-10">
       <h2 className="text-3xl font-medium font-poppins">
@@ -108,4 +112,4 @@ const ContractDetail = () => {
   );
 };
 
-export default ContractDetail;
+export default DocumentDetails;

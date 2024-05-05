@@ -24,7 +24,6 @@ const FormStepper = ({
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     onFormDataChange({ ...formData, [name]: value });
-    // Update parent component
   };
 
   const handleFinish = () => {};
@@ -33,10 +32,10 @@ const FormStepper = ({
   };
 
   const updateProgress = (step) => {
-    // Calculate progress based on filled fields in the current step
-    const progress = ((step + 1) / steps.length) * 100;
+    const progress = (step / steps.length) * 100;
     setProgress(progress);
   };
+
   return (
     <div className="flex flex-col min-h-[35rem] h-full justify-between">
       {/* <div className="flex">

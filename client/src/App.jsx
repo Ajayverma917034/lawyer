@@ -23,10 +23,11 @@ import IntellectualProperty from "./pages/matter/IntellectualProperty";
 import ContractAndDocument from "./pages/contract/ContractAndDocument";
 import Report from "./pages/report/Report";
 import Documents from "./pages/documents/Documents";
-import GstCalculator from "./pages/tools/GstCalculator";
 import About from "./pages/about/About";
 import DocumentDetails from "./pages/documents/DocumentDetail";
 import CreateDocument from "./pages/documents/CreateDocuments";
+import GstCalculator from "./pages/tools/gst-calculator/GstCalculator";
+import IncomeTaxCalculator from "./pages/tools/IncomeTaxCalculator/IncomeTaxCalculator";
 
 const App = () => {
   return (
@@ -78,6 +79,7 @@ const App = () => {
         />
 
         <Route path="gst-calculator" element={<GstCalculator />} />
+        <Route path="income-tax-calculator" element={<IncomeTaxCalculator />} />
         <Route path="report" element={<DashboardNavbar />}>
           <Route index element={<Report />} />
         </Route>

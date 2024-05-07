@@ -11,7 +11,7 @@ import logo from "../assets/logo.png";
 const Navbar = () => {
   const [anchorEl3, setAnchorEl3] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
-  const [showTools, setShowTools] = useState(false)
+  const [showTools, setShowTools] = useState(false);
   const navigate = useNavigate();
   const handleMenu = (event) => {
     navigate(`/profile/basic-information`);
@@ -27,11 +27,11 @@ const Navbar = () => {
 
   const handleShowTools = (event) => {
     setShowTools(event.currentTarget);
-  }
+  };
 
   const handleCloseTools = () => {
-    setShowTools(null)
-  }
+    setShowTools(null);
+  };
   return (
     <>
       <div className="flex justify-between px-3 md:px-22 lg:px-28 py-3 bg-blue text-white relative">
@@ -45,9 +45,12 @@ const Navbar = () => {
               Dashboard
             </li>
           </Link>
-          <div >
-            <li className="flex justify-center gap-1 text-xl cursor-pointer" onClick={handleShowTools}>
-            Tools
+          <div>
+            <li
+              className="flex justify-center gap-1 text-xl cursor-pointer"
+              onClick={handleShowTools}
+            >
+              Tools
             </li>
             <Menu
               open={showTools}
@@ -67,15 +70,20 @@ const Navbar = () => {
               onClose={handleCloseTools}
             >
               <div className="flex flex-col">
-                
                 <NavLink
                   to="/gst-calculator"
                   className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseTools }
+                  onClick={handleCloseTools}
                 >
                   GST Calculator
                 </NavLink>
-            
+                <NavLink
+                  to="/income-tax-calculator"
+                  className="px-3 hover:bg-blue py-1 hover:text-white"
+                  onClick={handleCloseTools}
+                >
+                  Income Tax Calculator
+                </NavLink>
               </div>
             </Menu>
           </div>
@@ -91,7 +99,7 @@ const Navbar = () => {
           </Link>
           <Link to="/contact">
             <li className="flex justify-center gap-1 text-xl cursor-pointer">
-              Contact 
+              Contact
             </li>
           </Link>
         </ul>

@@ -28,7 +28,7 @@ const SelectField2 = ({
         name={id}
         onChange={handleChange}
         value={data[id]}
-        className="p-2 md:p-3 max-md:text-base bg-white text-gray-dark  focus:outline-none outline-none rounded-md border-2 border-[#b3b3b3]"
+        className="custom-select p-2 md:p-3 max-md:text-base bg-white text-gray-dark  focus:outline-none outline-none rounded-md border-2 border-[#b3b3b3]"
         required={required}
       >
         <option value="">{placeholder}</option>

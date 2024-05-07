@@ -257,7 +257,7 @@ const IncomeTaxCalculator = () => {
             setInputValues={setDeductionData}
           />
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-10">
           <button className="btn-dark text-2xl">Calculate Now</button>
         </div>
       </div>

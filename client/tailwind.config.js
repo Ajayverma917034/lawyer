@@ -23,6 +23,7 @@ export default {
       'white-light': '#f3f3f3',
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
+      'gray-text': '#5A5A5A'
 
     },
     fontFamily: {

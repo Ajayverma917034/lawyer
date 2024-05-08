@@ -28,6 +28,9 @@ import DocumentDetails from "./pages/documents/DocumentDetail";
 import CreateDocument from "./pages/documents/CreateDocuments";
 import GstCalculator from "./pages/tools/gst-calculator/GstCalculator";
 import IncomeTaxCalculator from "./pages/tools/IncomeTaxCalculator/IncomeTaxCalculator";
+import TaskDetials from "./components/dashboard/details-pages/TaskDetials";
+import PersonDetails from "./components/contacts/person.details.component";
+import CompanyDetials from "./components/contacts/company.details.component";
 
 const App = () => {
   return (
@@ -51,7 +54,9 @@ const App = () => {
 
         <Route path="contacts" element={<DashboardNavbar />}>
           <Route path="person" element={<Persons />} />
+          <Route path="person/:id" element={<PersonDetails />} />
           <Route path="companies" element={<Companies />} />
+          <Route path="company/:id" element={<CompanyDetials />} />
         </Route>
         <Route path="matter" element={<DashboardNavbar />}>
           <Route path="corporate" element={<Corporate />} />
@@ -69,6 +74,7 @@ const App = () => {
         </Route>
         <Route path="tasks" element={<DashboardNavbar />}>
           <Route index element={<AllTasks />} />
+          <Route path=":id" element={<TaskDetials />} />
         </Route>
 
         <Route path="documents" element={<Documents />} />

@@ -6,12 +6,15 @@ import {
   Menu as MenuBar,
 } from "@mui/icons-material";
 import { Menu } from "@mui/material";
+import { Menu as MenuIcon } from "@mui/icons-material";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 const Navbar = () => {
   const [anchorEl3, setAnchorEl3] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
   const [showTools, setShowTools] = useState(false);
+  const [toggleDrawer, setToggleDrawer] = useState(false);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const handleMenu = (event) => {
     navigate(`/profile/basic-information`);
@@ -23,6 +26,7 @@ const Navbar = () => {
 
   const handleCloseNotification = () => {
     setAnchorEl3(null);
+    hanleCloseNav();
   };
 
   const handleShowTools = (event) => {
@@ -31,6 +35,10 @@ const Navbar = () => {
 
   const handleCloseTools = () => {
     setShowTools(null);
+    hanleCloseNav();
+  };
+  const hanleCloseNav = () => {
+    setOpen(false);
   };
   return (
     <>
@@ -39,15 +47,24 @@ const Navbar = () => {
           <img src={logo} alt="Legal Tax Link" className="w-16" />
         </Link>
 
-        <ul className="hidden gap-10 justify-center items-center md:flex">
-          <Link to="/dashboard">
-            <li className="flex justify-center gap-1 text-xl cursor-pointer">
+        {/* <ul className="hidden gap-10 justify-center items-center md:flex"> */}
+        <ul
+          className={`w-full sm:p-0 max-md:absolute md:relative md:flex md:flex-row  justify-center items-center gap-10 top-[100%] left-0 right-0 bg-blue text-white z-[1000] list-none animate-show-menu ${
+            open ? "block sm:flex" : "hidden sm:flex"
+          } `}
+        >
+          <Link to="/dashboard" onClick={hanleCloseNav}>
+            <li
+              className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+              // className="flex justify-center gap-1 border-b border-white text-xl cursor-pointer"
+            >
               Dashboard
             </li>
           </Link>
           <div>
             <li
-              className="flex justify-center gap-1 text-xl cursor-pointer"
+              // className="flex justify-center gap-1 text-xl cursor-pointer"
+              className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
               onClick={handleShowTools}
             >
               Tools
@@ -87,18 +104,27 @@ const Navbar = () => {
               </div>
             </Menu>
           </div>
-          <Link to="/documents">
-            <li className="flex justify-center gap-1 text-xl cursor-pointer">
+          <Link to="/documents" onClick={hanleCloseNav}>
+            <li
+              //  className="flex justify-center gap-1 text-xl cursor-pointer"
+              className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+            >
               Documents
             </li>
           </Link>
-          <Link to="/about-us">
-            <li className="flex justify-center gap-1 text-xl cursor-pointer">
+          <Link to="/about-us" onClick={hanleCloseNav}>
+            <li
+              // className="flex justify-center gap-1 text-xl cursor-pointer"
+              className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+            >
               About Us
             </li>
           </Link>
-          <Link to="/contact">
-            <li className="flex justify-center gap-1 text-xl cursor-pointer">
+          <Link to="/contact" onClick={hanleCloseNav}>
+            <li
+              // className="flex justify-center gap-1 text-xl cursor-pointer"
+              className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+            >
               Contact
             </li>
           </Link>
@@ -195,9 +221,55 @@ const Navbar = () => {
               onClick={handleMenu}
             />
           </div>
-          <MenuBar className="!h-8 !w-8 md:!hidden" />
+          <MenuBar
+            className="!h-8 !w-8 md:!hidden"
+            onClick={() => setOpen(!open)}
+          />
         </div>
       </div>
+
+      {/* <div className="flex justify-end bg-white py-2 relative px-3 md:px-22 lg:px-28">
+        <MenuIcon
+          onClick={toggleDrawer}
+          className="text-blue sm:!hidden sm:pointer-events-none !text-3xl border border-blue p-1 rounded-sm cursor-pointer"
+        />
+        <ul
+          className={`w-full p-3 sm:p-0 flex-col sm:flex-row absolute sm:relative sm:justify-end top-12 sm:top-0 left-0 right-0 bg-blue sm:bg-white text-white sm:text-blue gap-4 z-10 list-none animate-show-menu ${
+            open ? "block sm:flex" : "hidden sm:flex"
+          } `}
+        >
+          <NavLink
+            to="/dashboard"
+            className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+          >
+            Dashboard{" "}
+          </NavLink>
+          <NavLink
+            to={"/contracts"}
+            className="text-2xl md:text-xl sm:text-base capitalize flex sm:block cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+          >
+            Contracts
+          </NavLink>
+          <NavLink
+            to="/tasks"
+            className="text-2xl md:text-xl sm:text-base capitalize flex sm:block cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+          >
+            Task{" "}
+          </NavLink>
+          <li className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
+            Matter <ArrowDropDown />
+          </li>
+
+          <li className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
+            Contacts <ArrowDropDown />
+          </li>
+
+
+          <li className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
+            setting <ArrowDropDown />
+          </li>
+        </ul>
+      </div> */}
       <Outlet />
     </>
   );

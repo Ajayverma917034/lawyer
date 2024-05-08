@@ -1,5 +1,6 @@
 import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import AddPerson from "../../components/contacts/addPerson.component";
 import AddCompany from "../../components/contacts/addCompany.component";
 
@@ -83,13 +84,18 @@ const Companies = () => {
                 <th className="px-4 py-2 font-medium text-left">Legal Type</th>
                 <th className="px-4 py-2 font-medium text-left">Nationality</th>
                 <th className="px-4 py-2 font-medium text-left">Lawyer</th>
+                {/* Add the new field header */}
+                <th className="px-4 py-2 font-medium text-left">View</th>
               </tr>
             </thead>
             <tbody>
               {/* Add your table rows here */}
               <tr className="border-b border-gray-light">
                 <td className="px-4 py-2">1</td>
-                <td className="px-4 py-2">John Doe</td>
+                {/* Wrap the content of the "Name" field with Link */}
+                <td className="px-4 py-2">
+                  <Link to="/company/1">John Doe</Link>
+                </td>
                 <td className="px-4 py-2">Engineering</td>
                 <td className="px-4 py-2">john.doe@example.com</td>
                 <td className="px-4 py-2">123-456-7890</td>
@@ -97,6 +103,12 @@ const Companies = () => {
                 <td className="px-4 py-2">Software Engineer</td>
                 <td className="px-4 py-2">ABC Company</td>
                 <td className="px-4 py-2">Ref123</td>
+                {/* Add corresponding td element for the new field */}
+                <td className="px-4 py-2">
+                  <Link to={`/contacts/company/${"1"}`}>
+                    <button className="text-blue">View</button>
+                  </Link>
+                </td>
               </tr>
             </tbody>
           </table>

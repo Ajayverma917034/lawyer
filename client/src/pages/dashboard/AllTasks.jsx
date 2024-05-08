@@ -8,6 +8,7 @@ import LoadMoreDataBtn from "../../common/LoadMoreBtn";
 import LoadNextBtn from "../../common/LoadNextBtn";
 import LoadPrevBtn from "../../common/LoadPreBtn";
 import { formatDate } from "../../common/date-formater";
+import { Link } from "react-router-dom";
 
 const AllTasks = () => {
   const [tasks, setTasks] = useState(null);
@@ -102,7 +103,8 @@ const AllTasks = () => {
                 <th class="px-4 py-2 border-r">Title</th>
                 <th class="px-4 py-2 border-r">Type</th>
                 <th class="px-4 py-2 border-r">Last Date</th>
-                <th class="px-4 py-2">Matter Name</th>
+                <th class="px-4 py-2 border-r">Matter Name</th>
+                <th class="px-4 py-2">View</th>
               </tr>
             </thead>
             <tbody class="text-gray-700 bg-white-light">
@@ -121,7 +123,12 @@ const AllTasks = () => {
                     <td class="px-4 py-2 border-r">
                       {formatDate(task.dueDate)}
                     </td>
-                    <td class="px-4 py-2">{task.matterRelation}</td>
+                    <td class="px-4 py-2 border-r">{task.matterRelation}</td>
+                    <td className="px-4 py-2">
+                      <Link to={`/tasks/${"1"}`}>
+                        <button>View</button>
+                      </Link>
+                    </td>
                   </tr>
                 ))
               )}

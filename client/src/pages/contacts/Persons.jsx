@@ -1,6 +1,7 @@
 import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
 import React, { useState } from "react";
 import AddPerson from "../../components/contacts/addPerson.component";
+import { Link } from "react-router-dom";
 
 const Persons = () => {
   const [isChecked1, setIsChecked1] = useState(false);
@@ -83,6 +84,7 @@ const Persons = () => {
                 <th className="px-4 py-2 font-medium text-left">
                   Sub Category
                 </th>
+                <th className="px-4 py-2 font-medium text-left">View</th>
               </tr>
             </thead>
             <tbody>
@@ -98,6 +100,11 @@ const Persons = () => {
                 <td className="px-4 py-2">ABC Company</td>
                 <td className="px-4 py-2">Ref123</td>
                 <td className="px-4 py-2">Sub Category</td>
+                <td className="px-4 py-2">
+                  <Link to={`/contacts/person/${"1"}`}>
+                    <button className="text-blue">View</button>
+                  </Link>
+                </td>
               </tr>
             </tbody>
           </table>

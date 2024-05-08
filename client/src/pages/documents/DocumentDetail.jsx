@@ -17,7 +17,7 @@ const DocumentDetails = () => {
       <h2 className="text-[22px] max-md:text-center md:text-3xl font-medium font-poppins">
         Remote Work Aggrement
       </h2>
-      <div className="flex gap-8 mt-5 flex-wrap">
+      <div className="flex gap-8 mt-5 flex-wrap justify-center">
         <div className="flex flex-col">
           <p className="text-[14px] md:text-[18px] font-medium">Last Update</p>
           <span>30-01-2024</span>

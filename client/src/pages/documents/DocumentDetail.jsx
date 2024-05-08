@@ -14,24 +14,24 @@ const DocumentDetails = () => {
   }, []);
   return (
     <div className="w-full bg-white-light min-h-screen px-3 md:px-22 lg:px-28 pt-10">
-      <h2 className="text-3xl font-medium font-poppins">
+      <h2 className="text-[22px] max-md:text-center md:text-3xl font-medium font-poppins">
         Remote Work Aggrement
       </h2>
-      <div className="flex gap-8   mt-5">
+      <div className="flex gap-8 mt-5 flex-wrap">
         <div className="flex flex-col">
-          <p className="text-[18px] font-medium">Last Update</p>
+          <p className="text-[14px] md:text-[18px] font-medium">Last Update</p>
           <span>30-01-2024</span>
         </div>
         <div className="flex flex-col">
-          <p className="text-[18px] font-medium">Formats</p>
+          <p className="text-[14px] md:text-[18px] font-medium">Formats</p>
           <span>PDF and Word</span>
         </div>
         <div className="flex flex-col">
-          <p className="text-[18px] font-medium">Size</p>
+          <p className="text-[14px] md:text-[18px] font-medium">Size</p>
           <span>10 to 12 pages</span>
         </div>
         <div className="flex flex-col">
-          <p className="text-[18px] font-medium">Ratings</p>
+          <p className="text-[14px] md:text-[18px] font-medium">Ratings</p>
           <div className="flex">
             {[1, 1, 1, 1].map((star, index) => (
               <Star className="text-[#ffe60a]" key={index} />
@@ -42,15 +42,15 @@ const DocumentDetails = () => {
         </div>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 flex max-sm:justify-center">
         <button className="btn-dark text-2xl" onClick={handleNavigate}>
           Fill Out the template
         </button>
       </div>
 
-      <div className="grid grid-cols-5 mt-8">
-        <div className="col-span-3 p-4 max-h-screen overflow-y-auto">
-          <p className="text-xl text-justify">
+      <div className="grid grid-cols-1 md:grid-cols-5 mt-8">
+        <div className="col-span-1 md:col-span-3 p-2 md:p-4 md:max-h-screen md:overflow-y-auto">
+          <p className="text-base md:text-xl text-justify">
             This Remote Employment Agreement i.e. terms and conditions of remote
             employment is a contract for use when a business hires a new
             employee to work remotely or when a current employee is being
@@ -58,7 +58,7 @@ const DocumentDetails = () => {
             can be used for a range of different employment types,
             including full-time, part-time and fixed-term.
           </p>
-          <p className="mt-3 text-xl text-justify">
+          <p className="mt-3 text-base md:text-xl text-justify">
             This Agreement can be used by any type of entity including a
             company, LLP, Partnership, etc. In many cases, once an employer
             chooses to take on a new employee, the parties want to get started
@@ -73,7 +73,7 @@ const DocumentDetails = () => {
             arrangement may develop over time (for example, by providing details
             of bonuses and pay increases).
           </p>
-          <p className="mt-3 text-xl text-justify">
+          <p className="mt-3 text-base md:text-xl text-justify">
             This Remote Work Agreement is not suitable for use by contractors.
             Instead, contractors should use the Service Agreement. Contractors
             are entities or persons who provide specific services for a specific
@@ -89,9 +89,9 @@ const DocumentDetails = () => {
             Work Agreement. A Remote Work Agreement{" "}
           </p>
         </div>
-        <div className="border-l-2 border-gray-light pl-3 flex justify-center col-span-2">
+        <div className="md:border-l-2 border-gray-light pl-3 flex justify-center col-span-1 md:col-span-2 max-md:pb-4 bg-white-light">
           <div
-            className="w-[22rem] h-[30rem] border-2 p-3 border-gray-light relative rounded-md"
+            className="max-md:h-full md:w-[22rem] md:h-[30rem] border-2 md:p-3 border-gray-light relative rounded-md bg-white-light"
             style={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
           >
             <img
@@ -102,9 +102,12 @@ const DocumentDetails = () => {
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50 rounded-md">
               <p className="text-white font-bold text-lg">Form Preview</p>
             </div>
-            <button className="btn-dark text-2xl mt-5 w-full">
-              Create Now
-            </button>
+
+            <div className="bg-white-light">
+              <button className="btn-dark text-2xl mt-5 w-full mb-5">
+                Create Now
+              </button>
+            </div>
           </div>
         </div>
       </div>

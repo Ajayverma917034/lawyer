@@ -21,3 +21,27 @@
   font-size: 1rem;
   color: #1a1a1a;
 }
+
+.custom-date input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none; /* Chrome, Safari, newer versions of Opera */
+  -moz-appearance: none; /* Firefox */
+  background: url(assets/icos/) no-repeat right 0.75rem center;
+  background-size: 1.5em;
+  border: 2px solid #b3b3b3;
+  border-radius: 0.375em;
+  padding: 0.5em 3em 0.5em 1em; /* Right padding to avoid overlap with the icon */
+  font-size: 1rem;
+  color: #1a1a1a;
+  cursor: pointer;
+  width: 100%;
+}
+
+.custom-date input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none; /* This works for Chrome and Safari */
+}
+
+.custom-date input[type="date"]::-webkit-inner-spin-button,
+.custom-date input[type="date"]::-webkit-clear-button {
+  display: none; /* Removes inner spin buttons in WebKit browsers */
+}

@@ -52,9 +52,6 @@ const LeaveContract = ({ data }) => {
       <p className={`${data.employerAttention ? "text-base" : "hidden"}`}>
         Attention: {data.employerAttention}
       </p>
-
-      {/* <p>I hereby submit a request for leave from <span>12/12/12</span> till <span>12/12/12</span> being a total of <span>5</span> working days. I will return to work on <span>12/12/12</span> entitlement of year. I understand that in accordance with the company policy I have a total leave entitlement of) days in the year and have already taken
-) days of leave in this</p> */}
       <p className="mt-3">
         I hereby submit a request for leave from{" "}
         <span className={`${data.startDate ? "font-poppins" : "font-serif"}`}>

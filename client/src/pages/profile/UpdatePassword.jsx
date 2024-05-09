@@ -11,7 +11,7 @@ const UpdatePassword = () => {
     setPassword({ ...password, [e.target.name]: e.target.value });
   };
   return (
-    <div className="flex flex-col mt-12 p-5 min-h-screen">
+    <div className="flex flex-col mt-12 p-5">
       <h2 className="text-2xl">Update Password</h2>
       <div className="flex flex-col mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

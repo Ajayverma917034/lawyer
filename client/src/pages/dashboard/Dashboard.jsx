@@ -9,9 +9,9 @@ import React, { useEffect, useState } from "react";
 import DashboardNavbar from "../../components/dashboard/dashboard.navbar";
 import hearingIcon from "../../assets/icos/lawbook.png";
 import scheduleIcon from "../../assets/icos/Schedule.png";
-import caseIcon from '../../assets/icos/Law.png'
-import notificationIcon from '../../assets/icos/Notification.png'
-import taskIcon from '../../assets/icos/Task.png'
+import caseIcon from "../../assets/icos/Law.png";
+import notificationIcon from "../../assets/icos/Notification.png";
+import taskIcon from "../../assets/icos/Task.png";
 import { useNavigate } from "react-router-dom";
 import AddTask from "../../components/dashboard/addtask.components";
 import AddSchedule from "../../components/dashboard/addschedule.component";
@@ -97,7 +97,7 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-            <img src={taskIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
+              <img src={taskIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
               <p className="font-medium text-gray-dark text-xl">Task</p>
               <span className="mt-1">There is no task for today</span>
             </div>
@@ -156,7 +156,11 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-            <img src={notificationIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
+              <img
+                src={notificationIcon}
+                alt="Meeting"
+                className="w-[6rem] h-[6rem]"
+              />
               <p className="font-medium text-gray-dark text-xl">Reminder</p>
               <span className="mt-1">There is no reminder for today</span>
             </div>
@@ -185,7 +189,7 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-            <img src={caseIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
+              <img src={caseIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
               <p className="font-medium text-gray-dark text-xl">Case</p>
               <span className="mt-1">There is no case for today</span>
             </div>
@@ -214,7 +218,11 @@ const Dashboard = () => {
             <hr className="bg-gray-500 mt-2 h-[1px]" />
 
             <div className="flex flex-col justify-center items-center h-full">
-              <img src={hearingIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
+              <img
+                src={hearingIcon}
+                alt="Meeting"
+                className="w-[6rem] h-[6rem]"
+              />
               <p className="font-medium text-gray-dark text-xl">Hearing</p>
               <span className="mt-1">There is no task for today</span>
             </div>
@@ -279,12 +287,12 @@ const Dashboard = () => {
           <table className="table-auto w-full">
             <thead class="bg-blue text-white">
               <tr>
-                <th class="px-4 py-2 border-r">ID</th>
-                <th class="px-4 py-2 border-r">Name</th>
-                <th class="px-4 py-2 border-r">Type</th>
-                <th class="px-4 py-2 border-r">Hearing Date</th>
-                <th class="px-4 py-2 border-r">Hearing Time</th>
-                <th class="px-4 py-2 border-r">Assignee'(s)</th>
+                <th class="px-4 py-2 border-r text-start">ID</th>
+                <th class="px-4 py-2 border-r text-start">Name</th>
+                <th class="px-4 py-2 border-r text-start">Type</th>
+                <th class="px-4 py-2 border-r text-start">Hearing Date</th>
+                <th class="px-4 py-2 border-r text-start">Hearing Time</th>
+                <th class="px-4 py-2 border-r text-start">Assignee'(s)</th>
                 <th class="px-4 py-2">Time Spent</th>
               </tr>
             </thead>
@@ -298,15 +306,23 @@ const Dashboard = () => {
               ) : (
                 hearings.results?.map((hearing, index) => (
                   <tr key={index}>
-                    <td class="px-4 py-2 border-r">{index + 1}</td>
-                    <td class="px-4 py-2 border-r">{hearing.name}</td>
-                    <td class="px-4 py-2 border-r">{hearing.hearingType}</td>
-                    <td class="px-4 py-2 border-r">
+                    <td class="px-4 py-2 border-r text-start">{index + 1}</td>
+                    <td class="px-4 py-2 border-r text-start">
+                      {hearing.name}
+                    </td>
+                    <td class="px-4 py-2 border-r text-start">
+                      {hearing.hearingType}
+                    </td>
+                    <td class="px-4 py-2 border-r text-start">
                       {formatDate(hearing.hearingDate)}
                     </td>
-                    <td class="px-4 py-2 border-r">{hearing.hearingTime}</td>
+                    <td class="px-4 py-2 border-r text-start">
+                      {hearing.hearingTime}
+                    </td>
 
-                    <td class="px-4 py-2 border-r">{hearing.assignee}</td>
+                    <td class="px-4 py-2 border-r text-start">
+                      {hearing.assignee}
+                    </td>
                     <td class="px-4 py-2">{hearing.timeSpent}</td>
                   </tr>
                 ))

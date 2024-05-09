@@ -10,7 +10,7 @@ import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 const DashboardNavbar = () => {
   const [showContact, setShowContact] = useState(null);
   const [showMatter, setShowMatter] = useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [openDashboard, setOpenDashboard] = React.useState(false);
   const [anchorEl2, setAnchorEl2] = useState(null);
 
   const handleMenuSetting = (event) => {
@@ -20,7 +20,7 @@ const DashboardNavbar = () => {
     setAnchorEl2(null);
   };
   const toggleDrawer = () => {
-    setOpen(!open);
+    setOpenDashboard(!openDashboard);
   };
 
   const handleNaviagte = () => {
@@ -33,6 +33,7 @@ const DashboardNavbar = () => {
 
   const handleCloseMatter = () => {
     setShowMatter(null);
+    setOpenDashboard(false);
   };
 
   const handleShowContact = (event) => {
@@ -41,6 +42,7 @@ const DashboardNavbar = () => {
 
   const handleCloseContact = () => {
     setShowContact(null);
+    setOpenDashboard(false);
   };
   const navigate = useNavigate();
 
@@ -60,114 +62,120 @@ const DashboardNavbar = () => {
         />
         <ul
           className={`w-full p-3 sm:p-0 flex-col sm:flex-row absolute sm:relative sm:justify-end top-12 sm:top-0 left-0 right-0 bg-blue sm:bg-white text-white sm:text-blue gap-4 z-10 list-none animate-show-menu ${
-            open ? "block sm:flex" : "hidden sm:flex"
+            openDashboard ? "block sm:flex" : "hidden sm:flex"
           } `}
         >
-          <NavLink to="/dashboard" className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white">
+          <NavLink
+            to="/dashboard"
+            onClick={() => setOpenDashboard(false)}
+            className="text-2xl md:text-xl flex sm:block sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+          >
             Dashboard{" "}
           </NavLink>
           <NavLink
             to={"/contracts"}
+            onClick={() => setOpenDashboard(false)}
             className="text-2xl md:text-xl sm:text-base capitalize flex sm:block cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
           >
             Contracts
           </NavLink>
           <NavLink
             to="/tasks"
+            onClick={() => setOpenDashboard(false)}
             className="text-2xl md:text-xl sm:text-base capitalize flex sm:block cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
           >
             Task{" "}
           </NavLink>
           {/* <div className="flex items-center justify-center w-full"> */}
-            <li
-              className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
-              onClick={handleShowMatter}
-            >
-              Matter <ArrowDropDown />
-            </li>
-            <Menu
-              open={showMatter}
-              anchorEl={showMatter}
-              disableScrollLock={true}
-              id="menu-notification"
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              className="mt-12 w-full"
-              onClose={handleCloseMatter}
-            >
-              <div className="flex flex-col">
-                <NavLink
-                  to="/matter/corporate"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseMatter}
-                >
-                  Corporate
-                </NavLink>
-                <NavLink
-                  to="/matter/litigation-case"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseMatter}
-                >
-                  Litigation Case
-                </NavLink>
-                <NavLink
-                  to="/matter/intellectual-property"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseMatter}
-                >
-                  Intellectual Property
-                </NavLink>
-              </div>
-            </Menu>
+          <li
+            className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+            onClick={handleShowMatter}
+          >
+            Matter <ArrowDropDown />
+          </li>
+          <Menu
+            open={showMatter}
+            anchorEl={showMatter}
+            disableScrollLock={true}
+            id="menu-notification"
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            className="mt-12 w-full"
+            onClose={handleCloseMatter}
+          >
+            <div className="flex flex-col">
+              <NavLink
+                to="/matter/corporate"
+                className="px-3 hover:bg-blue py-1 hover:text-white"
+                onClick={handleCloseMatter}
+              >
+                Corporate
+              </NavLink>
+              <NavLink
+                to="/matter/litigation-case"
+                className="px-3 hover:bg-blue py-1 hover:text-white"
+                onClick={handleCloseMatter}
+              >
+                Litigation Case
+              </NavLink>
+              <NavLink
+                to="/matter/intellectual-property"
+                className="px-3 hover:bg-blue py-1 hover:text-white"
+                onClick={handleCloseMatter}
+              >
+                Intellectual Property
+              </NavLink>
+            </div>
+          </Menu>
           {/* </div> */}
           {/* <div className="flex items-center justify-center"> */}
-            <li
-              className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
-              onClick={handleShowContact}
-            >
-              Contacts <ArrowDropDown />
-            </li>
-            <Menu
-              open={showContact}
-              anchorEl={showContact}
-              disableScrollLock={true}
-              id="menu-notification"
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              className="mt-12 w-full"
-              onClose={handleCloseContact}
-            >
-              <div className="flex flex-col">
-                <NavLink
-                  to="/contacts/person"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseContact}
-                >
-                  Person
-                </NavLink>
-                <NavLink
-                  to="/contacts/companies"
-                  className="px-3 hover:bg-blue py-1 hover:text-white"
-                  onClick={handleCloseContact}
-                >
-                  Company
-                </NavLink>
-              </div>
-            </Menu>
+          <li
+            className="text-2xl md:text-xl sm:text-base capitalize cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-light sm:hover:text-white"
+            onClick={handleShowContact}
+          >
+            Contacts <ArrowDropDown />
+          </li>
+          <Menu
+            open={showContact}
+            anchorEl={showContact}
+            disableScrollLock={true}
+            id="menu-notification"
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            className="mt-12 w-full"
+            onClose={handleCloseContact}
+          >
+            <div className="flex flex-col">
+              <NavLink
+                to="/contacts/person"
+                className="px-3 hover:bg-blue py-1 hover:text-white"
+                onClick={handleCloseContact}
+              >
+                Person
+              </NavLink>
+              <NavLink
+                to="/contacts/companies"
+                className="px-3 hover:bg-blue py-1 hover:text-white"
+                onClick={handleCloseContact}
+              >
+                Company
+              </NavLink>
+            </div>
+          </Menu>
           {/* </div> */}
 
           <li

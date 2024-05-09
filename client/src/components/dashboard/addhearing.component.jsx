@@ -145,7 +145,7 @@ const AddHearing = ({ open, setOpen }) => {
         <div>
           <button
             type="submit"
-            className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-2xl mt-4"
+            className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-2xl mt-4"
           >
             Save
           </button>

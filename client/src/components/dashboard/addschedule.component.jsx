@@ -162,9 +162,10 @@ const AddSchedule = ({ open, setOpen }) => {
             id={"description"}
             data={data}
             setData={setData}
-            placeholder={""}
+            placeholder={"Write something about the meeting..."}
             required={true}
           />
+          
         </div>
 
         <div className="grid grid-cols-1">
@@ -189,7 +190,7 @@ const AddSchedule = ({ open, setOpen }) => {
           />
         </div>
         <div>
-          <button className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-2xl mt-4">
+          <button className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-2xl mt-4">
             Save
           </button>
         </div>

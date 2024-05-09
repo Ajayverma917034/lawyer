@@ -5,7 +5,6 @@ import SelectField2 from "../../common/SelectField2";
 import TextField2 from "../../common/TextField2";
 import { UploadFile } from "@mui/icons-material";
 import DateField2 from "../../common/DateField2";
-import TimePicker2 from "../../common/TimePicker2";
 
 const AddIntellectualProperty = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -57,19 +56,6 @@ const AddIntellectualProperty = ({ open, setOpen }) => {
     reference: "",
     document: [],
   });
-
-  const companyCategory = [
-    {
-      key: 1,
-      value: "private",
-      label: "Private",
-    },
-    {
-      key: 2,
-      value: "public",
-      label: "Public",
-    },
-  ];
 
   const clientName = [
     {
@@ -209,7 +195,7 @@ const AddIntellectualProperty = ({ open, setOpen }) => {
                 required={true}
               />
             </div>
-            <div className="grid col-span-2">
+            <div className="grid grid-cols-1 md:col-span-2 max-md:mt-3">
               <InputField2
                 label="Client/Owner Name"
                 id="opponentName"
@@ -231,7 +217,7 @@ const AddIntellectualProperty = ({ open, setOpen }) => {
                 required={true}
               />
             </div>
-            <div className="grid col-span-2">
+            <div className="grid grid-cols-1 md:col-span-2 max-md:mt-3">
               <InputField2
                 label="Applicant Name"
                 id="opponentName"
@@ -253,7 +239,7 @@ const AddIntellectualProperty = ({ open, setOpen }) => {
                 required={true}
               />
             </div>
-            <div className="grid col-span-2">
+            <div className="grid grid-cols-1 md:col-span-2 max-md:mt-3">
               <InputField2
                 label="Agent Name"
                 id="opponentName"
@@ -352,10 +338,10 @@ const AddIntellectualProperty = ({ open, setOpen }) => {
 
         <hr className="border-1 border-[#b3b3b3] mt-5" />
 
-        <div className="p-3 md:px-10 flex justify-between flex-row mb-5">
+        <div className="p-3 md:px-10 flex justify-between items-center flex-row mb-5">
           <div>
             <button
-              className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-xl mt-4"
+              className="outlline-none bg-blue border-2 border-blue text-white py-1 px-3 rounded-md text-xl md:text-xl mt-4"
               type="submit"
             >
               Save

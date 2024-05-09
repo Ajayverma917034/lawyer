@@ -505,20 +505,20 @@ const AddLitigationCase = ({ open, setOpen }) => {
         </div>
         <hr className="border-1 border-[#b3b3b3] mt-5" />
 
-        <div className="p-3 md:px-10 flex justify-between flex-row mb-5">
-          <div>
+        <div className="px-1 sm:p-3 md:px-10 flex justify-between flex-row mb-5 flex-wrap items-center">
+          <div className="flex justify-between">
             <button
-              className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-xl mt-4"
+              className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-[15px] md:text-xl mt-4"
               type="submit"
             >
               Save
             </button>
-            <button className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-xl mt-4 ml-5">
+            <button className="outlline-none border-none bg-blue text-white py-2 px-2 sm:px-3 rounded-md text-[15px] md:text-xl mt-4 ml-5">
               Save and Create Another
             </button>
           </div>
           <button
-            className="outlline-none bg-white text-black border-2 border-black py-1 px-3 rounded-md text-xl md:text-xl mt-4"
+            className="outlline-none bg-white text-black border-2 border-black py-1 px-3 rounded-md text-[15px] md:text-xl mt-4"
             onClick={handleClose}
           >
             Cancel

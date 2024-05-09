@@ -147,7 +147,7 @@ const AddCase = ({ open, setOpen }) => {
           <label className="text-xl required">Related Document</label>
           <label
             htmlFor="relatedDocument"
-            className="border border-dashed rounded-md flex justify-center items-center min-h-24 flex-col"
+            className="border border-dashed rounded-md flex justify-center items-center min-h-28 flex-col"
           >
             <UploadFile className="text-3xl text-blue" />
             <p className="text-base">Upload Documents</p>

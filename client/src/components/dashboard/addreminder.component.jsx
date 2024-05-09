@@ -6,6 +6,7 @@ import TimePicker2 from "../../common/TimePicker2";
 import SelectField2 from "../../common/SelectField2";
 import toast from "react-hot-toast";
 import axios from "axios";
+import TextField2 from "../../common/TextField2";
 
 const AddReminder = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -74,7 +75,7 @@ const AddReminder = ({ open, setOpen }) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} disableScrollLock={true}>
       <h2 className="text-[18px] md:text-2xl font-medium mt-4 text-center border-b border-gray-light pb-3">
         Reminder Meeting
       </h2>
@@ -139,12 +140,12 @@ const AddReminder = ({ open, setOpen }) => {
           />
         </div>
         <div className="grid grid-cols-1  mt-3">
-          <InputField2
+          <TextField2
             label="Summary"
             id="summary"
             data={data}
             setData={setData}
-            placeholder=""
+            placeholder="Write something about the reminder..."
             required={true}
           />
         </div>
@@ -152,7 +153,7 @@ const AddReminder = ({ open, setOpen }) => {
         <div>
           <button
             type="submit"
-            className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-2xl mt-4"
+            className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-2xl mt-4"
           >
             Save
           </button>

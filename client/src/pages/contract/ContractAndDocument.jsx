@@ -19,12 +19,12 @@ const ContractAndDocument = () => {
     <>
       <div className="w-full bg-white-light min-h-screen">
         <div className="px-4 md:px-28 pt-2 items-center">
-          <div className="flex gap-2 mt-5">
-            <h1 className="text-2xl md:text-2xl">Contract & Document</h1>
+          <div className="flex gap-2 mt-5 flex-wrap">
+            <h1 className="text-[18px] md:text-2xl">Contract & Document</h1>
             <select
               name="filter"
               id="filter"
-              className="ml- min-w-32 md:min-w-48 outline-none rounded-md px-3 text-base shadow-sm border border-gray-light focus:outline-none "
+              className="min-w-28 md:min-w-48 outline-none rounded-md px-3 text-base shadow-sm border border-gray-light focus:outline-none "
             >
               <option value="all" defaultValue={"all"}>
                 All
@@ -32,7 +32,7 @@ const ContractAndDocument = () => {
             </select>
 
             <button
-              className="ml-auto btn-light"
+              className="ml-3 sm:ml-auto btn-light"
               onClick={() => setAddPerson(!addPerson)}
             >
               Add New
@@ -94,10 +94,12 @@ const ContractAndDocument = () => {
         </div>
 
         <div className="flex gap-6 px-4 py-2 border-b border-gray-light bg-white flex-wrap">
-          <div>Page 1 of 1</div>
-          <div className="flex gap-4">
-            <button className="text-blue">Prev</button>
-            <button className="text-blue">Next</button>
+          <div className="flex gap-5 max-sm:w-full max-sm:justify-between">
+            <div>Page 1 of 1</div>
+            <div className="flex gap-4">
+              <button className="text-blue">Prev</button>
+              <button className="text-blue">Next</button>
+            </div>
           </div>
           <div className="ml-auto flex gap-5">
             <label

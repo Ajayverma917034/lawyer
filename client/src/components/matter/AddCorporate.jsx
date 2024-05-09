@@ -5,7 +5,6 @@ import SelectField2 from "../../common/SelectField2";
 import TextField2 from "../../common/TextField2";
 import { UploadFile } from "@mui/icons-material";
 import DateField2 from "../../common/DateField2";
-import TimePicker2 from "../../common/TimePicker2";
 
 const AddCorporate = ({ open, setOpen }) => {
   const handleClose = () => {
@@ -44,19 +43,6 @@ const AddCorporate = ({ open, setOpen }) => {
     reference: "",
     document: [],
   });
-
-  const companyCategory = [
-    {
-      key: 1,
-      value: "private",
-      label: "Private",
-    },
-    {
-      key: 2,
-      value: "public",
-      label: "Public",
-    },
-  ];
 
   const clientName = [
     {

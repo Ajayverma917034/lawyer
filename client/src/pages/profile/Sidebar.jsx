@@ -10,8 +10,6 @@ const Sidebar = () => {
 
   const imageHandler = async (e) => {
     const file = e.target.files[0];
-    console.log(file);
-    console.log("hello");
     const fileReader = new FileReader();
     // fileReader.onload = () => {
     //  if(fileReader.readyState === 2){
@@ -28,7 +26,6 @@ const Sidebar = () => {
 
   const chagnePageState = (e) => {
     let { offsetWidth, offsetLeft } = e.target;
-    console.log(offsetLeft, offsetWidth);
     activeTabLine.current.style.width = offsetWidth + "px";
     activeTabLine.current.style.left = offsetLeft + "px";
 

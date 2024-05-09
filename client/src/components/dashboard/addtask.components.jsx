@@ -123,7 +123,7 @@ const AddTask = ({ open, setOpen }) => {
             required={true}
           />
         </div>
-        <div className="grid grid-cols-1  mt-3">
+        <div className="grid grid-cols-1 mt-3">
           <DateField2
             label="Due Date"
             id="dueDate"
@@ -135,16 +135,6 @@ const AddTask = ({ open, setOpen }) => {
         </div>
 
         <div className="grid grid-cols-1  mt-3">
-          <TextField2
-            label={"Description"}
-            id={"description"}
-            data={data}
-            setData={setData}
-            placeholder={""}
-            required={true}
-          />
-        </div>
-        <div className="grid grid-cols-1  mt-3">
           <SelectField2
             label={"Matter/Contract relate with"}
             id={"matterRelation"}
@@ -155,12 +145,22 @@ const AddTask = ({ open, setOpen }) => {
             required={true}
           />
         </div>
+        <div className="grid grid-cols-1  mt-3">
+          <TextField2
+            label={"Description"}
+            id={"description"}
+            data={data}
+            setData={setData}
+            placeholder={"Write something about the task..."}
+            required={true}
+          />
+        </div>
         <div className="mt-5">
           <div>
             <label className="text-xl required">Related Document</label>
           </div>
           <label htmlFor="relatedDocument">
-            <div className="border border-dashed rounded-md flex justify-center items-center min-h-24 flex-col">
+            <div className="border border-dashed rounded-md flex justify-center items-center min-h-32 flex-col">
               <UploadFile className="text-3xl !size-12 text-blue" />
               <p className="text-base">Upload Documents</p>
             </div>
@@ -178,7 +178,7 @@ const AddTask = ({ open, setOpen }) => {
 
         <div>
           <button
-            className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-2xl mt-4"
+            className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-2xl mt-4"
             type="submit"
           >
             Save

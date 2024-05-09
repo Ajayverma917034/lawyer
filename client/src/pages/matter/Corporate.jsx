@@ -107,10 +107,12 @@ const Corporate = () => {
         </div>
 
         <div className="flex gap-6 px-4 py-2 border-b border-gray-light bg-white flex-wrap">
-          <div>Page 1 of 1</div>
-          <div className="flex gap-4">
-            <button className="text-blue">Prev</button>
-            <button className="text-blue">Next</button>
+          <div className="flex gap-5 max-sm:w-full max-sm:justify-between">
+            <div>Page 1 of 1</div>
+            <div className="flex gap-4">
+              <button className="text-blue">Prev</button>
+              <button className="text-blue">Next</button>
+            </div>
           </div>
           <div className="ml-auto flex gap-5">
             <label

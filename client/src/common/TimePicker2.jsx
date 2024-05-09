@@ -25,7 +25,7 @@ const TimePicker2 = ({
         {label}
       </label>
       <input
-        className="p-2 md:p-3 max-md:text-base bg-white text-gray-dark focus:outline-none outline-none rounded-md border-2 border-[#b3b3b3]"
+        className="p-2 md:p-3 max-md:text-base bg-white text-gray-dark focus:outline-none outline-none rounded-md border-2 border-[#b3b3b3] w-full"
         type="time"
         id={id}
         name={id}

@@ -93,16 +93,16 @@ const AddLitigationCase = ({ open, setOpen }) => {
     billingPreference: "",
   });
 
-  const companyCategory = [
+  const rateOption = [
     {
       key: 1,
-      value: "private",
-      label: "Private",
+      value: "hourly",
+      label: "Hourly",
     },
     {
       key: 2,
-      value: "public",
-      label: "Public",
+      value: "fixed",
+      label: "Fixed",
     },
   ];
 
@@ -493,13 +493,13 @@ const AddLitigationCase = ({ open, setOpen }) => {
 
           <div className="grid grid-cols-1 mt-3 gap-4">
             <SelectField2
-              label="Hourly Rate"
+              label=""
               id="billingPreference"
-              options={categoryType}
+              options={rateOption}
               placeholder={"-- choose --"}
               data={otherData}
               setData={setOtherData}
-              required={true}
+              // required={true}
             />
           </div>
         </div>

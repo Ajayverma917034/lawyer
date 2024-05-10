@@ -102,7 +102,7 @@ const AddTask = ({ open, setOpen }) => {
         </div>
 
         <div className="grid grid-cols-1  mt-3">
-          <SelectField2
+          {/* <SelectField2
             label={"Task Type"}
             id={"taskType"}
             data={data}
@@ -110,7 +110,37 @@ const AddTask = ({ open, setOpen }) => {
             options={taskType}
             placeholder={"-- choose --"}
             required={true}
-          />
+          /> */}
+          <div className="flex flex-col gap-1">
+            <div className="flex justify-between">
+              <label
+                htmlFor={"taskType"}
+                className={`text-base md:text-[14px] text-black ${"required"}`}
+              >
+                {"Task Type"}
+              </label>
+              <span className="text-blue text-base cursor-pointer select-none">
+                Add Task Type
+              </span>
+            </div>
+            <select
+              id={"taskType"}
+              name="taskType"
+              onChange={(e) =>
+                setData({ ...data, ["taskType"]: e.target.value })
+              }
+              value={data["taskType"]}
+              className="custom-select p-2 md:p-3 max-md:text-base bg-white text-gray-dark  focus:outline-none outline-none rounded-md border-2 border-[#b3b3b3]"
+              required={true}
+            >
+              <option value="">{"-- choose --"}</option>
+              {taskType.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <div className="grid grid-cols-1  mt-3">
           <SelectField2
@@ -179,7 +209,7 @@ const AddTask = ({ open, setOpen }) => {
         <div>
           <button
             className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-2xl mt-4"
-            type="submit"
+            // type="submit"
           >
             Save
           </button>

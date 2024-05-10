@@ -75,9 +75,15 @@ const AddReminder = ({ open, setOpen }) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open} disableScrollLock={true}>
+    <Dialog
+      onClose={handleClose}
+      open={open}
+      disableScrollLock={true}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
       <h2 className="text-[18px] md:text-2xl font-medium mt-4 text-center border-b border-gray-light pb-3">
-        Reminder Meeting
+        Reminder
       </h2>
       <form
         className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[39vw] overflow-y-auto"
@@ -114,18 +120,16 @@ const AddReminder = ({ open, setOpen }) => {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:gap-10 md:grid-cols-3 mt-3">
-          <div className="grid col-span-2">
-            <SelectField2
-              label="Repeat"
-              id="repeat"
-              data={data}
-              setData={setData}
-              options={repeadMode}
-              placeholder="-- choose --"
-              required={true}
-            />
-          </div>
+        <div className="grid grid-cols-1 mt-3">
+          <SelectField2
+            label="Repeat"
+            id="repeat"
+            data={data}
+            setData={setData}
+            options={repeadMode}
+            placeholder="-- choose --"
+            required={true}
+          />
         </div>
 
         <div className="grid grid-cols-1  mt-3">

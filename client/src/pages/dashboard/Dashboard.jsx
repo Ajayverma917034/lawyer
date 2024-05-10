@@ -12,7 +12,7 @@ import scheduleIcon from "../../assets/icos/Schedule.png";
 import caseIcon from "../../assets/icos/Law.png";
 import notificationIcon from "../../assets/icos/Notification.png";
 import taskIcon from "../../assets/icos/Task.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddTask from "../../components/dashboard/addtask.components";
 import AddSchedule from "../../components/dashboard/addschedule.component";
 import AddReminder from "../../components/dashboard/addreminder.component";
@@ -23,6 +23,9 @@ import { filterPaginationData } from "../../common/filter-pagination-data";
 import { formatDate } from "../../common/date-formater";
 import LoadPrevBtn from "../../common/LoadPreBtn";
 import LoadNextBtn from "../../common/LoadNextBtn";
+import { taskData } from "../../constant/data";
+import { DoughnutChart } from "../../charts/Doughnut";
+import { TaskCard } from "../../components/dashboard/dashboard.components";
 
 const Dashboard = () => {
   const [addTaskOpen, setAddTaskOpen] = useState(false);
@@ -34,6 +37,30 @@ const Dashboard = () => {
   const [hearings, setHearing] = useState(null);
   const [limit, setLimit] = useState(1);
 
+  const doughnutDataFortask = {
+    labels: ["Completed Tasks", "Upcoming Tasks"],
+    datasets: [
+      {
+        label: "No of Tasks",
+        data: [2, 3],
+        backgroundColor: ["#0965fb", "#c04545"],
+        // borderColor: ["#FF6384", "#36A2EB"],
+        borderWidth: 0,
+      },
+    ],
+  };
+
+  const doughnutDataForMeeting = {
+    labels: ["Completed Meeting", "Upcoming Meeting"],
+    datasets: [
+      {
+        label: "No of meeting",
+        data: [5, 3],
+        backgroundColor: ["#0965fb", "#c04545"],
+        borderWidth: 0,
+      },
+    ],
+  };
   const handleAddTask = () => {
     setAddTaskOpen(!addTaskOpen);
   };
@@ -83,23 +110,36 @@ const Dashboard = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-5">
           <div className="flex flex-col p-4 bg-white shadow-md rounded-md min-w-[18rem] h-[23rem]">
-            <div className="flex justify-between items-center">
-              <h3 className="text-2xl font-medium font-poppins">Task</h3>
-              <div className="flex gap-2">
-                <button
-                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
-                  onClick={handleAddTask}
-                >
-                  Add New <AddCircle />
-                </button>
+            <div>
+              <div className="flex justify-between items-center">
+                <h3 className="text-2xl font-medium font-poppins">Task</h3>
+                <div className="flex gap-2">
+                  <button
+                    className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                    onClick={handleAddTask}
+                  >
+                    Add New <AddCircle />
+                  </button>
+                </div>
               </div>
-            </div>
-            <hr className="bg-gray-500 mt-2 h-[1px]" />
-
-            <div className="flex flex-col justify-center items-center h-full">
-              <img src={taskIcon} alt="Meeting" className="w-[6rem] h-[6rem]" />
-              <p className="font-medium text-gray-dark text-xl">Task</p>
-              <span className="mt-1">There is no task for today</span>
+              <hr className="bg-gray-500 mt-2 h-[1px]" />
+              {taskData.length ? (
+                <div className="flex flex-col justify-center items-center overflow-y-auto">
+                  {taskData.slice(0, 3).map((item, index) => (
+                    <TaskCard item={item} />
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col justify-center items-center h-full">
+                  <img
+                    src={taskIcon}
+                    alt="Meeting"
+                    className="w-[6rem] h-[6rem]"
+                  />
+                  <p className="font-medium text-gray-dark text-xl">Task</p>
+                  <span className="mt-1">There is no task for today</span>
+                </div>
+              )}
             </div>
             <div className="flex justify-end">
               <button
@@ -238,50 +278,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
-          <h3 className="font-medium text-2xl mb-2">My Expenses</h3>
-          <table class="table-auto w-full">
-            <thead class="bg-blue text-white">
-              <tr>
-                <th class="px-4 py-2 ">ID</th>
-                <th class="px-4 py-2">Category</th>
-                <th class="px-4 py-2">Amount</th>
-                <th class="px-4 py-2">Date</th>
-                <th class="px-4 py-2">Status</th>
-              </tr>
-            </thead>
-            <tbody class="text-gray-700 bg-white-light">
-              <tr className="border-b border-gray">
-                <td class=" px-4 py-2">1</td>
-                <td class=" px-4 py-2">Food</td>
-                <td class=" px-4 py-2">$20</td>
-                <td class=" px-4 py-2">2024-04-16</td>
-                <td class=" px-4 py-2">Paid</td>
-              </tr>
-              <tr className="border-b border-gray">
-                <td class=" px-4 py-2">2</td>
-                <td class=" px-4 py-2">Transportation</td>
-                <td class=" px-4 py-2">$15</td>
-                <td class=" px-4 py-2">2024-04-15</td>
-                <td class=" px-4 py-2">Unpaid</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="flex justify-between mt-3 items-center">
-            <p className="text-base sm:text-xl font-semibold">
-              Show 0 out of 0 entries
-            </p>
-            <div className="flex">
-              <button className="p-2 bg-white-light border border-gray-light rounded-tl-md rounded-bl-md">
-                Previous
-              </button>
-              <button className="p-2 bg-white-light border border-gray-light rounded-tr-md rounded-br-md">
-                Next
-              </button>
-            </div>
-          </div>
-        </div> */}
-
         <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
           <h3 className="font-medium text-2xl mb-2">My Hearings</h3>
           <table className="table-auto w-full">
@@ -350,6 +346,82 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
+          <h3 className="font-medium text-2xl mb-2">My Tasks</h3>
+          <table className="table-auto w-full">
+            <thead class="bg-blue text-white">
+              <tr>
+                <th class="px-4 py-2 font-normal text-start">ID</th>
+                <th class="px-4 py-2 font-normal text-start">Title</th>
+                <th class="px-4 py-2 font-normal text-start">Type</th>
+                <th class="px-4 py-2 font-normal text-start">Last Date</th>
+                <th class="px-4 py-2 font-normal text-start">Matter Name</th>
+                <th class="px-4 py-2 font-normal text-start">View</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700 bg-white-light">
+              {!taskData ? (
+                <tr>
+                  <td colSpan="5" className="text-center">
+                    No data found
+                  </td>
+                </tr>
+              ) : (
+                taskData?.map((item, index) => (
+                  <tr key={index}>
+                    <td class="px-4 py-2 border-r text-start">{index + 1}</td>
+                    <td class="px-4 py-2 border-r text-start min-w-[5rem]">
+                      {item.Title}
+                    </td>
+                    <td class="px-4 py-2 border-r text-start">{item.Type}</td>
+                    <td class="px-4 py-2 border-r text-start">
+                      {formatDate(item.LastDate)}
+                    </td>
+                    <td class="px-4 py-2 border-r text-start">
+                      {item.MatterName}
+                    </td>
+                    <td className="px-4 py-2 text-blue">
+                      <Link to={`/tasks/${"1"}`}>
+                        <button>View</button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+          <div className="flex justify-between mt-3 items-center">
+            <p className="text-base sm:text-xl font-semibold">
+              Show 10 out of 10 entries
+            </p>
+            <div className="flex">
+              <div className="flex">
+                <LoadPrevBtn
+                  limit={limit}
+                  state={hearings}
+                  fetchDataFun={fetchHearings}
+                />
+                <LoadNextBtn
+                  limit={limit}
+                  state={hearings}
+                  fetchDataFun={fetchHearings}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-center mt-24 mb-4">
+          <div className="flex justify-center items-center">
+            <div className="w-full sm:w-2/3 bg-white pt-5 pb-10 px-10 rounded-lg shadow-medium-shadow">
+              <DoughnutChart data={doughnutDataFortask} title="Task" />
+            </div>
+          </div>
+          <div className="flex justify-center items-center">
+            <div className="w-full sm:w-2/3 bg-white pt-5 pb-10 px-10 rounded-lg shadow-medium-shadow">
+              <DoughnutChart data={doughnutDataForMeeting} title="Meeting" />
+            </div>
+          </div>
+        </div>
       </div>
       <AddTask open={addTaskOpen} setOpen={setAddTaskOpen} />
       <AddSchedule open={addSchedule} setOpen={setAddSchedule} />
@@ -361,27 +433,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-// <div className="flex flex-col p-4 border border-gray-500 rounded-md min-w-[20rem]">
-//   <div className="flex justify-between items-center">
-//     <h3 className="text-2xl font-medium">Meetings</h3>
-//     <div className="flex gap-2">
-//       <button
-//         className="flex gap-1 justify-center items-center bg-[#205081] py-1 px-2 rounded-md text-white"
-//         onClick={() => setAddTaskOpen(true)}
-//       >
-//         Add <Add />
-//       </button>
-//       <p className="text-xl font-medium bg-[#205081] px-2 rounded-full text-white">
-//         5
-//       </p>
-//     </div>
-//   </div>
-//   <hr className="bg-gray-500 mt-2 h-[1px]" />
-//   {[1, 1, 1, 1, 1].map((item, index) => (
-//     <div className="flex mt-2 text-xl cursor-pointer hover:bg-[#dfe6e9] p-2 bg-opacity-10">
-//       <span className="text-xl">{index + 1}.</span>
-//       <p className="text-xl">Title of the Meetings</p>
-//     </div>
-//   ))}
-// </div>

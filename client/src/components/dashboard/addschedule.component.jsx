@@ -30,8 +30,9 @@ const AddSchedule = ({ open, setOpen }) => {
   ];
 
   const meetingTypeOptions = [
-    { key: 1, value: "Physical", label: "Physical" },
-    { key: 2, value: "Virtual", label: "Virtual" },
+    { key: 1, value: "online", label: "Online" },
+    { key: 2, value: "offline", label: "Offline" },
+    { key: 3, value: "oncall", label: "Oncall" },
   ];
 
   const handleSave = (e) => {
@@ -46,8 +47,10 @@ const AddSchedule = ({ open, setOpen }) => {
       data.endTime === "" ||
       // data.relatedMatter === "" ||
       data.description === "" ||
-      data.location === "" ||
-      data.meetingType === ""
+      data.meetingType === "" ||
+      data.meetingType === "offline"
+        ? data.location === ""
+        : false
     ) {
       toast.error("Please fill all the fields");
       return;
@@ -165,19 +168,8 @@ const AddSchedule = ({ open, setOpen }) => {
             placeholder={"Write something about the meeting..."}
             required={true}
           />
-          
         </div>
 
-        <div className="grid grid-cols-1">
-          <InputField2
-            label="Location"
-            id="location"
-            placeholder="Enter the location of the meeting"
-            data={data}
-            setData={setData}
-            required={true}
-          />
-        </div>
         <div className="grid grid-cols-1">
           <SelectField2
             label={"Meeting Type"}
@@ -189,6 +181,18 @@ const AddSchedule = ({ open, setOpen }) => {
             required={true}
           />
         </div>
+        {data.meetingType === "offline" && (
+          <div className="grid grid-cols-1">
+            <InputField2
+              label="Location"
+              id="location"
+              placeholder="Enter the location of the meeting"
+              data={data}
+              setData={setData}
+              required={true}
+            />
+          </div>
+        )}
         <div>
           <button className="outlline-none border-none bg-blue text-white py-1 px-3 rounded-md text-xl md:text-2xl mt-4">
             Save

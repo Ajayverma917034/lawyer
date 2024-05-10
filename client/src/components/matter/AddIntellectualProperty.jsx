@@ -146,7 +146,6 @@ const AddIntellectualProperty = ({ open, setOpen }) => {
               data={data}
               setData={setData}
               options={clientName}
-              required={true}
               placeholder={"-- choose --"}
             />
           </div>

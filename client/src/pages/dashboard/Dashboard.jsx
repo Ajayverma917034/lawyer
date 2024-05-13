@@ -23,19 +23,67 @@ import { filterPaginationData } from "../../common/filter-pagination-data";
 import { formatDate } from "../../common/date-formater";
 import LoadPrevBtn from "../../common/LoadPreBtn";
 import LoadNextBtn from "../../common/LoadNextBtn";
-import { taskData } from "../../constant/data";
+import { meetingData, reminderDate, taskData } from "../../constant/data";
 import { DoughnutChart } from "../../charts/Doughnut";
-import { TaskCard } from "../../components/dashboard/dashboard.components";
+import {
+  MeetingCard,
+  ReminderCard,
+  TaskCard,
+} from "../../components/dashboard/dashboard.components";
 
+const CardHeaderWrapper = ({ title, setFun, subTitle }) => {
+  return (
+    <div>
+      <div className="flex justify-between items-center">
+        <h3 className="text-2xl font-medium font-poppins">{title}</h3>
+        <div className="flex gap-2">
+          <button
+            className="bg-blue text-white p-1 px-2 rounded-sm shadow-sm"
+            onClick={() => setFun(true)}
+          >
+            {subTitle} <AddCircle />
+          </button>
+        </div>
+      </div>
+      <hr className="bg-gray-500 mt-2 h-[1px]" />
+    </div>
+  );
+};
+
+const CardFooterWrapper = ({ title, navigateTo }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="flex justify-end">
+      <button
+        className="font-md font-medium text-base mr-1"
+        onClick={() => navigate(navigateTo)}
+      >
+        {title}
+        <ArrowCircleRightOutlined className="text-sm text-blue" />
+      </button>
+    </div>
+  );
+};
+
+const NoDataFoundCard = ({ title, message, icon }) => {
+  return (
+    <div className="flex flex-col justify-center items-center h-full">
+      {/* <TaskOutlined className="text-blue !text-[6rem]"/> */}
+      <img src={icon} alt="Meeting" className="w-16 h-16" />
+      <p className="font-medium text-gray-dark text-xl">{title}</p>
+      <span className="mt-1">{message}</span>
+    </div>
+  );
+};
 const Dashboard = () => {
   const [addTaskOpen, setAddTaskOpen] = useState(false);
   const [addSchedule, setAddSchedule] = useState(false);
   const [addReminder, setAddReminder] = useState(false);
   const [addHearing, setAddHearing] = useState(false);
   const [addCase, setAddCase] = useState(false);
-  const navigate = useNavigate();
   const [hearings, setHearing] = useState(null);
   const [limit, setLimit] = useState(1);
+  const navigate = useNavigate();
 
   const doughnutDataFortask = {
     labels: ["Completed Tasks", "Upcoming Tasks"],
@@ -100,17 +148,38 @@ const Dashboard = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <>
-      <DashboardNavbar />
-      <div className="px-3 md:px-22 lg:px-28 py-3 bg-white-light min-h-screen">
-        <h1 className=" text-2xl md:text-3xl mt-5 md:mt-3">
+      <div className="padding py-3 bg-white-light min-h-screen">
+        <h1 className=" text-2xl md:text-3xl mt-5 md:mt-10">
           Welcome Ajay Verma
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
           <div className="flex flex-col p-4 bg-white shadow-md rounded-md min-w-[18rem] h-[23rem]">
-            <div>
+            <CardHeaderWrapper
+              title="Task"
+              setFun={handleAddTask}
+              subTitle="Add New"
+            />
+            <div className="flex flex-col justify-between h-full">
+              {taskData.length ? (
+                <div className="flex flex-col smooth-scroll ">
+                  {taskData.map((item, index) => (
+                    <TaskCard item={item} key={index} />
+                  ))}
+                </div>
+              ) : (
+                <NoDataFoundCard
+                  icon={taskIcon}
+                  message="There is no task for today"
+                  title="Task"
+                />
+              )}
+              <CardFooterWrapper title=" See All Task" navigateTo="/tasks" />
+            </div>
+            {/* <div>
               <div className="flex justify-between items-center">
                 <h3 className="text-2xl font-medium font-poppins">Task</h3>
                 <div className="flex gap-2">
@@ -149,40 +218,61 @@ const Dashboard = () => {
                 See All Task{" "}
                 <ArrowCircleRightOutlined className="text-sm text-blue" />
               </button>
-            </div>
+            </div> */}
           </div>
-          <div className="flex flex-col p-4 bg-white shadow-md rounded-md min-w-[18rem] h-[23rem]">
-            <div className="flex justify-between items-center">
-              <h3 className="text-2xl font-medium font-poppins">Meeting</h3>
-              <div className="flex gap-2">
-                <button
-                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
-                  onClick={() => setAddSchedule(!addSchedule)}
-                >
-                  Schedule One <AddCircle />
-                </button>
-              </div>
-            </div>
-            <hr className="bg-gray-500 mt-2 h-[1px]" />
 
-            <div className="flex flex-col justify-center items-center h-full">
-              {/* <TaskOutlined className="text-blue !text-[6rem]"/> */}
-              <img src={scheduleIcon} alt="Meeting" className="w-16 h-16" />
-              <p className="font-medium text-gray-dark text-xl">Metting</p>
-              <span className="mt-1">There is no meeting for today</span>
-            </div>
-            <div className="flex justify-end">
-              <button
-                className="font-md font-medium text-sm"
-                onClick={() => navigate("/dashboard/meetings")}
-              >
-                See All Meetings{" "}
-                <ArrowCircleRightOutlined className="text-sm text-blue" />
-              </button>
+          <div className="flex flex-col p-4 bg-white shadow-md rounded-md min-w-[18rem] h-[23rem]">
+            <CardHeaderWrapper
+              title="Meeting"
+              setFun={setAddSchedule}
+              subTitle="Schedule One "
+            />
+            <div className="flex flex-col justify-between h-full">
+              {meetingData.length ? (
+                <div className="flex flex-col smooth-scroll ">
+                  {meetingData.map((item, index) => (
+                    <MeetingCard item={item} key={index} />
+                  ))}
+                </div>
+              ) : (
+                <NoDataFoundCard
+                  icon={scheduleIcon}
+                  message="There is no meeting for today"
+                  title="Meeting"
+                />
+              )}
+              <CardFooterWrapper
+                title="See All Meetings"
+                navigateTo="/dashboard/meetings"
+              />
             </div>
           </div>
           <div className="flex flex-col p-4 bg-white shadow-md rounded-md min-w-[18rem] h-[23rem]">
-            <div className="flex justify-between items-center">
+            <CardHeaderWrapper
+              title="Reminders"
+              setFun={setAddReminder}
+              subTitle="Reminder "
+            />
+            <div className="flex flex-col justify-between h-full">
+              {reminderDate.length ? (
+                <div className="flex flex-col smooth-scroll ">
+                  {reminderDate.map((item, index) => (
+                    <ReminderCard item={item} key={index} />
+                  ))}
+                </div>
+              ) : (
+                <NoDataFoundCard
+                  icon={notificationIcon}
+                  message="There is no reminder for today"
+                  title="Reminder"
+                />
+              )}
+              <CardFooterWrapper
+                title="See All Reminders"
+                navigateTo="/dashboard/reminders"
+              />
+            </div>
+            {/* <div className="flex justify-between items-center">
               <h3 className="text-2xl font-medium font-poppins">Reminders</h3>
               <div className="flex gap-2">
                 <button
@@ -193,9 +283,9 @@ const Dashboard = () => {
                 </button>
               </div>
             </div>
-            <hr className="bg-gray-500 mt-2 h-[1px]" />
+            <hr className="bg-gray-500 mt-2 h-[1px]" /> */}
 
-            <div className="flex flex-col justify-center items-center h-full">
+            {/* <div className="flex flex-col justify-center items-center h-full">
               <img
                 src={notificationIcon}
                 alt="Meeting"
@@ -212,7 +302,7 @@ const Dashboard = () => {
                 See All Reminders{" "}
                 <ArrowCircleRightOutlined className="text-sm text-blue" />
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col p-4 bg-white shadow-md rounded-md min-w-[18rem] h-[23rem]">
             <div className="flex justify-between items-center">

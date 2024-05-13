@@ -184,3 +184,123 @@ export const taskData = [
         View: "Link"
     }
 ];
+
+export const meetingData = [
+    {
+        title: "Team Strategy Meeting",
+        startDate: "2024-05-20",
+        startTime: "09:00",
+        endDate: "2024-05-20",
+        endTime: "11:00",
+        relatedMatter: ["Quarterly Goals", "Project Updates"],
+        description: "This meeting will focus on discussing the strategy for the upcoming quarter and updates on ongoing projects.",
+        location: "Conference Room 1",
+        meetingType: "In-Person"
+    },
+    {
+        title: "Marketing Presentation",
+        startDate: "2024-05-25",
+        startTime: "14:00",
+        endDate: "2024-05-25",
+        endTime: "16:00",
+        relatedMatter: ["Product Launch", "Target Audience Analysis"],
+        description: "Presentation on the upcoming product launch and analysis of the target audience for marketing campaigns.",
+        location: "Boardroom",
+        meetingType: "Virtual"
+    },
+    {
+        title: "Team Building Activity",
+        startDate: "2024-06-02",
+        startTime: "10:00",
+        endDate: "2024-06-02",
+        endTime: "13:00",
+        relatedMatter: ["Team Bonding", "Collaboration"],
+        description: "Outdoor team building activity to strengthen teamwork and collaboration.",
+        location: "Adventure Park",
+        meetingType: "In-Person"
+    },
+    // Add more data objects as needed
+];
+
+export const reminderDate = [
+    {
+        title: "Doctor's Appointment",
+        reminderDate: "2024-05-15",
+        reminderTime: "09:30",
+        repeat: "None",
+        recipients: "patient@example.com",
+        summary: "Routine checkup with the doctor.",
+    },
+    {
+        title: "Pay Rent",
+        reminderDate: "2024-05-01",
+        reminderTime: "12:00",
+        repeat: "Monthly",
+        recipients: "landlord@example.com",
+        summary: "Send rent payment by the due date.",
+    },
+    {
+        title: "Team Standup",
+        reminderDate: "2024-05-10",
+        reminderTime: "10:00",
+        repeat: "Daily",
+        recipients: "team@example.com",
+        summary: "Daily standup meeting with the team to discuss tasks.",
+    },
+    {
+        title: "Work Anniversary",
+        reminderDate: "2024-05-20",
+        reminderTime: "00:00",
+        repeat: "Yearly",
+        recipients: "colleague@example.com",
+        summary: "Celebrate work anniversary with a small gathering.",
+    },
+    {
+        title: "Grocery Shopping",
+        reminderDate: "2024-05-05",
+        reminderTime: "17:30",
+        repeat: "Weekly",
+        recipients: "family@example.com",
+        summary: "Buy groceries for the week.",
+    },
+    {
+        title: "Submit Expense Report",
+        reminderDate: "2024-05-25",
+        reminderTime: "14:00",
+        repeat: "None",
+        recipients: "finance@example.com",
+        summary: "Submit expense report for reimbursement.",
+    },
+    {
+        title: "Call Grandma",
+        reminderDate: "2024-05-08",
+        reminderTime: "18:00",
+        repeat: "None",
+        recipients: "grandma@example.com",
+        summary: "Call grandma to check in and catch up.",
+    },
+    {
+        title: "Review Monthly Goals",
+        reminderDate: "2024-05-01",
+        reminderTime: "09:00",
+        repeat: "Monthly",
+        recipients: "self@example.com",
+        summary: "Review progress on monthly goals and set new ones.",
+    },
+    {
+        title: "Exercise",
+        reminderDate: "2024-05-10",
+        reminderTime: "07:00",
+        repeat: "Daily",
+        recipients: "self@example.com",
+        summary: "Morning workout session for physical fitness.",
+    },
+    {
+        title: "Submit Quarterly Report",
+        reminderDate: "2024-05-31",
+        reminderTime: "16:00",
+        repeat: "Quarterly",
+        recipients: "manager@example.com",
+        summary: "Submit quarterly report to the management.",
+    }
+];

@@ -7,6 +7,7 @@ import { UploadFile } from "@mui/icons-material";
 import SelectField2 from "../../common/SelectField2";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { practiceAreaOptions } from "../../constant/optionData";
 const AddCase = ({ open, setOpen }) => {
   const handleClose = () => {
     setOpen(!open);
@@ -88,7 +89,7 @@ const AddCase = ({ open, setOpen }) => {
             id="practiceArea"
             data={data}
             setData={setData}
-            options={taskType}
+            options={practiceAreaOptions}
             required={true}
             placeholder={"-- choose --"}
           />

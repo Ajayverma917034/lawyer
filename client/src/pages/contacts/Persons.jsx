@@ -1,12 +1,13 @@
 import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AddPerson from "../../components/contacts/addPerson.component";
 import { Link } from "react-router-dom";
+import { AddContext } from "../../App";
 
 const Persons = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
-  const [addPerson, setAddPerson] = useState(false);
+  const { addPerson, setAddPerson } = useContext(AddContext);
 
   const toggleCheckbox1 = () => {
     setIsChecked1(!isChecked1);
@@ -138,8 +139,6 @@ const Persons = () => {
           </div>
         </div>
       </div>
-
-      <AddPerson open={addPerson} setOpen={setAddPerson} />
     </>
   );
 };

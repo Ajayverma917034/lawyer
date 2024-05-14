@@ -1,12 +1,13 @@
 import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AddPerson from "../../components/contacts/addPerson.component";
 import AddCorporate from "../../components/matter/AddCorporate";
+import { AddContext } from "../../App";
 
 const Corporate = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
-  const [addPerson, setAddPerson] = useState(false);
+  const { addMatter, setAddMatter } = useContext(AddContext);
 
   const toggleCheckbox1 = () => {
     setIsChecked1(!isChecked1);
@@ -33,7 +34,7 @@ const Corporate = () => {
 
             <button
               className="ml-auto btn-light"
-              onClick={() => setAddPerson(!addPerson)}
+              onClick={() => setAddMatter(!addMatter)}
             >
               Add New
             </button>
@@ -136,8 +137,6 @@ const Corporate = () => {
           </div>
         </div>
       </div>
-
-      <AddCorporate open={addPerson} setOpen={setAddPerson} />
     </>
   );
 };

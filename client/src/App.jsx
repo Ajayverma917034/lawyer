@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import "./App.css";
 import Navbar from "./components/navbar.compnent";
 import { Route, Routes } from "react-router-dom";
@@ -31,71 +31,136 @@ import IncomeTaxCalculator from "./pages/tools/IncomeTaxCalculator/IncomeTaxCalc
 import TaskDetials from "./components/dashboard/details-pages/TaskDetials";
 import PersonDetails from "./components/contacts/person.details.component";
 import CompanyDetials from "./components/contacts/company.details.component";
+import AddTask from "./components/dashboard/addtask.components";
+import AddSchedule from "./components/dashboard/addschedule.component";
+import AddReminder from "./components/dashboard/addreminder.component";
+import AddCase from "./components/dashboard/addcase.component";
+import AddHearing from "./components/dashboard/addhearing.component";
+import AddCorporate from "./components/matter/AddCorporate";
+import AddLitigationCase from "./components/matter/AddLitigationCase";
+import AddIntellectualProperty from "./components/matter/AddIntellectualProperty";
+import AddCompany from "./components/contacts/addCompany.component";
+import AddPerson from "./components/contacts/addPerson.component";
 
+export const AddContext = createContext({});
 const App = () => {
+  const [addTaskOpen, setAddTaskOpen] = useState(false);
+  const [addSchedule, setAddSchedule] = useState(false);
+  const [addReminder, setAddReminder] = useState(false);
+  const [addHearing, setAddHearing] = useState(false);
+  const [addMatter, setAddMatter] = useState(false);
+  const [addLitigationCase, setAddLitigationCase] = useState(false);
+  const [addIPOpen, setAddIPOpen] = useState(false);
+  const [addPerson, setAddPerson] = useState(false);
+  const [addCompany, setAddCompany] = useState(false);
+
+  const [addCase, setAddCase] = useState(false);
+
   return (
-    <Routes>
-      <Route path="/" element={<Navbar />}>
-        <Route index element={<Home />} />
+    <AddContext.Provider
+      value={{
+        addTaskOpen,
+        setAddTaskOpen,
+        addSchedule,
+        setAddSchedule,
+        addReminder,
+        setAddReminder,
+        addHearing,
+        setAddHearing,
+        addCase,
+        setAddCase,
+        addMatter,
+        setAddMatter,
+        addLitigationCase,
+        setAddLitigationCase,
+        addIPOpen,
+        setAddIPOpen,
+        addPerson,
+        setAddPerson,
+        addCompany,
+        setAddCompany,
+      }}
+    >
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />} />
 
-        {/* dashboard routes  */}
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="dashboard/meetings" element={<AllMeetings />} />
-        <Route path="dashboard/reminders" element={<AllReminders />} />
-        <Route path="dashboard/cases" element={<AllCases />} />
-        <Route path="dashboard/hearings" element={<AllHearings />} />
+          {/* dashboard routes  */}
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard/meetings" element={<AllMeetings />} />
+          <Route path="dashboard/reminders" element={<AllReminders />} />
+          <Route path="dashboard/cases" element={<AllCases />} />
+          <Route path="dashboard/hearings" element={<AllHearings />} />
 
-        {/* profile routes  */}
-        <Route path="profile" element={<Sidebar />}>
-          <Route path="basic-information" element={<BasicInfo />} />
-          <Route path="personal-information" element={<PersonalInfo />} />
-          <Route path="update-password" element={<UpdatePassword />} />
-          <Route path="address" element={<Address />} />
+          {/* profile routes  */}
+          <Route path="profile" element={<Sidebar />}>
+            <Route path="basic-information" element={<BasicInfo />} />
+            <Route path="personal-information" element={<PersonalInfo />} />
+            <Route path="update-password" element={<UpdatePassword />} />
+            <Route path="address" element={<Address />} />
+          </Route>
+          {/* contacts routes  */}
+          <Route path="contacts/person" element={<Persons />} />
+          <Route path="contacts/person/:id" element={<PersonDetails />} />
+          <Route path="contacts/companies" element={<Companies />} />
+          <Route path="contacts/company/:id" element={<CompanyDetials />} />
+
+          {/* matter routes  */}
+          <Route path="matter/corporate" element={<Corporate />} />
+          <Route path="matter/litigation-case" element={<LitigationCase />} />
+          <Route
+            path="matter/intellectual-property"
+            element={<IntellectualProperty />}
+          />
+
+          {/* contract routes  */}
+          <Route
+            path="contracts/all-contracts"
+            element={<ContractAndDocument />}
+          />
+          <Route path="contracts/document" element={<ContractAndDocument />} />
+
+          {/* task routes  */}
+          <Route path="tasks" element={<AllTasks />} />
+          <Route path="tasks/:id" element={<TaskDetials />} />
+
+          {/* document routes  */}
+          <Route path="documents" element={<Documents />} />
+          <Route path="documents/:id" element={<DocumentDetails />} />
+          <Route
+            path="documents/modal-creation/:id"
+            element={<CreateDocument />}
+          />
+
+          {/* tools routes  */}
+          <Route path="gst-calculator" element={<GstCalculator />} />
+          <Route
+            path="income-tax-calculator"
+            element={<IncomeTaxCalculator />}
+          />
+
+          {/* report routes  */}
+          <Route index element={<Report />} />
+
+          <Route path="about-us" element={<About />} />
+          <Route path="contact" element={<About />} />
         </Route>
-        {/* contacts routes  */}
-        <Route path="contacts/person" element={<Persons />} />
-        <Route path="contacts/person/:id" element={<PersonDetails />} />
-        <Route path="contacts/companies" element={<Companies />} />
-        <Route path="contacts/company/:id" element={<CompanyDetials />} />
+      </Routes>
 
-        {/* matter routes  */}
-        <Route path="matter/corporate" element={<Corporate />} />
-        <Route path="matter/litigation-case" element={<LitigationCase />} />
-        <Route
-          path="matter/intellectual-property"
-          element={<IntellectualProperty />}
-        />
-
-        {/* contract routes  */}
-        <Route
-          path="contracts/all-contracts"
-          element={<ContractAndDocument />}
-        />
-        <Route path="contracts/document" element={<ContractAndDocument />} />
-
-        {/* task routes  */}
-        <Route path="tasks" element={<AllTasks />} />
-        <Route path="tasks/:id" element={<TaskDetials />} />
-
-        {/* document routes  */}
-        <Route path="documents" element={<Documents />} />
-        <Route path="documents/:id" element={<DocumentDetails />} />
-        <Route
-          path="documents/modal-creation/:id"
-          element={<CreateDocument />}
-        />
-
-        {/* tools routes  */}
-        <Route path="gst-calculator" element={<GstCalculator />} />
-        <Route path="income-tax-calculator" element={<IncomeTaxCalculator />} />
-
-        {/* report routes  */}
-        <Route index element={<Report />} />
-
-        <Route path="about-us" element={<About />} />
-        <Route path="contact" element={<About />} />
-      </Route>
-    </Routes>
+      <AddTask open={addTaskOpen} setOpen={setAddTaskOpen} />
+      <AddSchedule open={addSchedule} setOpen={setAddSchedule} />
+      <AddReminder open={addReminder} setOpen={setAddReminder} />
+      <AddCase open={addCase} setOpen={setAddCase} />
+      <AddHearing open={addHearing} setOpen={setAddHearing} />
+      <AddCorporate open={addMatter} setOpen={setAddMatter} />
+      <AddLitigationCase
+        open={addLitigationCase}
+        setOpen={setAddLitigationCase}
+      />
+      <AddIntellectualProperty open={addIPOpen} setOpen={setAddIPOpen} />
+      <AddCompany open={addCompany} setOpen={setAddCompany} />
+      <AddPerson open={addPerson} setOpen={setAddPerson} />
+    </AddContext.Provider>
   );
 };
 export default App;

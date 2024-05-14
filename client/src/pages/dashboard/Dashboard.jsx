@@ -5,7 +5,7 @@ import {
   NotificationsActiveOutlined,
   TaskOutlined,
 } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DashboardNavbar from "../../components/dashboard/dashboard.navbar";
 import hearingIcon from "../../assets/icos/lawbook.png";
 import scheduleIcon from "../../assets/icos/Schedule.png";
@@ -30,6 +30,7 @@ import {
   ReminderCard,
   TaskCard,
 } from "../../components/dashboard/dashboard.components";
+import { AddContext } from "../../App";
 
 const CardHeaderWrapper = ({ title, setFun, subTitle }) => {
   return (
@@ -76,11 +77,24 @@ const NoDataFoundCard = ({ title, message, icon }) => {
   );
 };
 const Dashboard = () => {
-  const [addTaskOpen, setAddTaskOpen] = useState(false);
-  const [addSchedule, setAddSchedule] = useState(false);
-  const [addReminder, setAddReminder] = useState(false);
-  const [addHearing, setAddHearing] = useState(false);
-  const [addCase, setAddCase] = useState(false);
+  // const [addTaskOpen, setAddTaskOpen] = useState(false);
+  // const [addSchedule, setAddSchedule] = useState(false);
+  // const [addReminder, setAddReminder] = useState(false);
+  // const [addHearing, setAddHearing] = useState(false);
+  // const [addCase, setAddCase] = useState(false);
+
+  const {
+    addTaskOpen,
+    setAddTaskOpen,
+    addSchedule,
+    setAddSchedule,
+    addReminder,
+    setAddReminder,
+    addHearing,
+    setAddHearing,
+    addCase,
+    setAddCase,
+  } = useContext(AddContext);
   const [hearings, setHearing] = useState(null);
   const [limit, setLimit] = useState(1);
   const navigate = useNavigate();
@@ -521,11 +535,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <AddTask open={addTaskOpen} setOpen={setAddTaskOpen} />
-      <AddSchedule open={addSchedule} setOpen={setAddSchedule} />
-      <AddReminder open={addReminder} setOpen={setAddReminder} />
-      <AddCase open={addCase} setOpen={setAddCase} />
-      <AddHearing open={addHearing} setOpen={setAddHearing} />
     </>
   );
 };

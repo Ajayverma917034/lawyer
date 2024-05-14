@@ -1,11 +1,11 @@
 import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
-import React, { useState } from "react";
-import AddLitigationCase from "../../components/matter/AddLitigationCase.jsx";
+import React, { useContext, useState } from "react";
+import { AddContext } from "../../App";
 
 const LitigationCase = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
-  const [addPerson, setAddPerson] = useState(false);
+  const { addLitigationCase, setAddLitigationCase } = useContext(AddContext);
 
   const toggleCheckbox1 = () => {
     setIsChecked1(!isChecked1);
@@ -32,7 +32,7 @@ const LitigationCase = () => {
 
             <button
               className="ml-auto btn-light"
-              onClick={() => setAddPerson(!addPerson)}
+              onClick={() => setAddLitigationCase(!addLitigationCase)}
             >
               Add New
             </button>
@@ -110,12 +110,11 @@ const LitigationCase = () => {
 
         <div className="flex gap-6 px-4 py-2 border-b border-gray-light bg-white flex-wrap">
           <div className="flex gap-5 max-sm:w-full max-sm:justify-between">
-          <div>Page 1 of 1</div>
-          <div className="flex gap-4">
-            <button className="text-blue">Prev</button>
-            <button className="text-blue">Next</button>
-          </div>
-
+            <div>Page 1 of 1</div>
+            <div className="flex gap-4">
+              <button className="text-blue">Prev</button>
+              <button className="text-blue">Next</button>
+            </div>
           </div>
           <div className="ml-auto flex gap-5">
             <label
@@ -139,8 +138,6 @@ const LitigationCase = () => {
           </div>
         </div>
       </div>
-
-      <AddLitigationCase open={addPerson} setOpen={setAddPerson} />
     </>
   );
 };

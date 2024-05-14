@@ -1,51 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { MdArrowDropDown, MdMenu, MdSettings } from "react-icons/md";
-import { IoMdAdd, IoMdSearch } from "react-icons/io";
+import { IoMdSearch } from "react-icons/io";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import TimeLogo from "../assets/icos/Time.png";
 import { ToolTip } from "../common/ToolTip";
+import CreateBtn from "./CreateBtn";
 
-const CreateBtn = ({
-  handleCloseSubMenu,
-  showSubMenus,
-  handleShowSubMenu,
-  createBtnMenu,
-}) => {
-  return (
-    <div className="relative flex items-center ">
-      <li className="flex items-center text-[15px] max-1374px:text-[15px] max-1374px:py-2 ">
-        <button
-          className="flex items-center bg-green p-1 pl-2 rounded-md hover:opacity-95"
-          onClick={() => handleShowSubMenu(6, true)}
-        >
-          Create <IoMdAdd size={14} className="ml-1" />{" "}
-        </button>
-      </li>
-      {showSubMenus[6].value && (
-        <div className="absolute max-1374px:top-12 top-10 z-[110] right-0 min-w-[15rem] bg-white rounded-md shadow-lg left-1/2 transform -translate-x-1/2">
-          <ul className="py-2 flex flex-col">
-            {createBtnMenu.map((item) => (
-              <Fragment key={item.id}>
-                <Link
-                  to={`${item.navigate}`}
-                  onClick={() => {
-                    handleCloseSubMenu(6);
-                  }}
-                  className="px-4 py-1 text-[16px] font-medium cursor-pointer hover:bg-gray-200 text-blue hover:bg-blue hover:text-white"
-                >
-                  {item.name}
-                </Link>
-                <hr className="border-1 border-[#b3b3b3] last:border-0" />
-              </Fragment>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-};
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -89,30 +51,6 @@ const Navbar = () => {
       navigate: "/income-tax-calculator",
       name: "Income Tax Calculator",
     },
-  ];
-
-  const createBtnMenu = [
-    { id: 1, navigate: "/contacts/companies", name: "Company" },
-    { id: 2, navigate: "/contacts/person", name: "Person" },
-    { id: 3, navigate: "/matter/corporate", name: "Corporate Matter" },
-    { id: 4, navigate: "/matter/litigation-case", name: "Litigation Case" },
-    { id: 5, navigate: "/dashboard/hearings", name: "Hearing" },
-    { id: 6, navigate: "/", name: "Matter Container" },
-    {
-      id: 6,
-      navigate: "/matter/intellectual-property",
-      name: "Intellectual Property",
-    },
-    { id: 7, navigate: "/tasks", name: "Task" },
-    { id: 8, navigate: "/dashboard/meetings", name: "Meeting" },
-    { id: 9, navigate: "/dashboard/reminders", name: "Reminder" },
-    { id: 11, navigate: "/", name: "Invoices" },
-    {
-      id: 12,
-      navigate: "/income-tax-calculator",
-      name: "Income Tax Calculator",
-    },
-    { id: 13, navigate: "/gst-calculator", name: "GST Calculator" },
   ];
 
   const navigate = useNavigate();
@@ -378,7 +316,6 @@ const Navbar = () => {
                 showSubMenus={showSubMenus}
                 handleCloseSubMenu={handleCloseMenu}
                 handleShowSubMenu={handleShowSubMenu}
-                createBtnMenu={createBtnMenu}
               />
             </div>
             <div className="flex mt-10 items-center gap-4">
@@ -400,7 +337,6 @@ const Navbar = () => {
               showSubMenus={showSubMenus}
               handleCloseSubMenu={handleCloseMenu}
               handleShowSubMenu={handleShowSubMenu}
-              createBtnMenu={createBtnMenu}
             />
           </div>
           <div

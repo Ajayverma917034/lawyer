@@ -1,11 +1,12 @@
 import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AddIntellectualProperty from "../../components/matter/AddIntellectualProperty.jsx";
+import { AddContext } from "../../App.jsx";
 
 const IntellectualProperty = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
-  const [addPerson, setAddPerson] = useState(false);
+  const { addIPOpen, setAddIPOpen } = useContext(AddContext);
 
   const toggleCheckbox1 = () => {
     setIsChecked1(!isChecked1);
@@ -32,7 +33,7 @@ const IntellectualProperty = () => {
 
             <button
               className="ml-auto btn-light"
-              onClick={() => setAddPerson(!addPerson)}
+              onClick={() => setAddIPOpen(!addIPOpen)}
             >
               Add New
             </button>
@@ -138,8 +139,6 @@ const IntellectualProperty = () => {
           </div>
         </div>
       </div>
-
-      <AddIntellectualProperty open={addPerson} setOpen={setAddPerson} />
     </>
   );
 };

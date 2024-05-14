@@ -69,11 +69,11 @@ const AddCompany = ({ open, setOpen }) => {
       className=""
       disableScrollLock={true}
     >
-      <h2 className="text-xl md:text-2xl font-medium mt-4 text-center">
+      <h2 className="text-[18px] md:text-2xl font-medium mt-4 text-center border-b border-gray-light pb-3">
         Add New Company Contacts
       </h2>
       <form
-        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[35rem]"
+        className="p-3 md:px-10 flex gap-2 flex-col max-md:min-w-[80vw] md:min-w-[39vw] overflow-y-auto"
         onSubmit={handleSave}
       >
         <div className="grid grid-cols-1">
@@ -238,9 +238,9 @@ const AddCompany = ({ open, setOpen }) => {
           <label className="text-xl required">Company Document</label>
           <label
             htmlFor="relatedDocument"
-            className="border border-dashed rounded-md flex justify-center items-center min-h-24 flex-col"
+            className="border border-dashed rounded-md flex justify-center items-center min-h-32 flex-col"
           >
-            <UploadFile className="text-3xl text-blue" />
+            <UploadFile className="text-3xl !size-12 text-blue" />
             <p className="text-base">Upload Documents</p>
           </label>
           <input

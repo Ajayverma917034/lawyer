@@ -1,11 +1,51 @@
 import React, { Fragment, useEffect, useState } from "react";
-
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { MdArrowDropDown, MdMenu, MdSettings } from "react-icons/md";
 import { IoMdAdd, IoMdSearch } from "react-icons/io";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import TimeLogo from "../assets/icos/Time.png";
+import { ToolTip } from "../common/ToolTip";
+
+const CreateBtn = ({
+  handleCloseSubMenu,
+  showSubMenus,
+  handleShowSubMenu,
+  createBtnMenu,
+}) => {
+  return (
+    <div className="relative flex items-center ">
+      <li className="flex items-center text-[15px] max-1374px:text-[15px] max-1374px:py-2 ">
+        <button
+          className="flex items-center bg-green p-1 pl-2 rounded-md hover:opacity-95"
+          onClick={() => handleShowSubMenu(6, true)}
+        >
+          Create <IoMdAdd size={14} className="ml-1" />{" "}
+        </button>
+      </li>
+      {showSubMenus[6].value && (
+        <div className="absolute max-1374px:top-12 top-10 z-[110] right-0 min-w-[15rem] bg-white rounded-md shadow-lg left-1/2 transform -translate-x-1/2">
+          <ul className="py-2 flex flex-col">
+            {createBtnMenu.map((item) => (
+              <Fragment key={item.id}>
+                <Link
+                  to={`${item.navigate}`}
+                  onClick={() => {
+                    handleCloseSubMenu(6);
+                  }}
+                  className="px-4 py-1 text-[16px] font-medium cursor-pointer hover:bg-gray-200 text-blue hover:bg-blue hover:text-white"
+                >
+                  {item.name}
+                </Link>
+                <hr className="border-1 border-[#b3b3b3] last:border-0" />
+              </Fragment>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -18,6 +58,7 @@ const Navbar = () => {
     { id: "report", value: false },
     { id: "billing", value: false },
     { id: "tools", value: false },
+    { id: "create", value: false },
   ]);
 
   const matterMenu = [
@@ -48,6 +89,30 @@ const Navbar = () => {
       navigate: "/income-tax-calculator",
       name: "Income Tax Calculator",
     },
+  ];
+
+  const createBtnMenu = [
+    { id: 1, navigate: "/contacts/companies", name: "Company" },
+    { id: 2, navigate: "/contacts/person", name: "Person" },
+    { id: 3, navigate: "/matter/corporate", name: "Corporate Matter" },
+    { id: 4, navigate: "/matter/litigation-case", name: "Litigation Case" },
+    { id: 5, navigate: "/dashboard/hearings", name: "Hearing" },
+    { id: 6, navigate: "/", name: "Matter Container" },
+    {
+      id: 6,
+      navigate: "/matter/intellectual-property",
+      name: "Intellectual Property",
+    },
+    { id: 7, navigate: "/tasks", name: "Task" },
+    { id: 8, navigate: "/dashboard/meetings", name: "Meeting" },
+    { id: 9, navigate: "/dashboard/reminders", name: "Reminder" },
+    { id: 11, navigate: "/", name: "Invoices" },
+    {
+      id: 12,
+      navigate: "/income-tax-calculator",
+      name: "Income Tax Calculator",
+    },
+    { id: 13, navigate: "/gst-calculator", name: "GST Calculator" },
   ];
 
   const navigate = useNavigate();
@@ -102,14 +167,14 @@ const Navbar = () => {
   }, []);
   return (
     <>
-      <nav className="padding py-3 flex items-center bg-blue z-[100] sticky top-0">
+      <nav className="padding py-2 1374px:py-3 flex items-center bg-blue z-[100] sticky top-0">
         <Link to="/">
-          <img src={logo} alt="Legal Tax Link" className="w-20" />
+          <img src={logo} alt="Legal Tax Link" className="w-20 1374px:w-24" />
         </Link>
         <div
           className={`w-full max-1374px:transition-transform max-1374px:duration-300 max-1374px:hidden max-1374px:z-50 ${
             showMenu
-              ? "!flex absolute top-[73px] right-0 overflow-y-auto bg-blue flex-col max-sm:left-0 sm:w-[500px] max-1374px:translate-x-0 max-1374px:min-h-[calc(100vh-64px)] max-1374px:pt-4 border-t border-white"
+              ? "!flex absolute top-[65px] right-0 overflow-y-auto bg-blue flex-col max-sm:left-0 sm:w-[500px] max-1374px:translate-x-0 max-1374px:min-h-[calc(100vh-64px)] max-1374px:pt-4 border-t border-white"
               : "max-1374px:translate-x-full"
           }`}
         >
@@ -308,12 +373,21 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
-            <li className="flex items-center text-[15px] max-1374px:text-[22px] max-1374px:py-2">
-              <button className="flex items-center bg-green p-1 pl-2 rounded-md hover:opacity-95">
-                Create <IoMdAdd size={14} className="ml-1" />{" "}
-              </button>
-            </li>
+            <div className="max-1374px:hidden max-1374px:opacity-0 flex items-center">
+              <CreateBtn
+                showSubMenus={showSubMenus}
+                handleCloseSubMenu={handleCloseMenu}
+                handleShowSubMenu={handleShowSubMenu}
+                createBtnMenu={createBtnMenu}
+              />
+            </div>
+            <div className="flex mt-10 items-center gap-4">
+              <img src={TimeLogo} alt="Time Logo" className="w-7 sm:hidden" />
+              <MdSettings
+                size={35}
+                className="max max-1374px:w-[30px] sm:hidden"
+              />
+            </div>
           </ul>
         </div>
         <div
@@ -321,6 +395,14 @@ const Navbar = () => {
             showMenu ? "" : ""
           }`}
         >
+          <div className="1374px:hidden 1374px:opacity-0">
+            <CreateBtn
+              showSubMenus={showSubMenus}
+              handleCloseSubMenu={handleCloseMenu}
+              handleShowSubMenu={handleShowSubMenu}
+              createBtnMenu={createBtnMenu}
+            />
+          </div>
           <div
             className={
               "absolute w-full md:min-w-[13rem] mt-2 left-0 top-full border-b px-[5vw] md:mt-0 md:border-0 md:block md:relative md:inset-0 rounded-lg md:p-0 bg-[#040263] md:w-auto md:show " +
@@ -343,23 +425,56 @@ const Navbar = () => {
             className="!h-8 !w-8 cursor-pointer flex md:!hidden"
             // onClick={() => setShowSearch(!showSearch)}
           />
-          <FaBell size={30} className="max max-1374px:w-[30px]" />
-          <img src={TimeLogo} alt="Time Logo" className="w-7" />
-          <MdSettings size={35} className="max max-1374px:w-[30px]" />
-          <FaUserCircle
-            size={33}
-            className="max max-1374px:w-[26px] cursor-pointer"
-            onClick={() => navigate("/profile/basic-information")}
-          />
-          <MdMenu
-            onClick={handleShowMenu}
-            size={30}
-            className="max- 1374px:hidden text-white cursor-pointer ml-auto 1374px:w-[30px]"
-          />
+          {/* <div> */}
+          <div className="flex gap-3 items-center">
+            <ToolTip title="Notifications" arrow>
+              <div className="relative">
+                <FaBell
+                  size={25}
+                  className="max max-1374px:w-[26px] cursor-pointer"
+                />
+                <span className="flex absolute top-[-3px] right-0 w-3 h-3 rounded-full bg-red border-blue border"></span>
+              </div>
+            </ToolTip>
+            <div className="flex w-8 items-center justify-center max-sm:hidden">
+              <ToolTip title="Reminders" arrow>
+                <img
+                  src={TimeLogo}
+                  alt="Time Logo"
+                  className="w-7 cursor-pointer"
+                />
+              </ToolTip>
+            </div>
+            <ToolTip title="Settings" arrow>
+              <div>
+                <MdSettings
+                  size={30}
+                  className="max max-1374px:w-[30px] max-sm:hidden cursor-pointer"
+                />
+              </div>
+            </ToolTip>
+            <ToolTip title="Profile" arrow>
+              <div>
+                <FaUserCircle
+                  size={25}
+                  className="max max-1374px:w-[26px] cursor-pointer"
+                  onClick={() => {
+                    handleCloseMenu();
+                    navigate("/profile/basic-information");
+                  }}
+                />
+              </div>
+            </ToolTip>
+            <MdMenu
+              onClick={handleShowMenu}
+              size={30}
+              className="max- 1374px:hidden text-white cursor-pointer ml-auto 1374px:w-[30px]"
+            />
+          </div>
         </div>
         {showMenu && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 top-[73px] z-10"
+            className="fixed inset-0 bg-black bg-opacity-50 top-[65px] 1374px:top-[73px] z-10"
             onClick={() => setShowMenu(false)}
           ></div>
         )}
@@ -367,7 +482,7 @@ const Navbar = () => {
           <div
             className={`fixed inset-0 ${
               !showMenu && "bg-black bg-opacity-50"
-            } top-[73px] 1374px:top-[58px] z-[20] h-[100vh]`}
+            } top-[65px] 1374px:top-[65px] z-[20] h-[100vh]`}
             onClick={() => handleshowOverlay(false)}
           ></div>
         )}

@@ -38,7 +38,7 @@ const CardHeaderWrapper = ({ title, setFun, subTitle }) => {
         <h3 className="text-2xl font-medium font-poppins">{title}</h3>
         <div className="flex gap-2">
           <button
-            className="bg-blue text-white p-1 px-2 rounded-sm shadow-sm"
+            className="bg-green text-white p-1 px-2 rounded-sm shadow-sm"
             onClick={() => setFun(true)}
           >
             {subTitle} <AddCircle />
@@ -309,7 +309,7 @@ const Dashboard = () => {
               <h3 className="text-2xl font-medium font-poppins">Case</h3>
               <div className="flex gap-2">
                 <button
-                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                  className="bg-green text-white p-1 rounded-sm shadow-sm"
                   onClick={() => setAddCase(true)}
                 >
                   Create New <AddCircle />
@@ -338,7 +338,7 @@ const Dashboard = () => {
               <h3 className="text-2xl font-medium font-poppins">Hearing</h3>
               <div className="flex gap-2">
                 <button
-                  className="bg-blue text-white p-1 rounded-sm shadow-sm"
+                  className="bg-green text-white p-1 rounded-sm shadow-sm"
                   onClick={() => setAddHearing(!addHearing)}
                 >
                   Add Hearing <AddCircle />
@@ -371,18 +371,18 @@ const Dashboard = () => {
         <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
           <h3 className="font-medium text-2xl mb-2">My Hearings</h3>
           <table className="table-auto w-full">
-            <thead class="bg-blue text-white">
+            <thead className="bg-blue text-white">
               <tr>
-                <th class="px-4 py-2 border-r text-start">ID</th>
-                <th class="px-4 py-2 border-r text-start">Name</th>
-                <th class="px-4 py-2 border-r text-start">Type</th>
-                <th class="px-4 py-2 border-r text-start">Hearing Date</th>
-                <th class="px-4 py-2 border-r text-start">Hearing Time</th>
-                <th class="px-4 py-2 border-r text-start">Assignee'(s)</th>
-                <th class="px-4 py-2">Time Spent</th>
+                <th className="px-4 py-2 border-r text-start">ID</th>
+                <th className="px-4 py-2 border-r text-start">Name</th>
+                <th className="px-4 py-2 border-r text-start">Type</th>
+                <th className="px-4 py-2 border-r text-start">Hearing Date</th>
+                <th className="px-4 py-2 border-r text-start">Hearing Time</th>
+                <th className="px-4 py-2 border-r text-start">Assignee'(s)</th>
+                <th className="px-4 py-2">Time Spent</th>
               </tr>
             </thead>
-            <tbody class="text-gray-700 bg-white-light">
+            <tbody className="text-gray-700 bg-white-light">
               {!hearings ? (
                 <tr>
                   <td colSpan="5" className="text-center">
@@ -392,24 +392,26 @@ const Dashboard = () => {
               ) : (
                 hearings.results?.map((hearing, index) => (
                   <tr key={index}>
-                    <td class="px-4 py-2 border-r text-start">{index + 1}</td>
-                    <td class="px-4 py-2 border-r text-start">
+                    <td className="px-4 py-2 border-r text-start">
+                      {index + 1}
+                    </td>
+                    <td className="px-4 py-2 border-r text-start">
                       {hearing.name}
                     </td>
-                    <td class="px-4 py-2 border-r text-start">
+                    <td className="px-4 py-2 border-r text-start">
                       {hearing.hearingType}
                     </td>
-                    <td class="px-4 py-2 border-r text-start">
+                    <td className="px-4 py-2 border-r text-start">
                       {formatDate(hearing.hearingDate)}
                     </td>
-                    <td class="px-4 py-2 border-r text-start">
+                    <td className="px-4 py-2 border-r text-start">
                       {hearing.hearingTime}
                     </td>
 
-                    <td class="px-4 py-2 border-r text-start">
+                    <td className="px-4 py-2 border-r text-start">
                       {hearing.assignee}
                     </td>
-                    <td class="px-4 py-2">{hearing.timeSpent}</td>
+                    <td className="px-4 py-2">{hearing.timeSpent}</td>
                   </tr>
                 ))
               )}
@@ -439,17 +441,19 @@ const Dashboard = () => {
         <div className="px-4 py-8 sm:p-8 rounded-md shadow-md bg-white mt-10 overflow-x-auto">
           <h3 className="font-medium text-2xl mb-2">My Tasks</h3>
           <table className="table-auto w-full">
-            <thead class="bg-blue text-white">
+            <thead className="bg-blue text-white">
               <tr>
-                <th class="px-4 py-2 font-normal text-start">ID</th>
-                <th class="px-4 py-2 font-normal text-start">Title</th>
-                <th class="px-4 py-2 font-normal text-start">Type</th>
-                <th class="px-4 py-2 font-normal text-start">Last Date</th>
-                <th class="px-4 py-2 font-normal text-start">Matter Name</th>
-                <th class="px-4 py-2 font-normal text-start">View</th>
+                <th className="px-4 py-2 font-normal text-start">ID</th>
+                <th className="px-4 py-2 font-normal text-start">Title</th>
+                <th className="px-4 py-2 font-normal text-start">Type</th>
+                <th className="px-4 py-2 font-normal text-start">Last Date</th>
+                <th className="px-4 py-2 font-normal text-start">
+                  Matter Name
+                </th>
+                <th className="px-4 py-2 font-normal text-start">View</th>
               </tr>
             </thead>
-            <tbody class="text-gray-700 bg-white-light">
+            <tbody className="text-gray-700 bg-white-light">
               {!taskData ? (
                 <tr>
                   <td colSpan="5" className="text-center">
@@ -459,15 +463,19 @@ const Dashboard = () => {
               ) : (
                 taskData?.map((item, index) => (
                   <tr key={index}>
-                    <td class="px-4 py-2 border-r text-start">{index + 1}</td>
-                    <td class="px-4 py-2 border-r text-start min-w-[5rem]">
+                    <td className="px-4 py-2 border-r text-start">
+                      {index + 1}
+                    </td>
+                    <td className="px-4 py-2 border-r text-start min-w-[5rem]">
                       {item.Title}
                     </td>
-                    <td class="px-4 py-2 border-r text-start">{item.Type}</td>
-                    <td class="px-4 py-2 border-r text-start">
+                    <td className="px-4 py-2 border-r text-start">
+                      {item.Type}
+                    </td>
+                    <td className="px-4 py-2 border-r text-start">
                       {formatDate(item.LastDate)}
                     </td>
-                    <td class="px-4 py-2 border-r text-start">
+                    <td className="px-4 py-2 border-r text-start">
                       {item.MatterName}
                     </td>
                     <td className="px-4 py-2 text-blue">

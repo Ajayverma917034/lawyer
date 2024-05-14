@@ -37,45 +37,47 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Navbar />}>
         <Route index element={<Home />} />
-        <Route path="dashboard" element={<Dashboard />} />
 
+        {/* dashboard routes  */}
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="dashboard/meetings" element={<AllMeetings />} />
         <Route path="dashboard/reminders" element={<AllReminders />} />
         <Route path="dashboard/cases" element={<AllCases />} />
         <Route path="dashboard/hearings" element={<AllHearings />} />
 
+        {/* profile routes  */}
         <Route path="profile" element={<Sidebar />}>
           <Route path="basic-information" element={<BasicInfo />} />
           <Route path="personal-information" element={<PersonalInfo />} />
           <Route path="update-password" element={<UpdatePassword />} />
           <Route path="address" element={<Address />} />
         </Route>
+        {/* contacts routes  */}
+        <Route path="contacts/person" element={<Persons />} />
+        <Route path="contacts/person/:id" element={<PersonDetails />} />
+        <Route path="contacts/companies" element={<Companies />} />
+        <Route path="contacts/company/:id" element={<CompanyDetials />} />
 
-        <Route path="contacts" element={<DashboardNavbar />}>
-          <Route path="person" element={<Persons />} />
-          <Route path="person/:id" element={<PersonDetails />} />
-          <Route path="companies" element={<Companies />} />
-          <Route path="company/:id" element={<CompanyDetials />} />
-        </Route>
-        <Route path="matter" element={<DashboardNavbar />}>
-          <Route path="corporate" element={<Corporate />} />
-          <Route path="litigation-case" element={<LitigationCase />} />
-          <Route
-            path="intellectual-property"
-            element={<IntellectualProperty />}
-          />
-        </Route>
+        {/* matter routes  */}
+        <Route path="matter/corporate" element={<Corporate />} />
+        <Route path="matter/litigation-case" element={<LitigationCase />} />
+        <Route
+          path="matter/intellectual-property"
+          element={<IntellectualProperty />}
+        />
 
-        <Route path="contracts" element={<DashboardNavbar />}>
-          <Route index element={<ContractAndDocument />} />
-          <Route path="contract" element={<ContractAndDocument />} />
-          <Route path="document" element={<ContractAndDocument />} />
-        </Route>
-        <Route path="tasks" element={<DashboardNavbar />}>
-          <Route index element={<AllTasks />} />
-          <Route path=":id" element={<TaskDetials />} />
-        </Route>
+        {/* contract routes  */}
+        <Route
+          path="contracts/all-contracts"
+          element={<ContractAndDocument />}
+        />
+        <Route path="contracts/document" element={<ContractAndDocument />} />
 
+        {/* task routes  */}
+        <Route path="tasks" element={<AllTasks />} />
+        <Route path="tasks/:id" element={<TaskDetials />} />
+
+        {/* document routes  */}
         <Route path="documents" element={<Documents />} />
         <Route path="documents/:id" element={<DocumentDetails />} />
         <Route
@@ -83,11 +85,12 @@ const App = () => {
           element={<CreateDocument />}
         />
 
+        {/* tools routes  */}
         <Route path="gst-calculator" element={<GstCalculator />} />
         <Route path="income-tax-calculator" element={<IncomeTaxCalculator />} />
-        <Route path="report" element={<DashboardNavbar />}>
-          <Route index element={<Report />} />
-        </Route>
+
+        {/* report routes  */}
+        <Route index element={<Report />} />
 
         <Route path="about-us" element={<About />} />
         <Route path="contact" element={<About />} />

@@ -109,7 +109,9 @@ export const taskData = [
         Type: "Development",
         LastDate: "2024-05-10",
         MatterName: "ABC Corporation",
-        View: "Link"
+        View: "Link",
+        assignTo: "John Doe",
+        status: "Open",
     },
     {
         ID: 2,
@@ -117,7 +119,9 @@ export const taskData = [
         Type: "Research",
         LastDate: "2024-05-11",
         MatterName: "XYZ Ltd.",
-        View: "Link"
+        View: "Link",
+        assignTo: "Jane Smith",
+        status: "Open",
     },
     {
         ID: 3,
@@ -125,7 +129,9 @@ export const taskData = [
         Type: "Consultation",
         LastDate: "2024-05-12",
         MatterName: "LMN Enterprises",
-        View: "Link"
+        View: "Link",
+        assignTo: "David Johnson",
+        status: "Close",
     },
     {
         ID: 4,
@@ -133,7 +139,9 @@ export const taskData = [
         Type: "Training",
         LastDate: "2024-05-13",
         MatterName: "PQR Inc.",
-        View: "Link"
+        View: "Link",
+        assignTo: "Emily White",
+        status: "Pending",
     },
     {
         ID: 5,
@@ -141,7 +149,9 @@ export const taskData = [
         Type: "Marketing",
         LastDate: "2024-05-14",
         MatterName: "STU Realty",
-        View: "Link"
+        View: "Link",
+        assignTo: "Michael Brown",
+        status: "Open",
     },
     {
         ID: 6,
@@ -149,7 +159,9 @@ export const taskData = [
         Type: "Event Management",
         LastDate: "2024-05-15",
         MatterName: "DEF Services",
-        View: "Link"
+        View: "Link",
+        assignTo: "Sarah Adams",
+        status: "Open",
     },
     {
         ID: 7,
@@ -157,7 +169,9 @@ export const taskData = [
         Type: "Financial Analysis",
         LastDate: "2024-05-16",
         MatterName: "GHI Bank",
-        View: "Link"
+        View: "Link",
+        assignTo: "Kevin Wilson",
+        status: "Open",
     },
     {
         ID: 8,
@@ -165,7 +179,9 @@ export const taskData = [
         Type: "Legal Compliance",
         LastDate: "2024-05-17",
         MatterName: "NOP Corporation",
-        View: "Link"
+        View: "Link",
+        assignTo: "Emma Garcia",
+        status: "Open",
     },
     {
         ID: 9,
@@ -173,7 +189,9 @@ export const taskData = [
         Type: "Quality Assurance",
         LastDate: "2024-05-18",
         MatterName: "UVW Inc.",
-        View: "Link"
+        View: "Link",
+        assignTo: "Daniel Martinez",
+        status: "Open",
     },
     {
         ID: 10,
@@ -181,7 +199,9 @@ export const taskData = [
         Type: "Human Resources",
         LastDate: "2024-05-19",
         MatterName: "QRS Solutions",
-        View: "Link"
+        View: "Link",
+        assignTo: "Olivia Taylor",
+        status: "Open",
     }
 ];
 

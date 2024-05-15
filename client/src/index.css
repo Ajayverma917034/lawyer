@@ -39,6 +39,9 @@
   .btn-light{
       @apply btn-dark bg-blue text-white;
   } 
+  .btn-white{
+        @apply whitespace-nowrap bg-white text-black text-xl border-2 border-gray-light px-4 py-2 rounded-md hover:bg-opacity-90;
+  }
 
   /* .input-box {
       @apply w-[100%] rounded-md py-4 px-2 bg-[#dfe6e9] border border-gray-500 focus:bg-transparent placeholder:text-black;

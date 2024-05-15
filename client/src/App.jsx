@@ -41,6 +41,8 @@ import AddLitigationCase from "./components/matter/AddLitigationCase";
 import AddIntellectualProperty from "./components/matter/AddIntellectualProperty";
 import AddCompany from "./components/contacts/addCompany.component";
 import AddPerson from "./components/contacts/addPerson.component";
+import MatterHeader from "./pages/matter/matter-details/MatterHeader";
+import GeneralInfo from "./pages/matter/matter-details/GeneralInfo";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -112,6 +114,12 @@ const App = () => {
             path="matter/intellectual-property"
             element={<IntellectualProperty />}
           />
+          <Route
+            path="matter-details/:id/general-details"
+            element={<MatterHeader />}
+          >
+            <Route index element={<GeneralInfo />} />
+          </Route>
 
           {/* contract routes  */}
           <Route

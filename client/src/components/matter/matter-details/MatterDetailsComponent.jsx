@@ -4,6 +4,7 @@ import { VscCalendar } from "react-icons/vsc";
 import { LuEye } from "react-icons/lu";
 import { GoPencil } from "react-icons/go";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { useState } from "react";
 export const MatterHeader = ({ title, Icon = null }) => {
   return (
     <div className="bg-blue flex items-center text-xl py-3 text-white px-5 justify-between">
@@ -104,7 +105,7 @@ export const SelectField = ({
     </div>
   );
 };
-export const InputField = ({ label, value, onchange, name, required = "" }) => {
+export const InputField = ({ label, value, name, required = "" }) => {
   return (
     <div className="flex items-center justify-between w-full py-2">
       <label
@@ -132,6 +133,72 @@ export const DisplayField = ({ label, value }) => {
       </label>
       <div className="w-[200px]">
         <p className="font-semibold text-[18px] text-blue">{value}</p>
+      </div>
+    </div>
+  );
+};
+
+export const SearchFieldByTyping = ({
+  label,
+  value,
+  onchange,
+  name,
+  options,
+}) => {
+  const [input, setInput] = useState("");
+  const [showOptions, setShowOptions] = useState(false);
+  const [filteredOptions, setFilteredOptions] = useState([]);
+
+  const handleInputChange = (e) => {
+    const value = e.target.value.toLowerCase();
+    setInput(e.target.value);
+
+    const filtered = options
+      .filter(
+        (option) => option.label && option.label.toLowerCase().includes(value)
+      )
+      .slice(0, 4); // Limit to 4 options
+    setFilteredOptions(filtered);
+  };
+
+  const handleClick = () => {
+    setShowOptions(true);
+    setFilteredOptions(options.slice(0, 4)); // Show first 4 options initially
+  };
+
+  const handleOptionClick = (option) => {
+    setInput(option.label);
+    setShowOptions(false);
+  };
+
+  return (
+    <div className="flex items-center justify-between w-full py-2">
+      <label className="text-black text-xl mt-1" htmlFor="select-field">
+        {label}
+      </label>
+      <div className="w-[200px]">
+        <input
+          type="text"
+          value={input}
+          onChange={handleInputChange}
+          defaultValue="None"
+          onClick={handleClick}
+          placeholder="Write something..."
+          className="w-full p-2 border border-gray-300 rounded"
+        />
+        {showOptions && (
+          <ul className="absolute w-full mt-1 bg-white border border-gray-300 rounded shadow-lg">
+            {filteredOptions.map((option) => (
+              <li
+                key={option.id}
+                onClick={() => handleOptionClick(option)}
+                className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

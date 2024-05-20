@@ -7,6 +7,7 @@ import {
   InputField,
   MatterHeader,
   PeopleItem,
+  SearchFieldByTyping,
   SelectField,
 } from "../../../components/matter/matter-details/MatterDetailsComponent";
 import { GrAdd } from "react-icons/gr";
@@ -85,9 +86,10 @@ const GeneralInfo = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7">
               <SelectField label="Matter Priority" value="In Progress" />
-              <SelectField
+              <SearchFieldByTyping
                 label="Stage"
-                defaultValue="System WorkFlow(defalult)"
+                options={practiceAreaOptions}
+                value=""
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7">

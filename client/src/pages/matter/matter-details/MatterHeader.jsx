@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdMenu } from "react-icons/io";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { SlExclamation } from "react-icons/sl";
 import { LuClipboardEdit } from "react-icons/lu";
 import { GoMail } from "react-icons/go";
@@ -11,18 +11,17 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineFileText } from "react-icons/ai";
 import { RiFileList3Line } from "react-icons/ri";
 import { PiClockCountdown } from "react-icons/pi";
-const SidebarLink = ({to, fun, Icon, title}) => {
+const SidebarLink = ({ to, fun, Icon, title }) => {
   return (
-    <NavLink
+    <Link
       to={to}
       onClick={() => fun(e.target.innerText)}
       className="flex items-center gap-3 text-[18px] text-black mt-7"
     >
-      <Icon size={25}/> {title}
-    </NavLink>
+      <Icon size={25} /> {title}
+    </Link>
   );
-  
-}
+};
 const MatterHeader = () => {
   let page = location.pathname.split("/")[1];
   let [pageState, setPageState] = useState(page.replace("-", " "));
@@ -55,58 +54,115 @@ const MatterHeader = () => {
           <button className="btn-white">Abort</button>
           <button className="btn-white">Pending</button>
           <button className="btn-white">In Process</button>
-          <button className="btn-white bg-blue text-white font-semibold">Save</button>
+          <button className="btn-white bg-blue text-white font-semibold">
+            Save
+          </button>
         </div>
       </div>
       <section className="relative flex py-0 m-0 max-md:flex-col bg-white">
-      <div className="sticky top-[154px] z-[50]">
-        <div className="relative md:hidden bg-white py-1 border-b border-grey flex flex-nowrap overflow-x-auto ">
-          <button
-            ref={sideBarIconTab}
-            className="p-5 capitalize "
-            onClick={chagnePageState}
+        <div className="sticky top-[154px] z-[50]">
+          <div className="relative md:hidden bg-white py-1 border-b border-grey flex flex-nowrap overflow-x-auto ">
+            <button
+              ref={sideBarIconTab}
+              className="p-5 capitalize "
+              onClick={chagnePageState}
+            >
+              <IoMdMenu size={20} style={{ pointerEvents: "none" }} />
+            </button>
+            <button
+              ref={pageStateTap}
+              className="p-5 capitalize "
+              onClick={chagnePageState}
+            >
+              {pageState}
+            </button>
+
+            <hr
+              ref={activeTabLine}
+              className="absolute bottom-0 duration-500 "
+            />
+          </div>
+
+          <div
+            className={
+              "min-w-[300px] !h-[calc(100vh-230px)] md:min-h-[calc(100vh-147px)] bg-white md:bg-white md:h-cover md:sticky top-[143px] overflow-y-auto md:pr-0  z-[49] md:border-gray-light md:border-r absolute max-md:top-[64px] px-7  max-md:px-16 max-md:-ml-7 duration-500 " +
+              (!showSideNav
+                ? "max-md:opacity-0 max-md:pointer-events-none"
+                : "opacity-100 pointer-events-auto")
+            }
           >
-            <IoMdMenu size={20} style={{ pointerEvents: 'none' }}/>
-          </button>
-          <button
-            ref={pageStateTap}
-            className="p-5 capitalize "
-            onClick={chagnePageState}
-          >
-            {pageState}
-          </button>
-
-          <hr ref={activeTabLine} className="absolute bottom-0 duration-500 " />
+            <SidebarLink
+              Icon={SlExclamation}
+              to={"/matter-details/10/general-details"}
+              fun={setPageState}
+              title="General Info"
+            />
+            <SidebarLink
+              Icon={LuClipboardEdit}
+              to={"/matter-details/10/task"}
+              fun={setPageState}
+              title="Task"
+            />
+            <SidebarLink
+              Icon={BsBell}
+              to={"/matter-details/10/reminders"}
+              fun={setPageState}
+              title="Reminder"
+            />
+            <SidebarLink
+              Icon={GoMail}
+              to={"/"}
+              fun={setPageState}
+              title="Email"
+            />
+            <SidebarLink
+              Icon={LiaMoneyCheckAltSolid}
+              to={"/"}
+              fun={setPageState}
+              title="Bills"
+            />
+            <SidebarLink
+              Icon={MdOutlineAttachment}
+              to={"/matter-details/1/attachment"}
+              fun={setPageState}
+              title="Attachments"
+            />
+            <SidebarLink
+              Icon={RiFileList3Line}
+              to={"/matter-details/1/expenses"}
+              fun={setPageState}
+              title="Expenses"
+            />
+            <SidebarLink
+              Icon={PiClockCountdown}
+              to={"/matter-details/1/time-entries"}
+              fun={setPageState}
+              title="Time Entries"
+            />
+            <SidebarLink
+              Icon={AiOutlineFileText}
+              to={"/"}
+              fun={setPageState}
+              title="Matter"
+            />
+            <SidebarLink
+              Icon={AiOutlineFileText}
+              to={"/"}
+              fun={setPageState}
+              title="Contract and Document"
+            />
+            <SidebarLink
+              Icon={IoSettingsOutline}
+              to={"/"}
+              fun={setPageState}
+              title="Setting"
+            />
+          </div>
         </div>
-
-        <div
-          className={
-            "min-w-[300px] !h-[calc(100vh-230px)] md:min-h-[calc(100vh-147px)] bg-white md:bg-white md:h-cover md:sticky top-[143px] overflow-y-auto md:pr-0  z-[49] md:border-gray-light md:border-r absolute max-md:top-[64px] px-7  max-md:px-16 max-md:-ml-7 duration-500 " +
-            (!showSideNav
-              ? "max-md:opacity-0 max-md:pointer-events-none"
-              : "opacity-100 pointer-events-auto")
-          }
-        >
-          
-          <SidebarLink Icon={SlExclamation} to={'/'} fun={setPageState} title='General Info' />
-          <SidebarLink Icon={LuClipboardEdit } to={'/'} fun={setPageState} title='Task' />
-          <SidebarLink Icon={BsBell} to={'/'} fun={setPageState} title='Reminder' />
-          <SidebarLink Icon={GoMail} to={'/'} fun={setPageState} title='Email' />
-          <SidebarLink Icon={LiaMoneyCheckAltSolid} to={'/'} fun={setPageState} title='Bills' />
-          <SidebarLink Icon={MdOutlineAttachment} to={'/'} fun={setPageState} title='Attachments' />
-          <SidebarLink Icon={RiFileList3Line} to={'/'} fun={setPageState} title='Expenses' />
-          <SidebarLink Icon={PiClockCountdown} to={'/'} fun={setPageState} title='Time Entries' />
-          <SidebarLink Icon={AiOutlineFileText} to={'/'} fun={setPageState} title='Matter' />
-          <SidebarLink Icon={AiOutlineFileText} to={'/'} fun={setPageState} title='Contract and Document' />
-          <SidebarLink Icon={IoSettingsOutline} to={'/'} fun={setPageState} title='Setting' />
-
-          
+        <div className="w-full">
+          <Outlet />
         </div>
-      </div>
-      <div className="w-full">
-        <Outlet />
-      </div>
-    </section>
+      </section>
     </>
   );
 };

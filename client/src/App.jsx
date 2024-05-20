@@ -43,6 +43,11 @@ import AddCompany from "./components/contacts/addCompany.component";
 import AddPerson from "./components/contacts/addPerson.component";
 import MatterHeader from "./pages/matter/matter-details/MatterHeader";
 import GeneralInfo from "./pages/matter/matter-details/GeneralInfo";
+import MatterTask from "./pages/matter/matter-details/MatterTask";
+import Reminders from "./pages/matter/matter-details/Reminders";
+import Attachment from "./pages/matter/matter-details/Attachment";
+import Expenses from "./pages/matter/matter-details/Expenses";
+import TimeEntries from "./pages/matter/matter-details/TimeEntries";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -114,11 +119,13 @@ const App = () => {
             path="matter/intellectual-property"
             element={<IntellectualProperty />}
           />
-          <Route
-            path="matter-details/:id/general-details"
-            element={<MatterHeader />}
-          >
-            <Route index element={<GeneralInfo />} />
+          <Route path="matter-details/:id" element={<MatterHeader />}>
+            <Route path="general-details" element={<GeneralInfo />} />
+            <Route path="task" element={<MatterTask />} />
+            <Route path="reminders" element={<Reminders />} />
+            <Route path="attachment" element={<Attachment />} />
+            <Route path="expenses" element={<Expenses />} />
+            <Route path="time-entries" element={<TimeEntries />} />
           </Route>
 
           {/* contract routes  */}

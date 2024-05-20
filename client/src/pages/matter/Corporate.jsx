@@ -3,6 +3,54 @@ import React, { useContext, useState } from "react";
 import AddPerson from "../../components/contacts/addPerson.component";
 import AddCorporate from "../../components/matter/AddCorporate";
 import { AddContext } from "../../App";
+import { Link } from "react-router-dom";
+
+const data = [
+  {
+    id: 1,
+    assignee: "Alice Smith",
+    clientName: "ABC Ltd.",
+    name: "John Doe",
+    practiceArea: "Corporate Law",
+    workflowStatus: "Pending",
+    importantDevelopment: "Reviewed initial contract",
+    company: "XYZ Corp",
+    dueDate: "2024-06-15",
+  },
+  {
+    id: 2,
+    assignee: "Bob Johnson",
+    clientName: "DEF Corp.",
+    name: "Jane Roe",
+    practiceArea: "Intellectual Property",
+    workflowStatus: "In Progress",
+    importantDevelopment: "Patent filing submitted",
+    company: "123 Inc.",
+    dueDate: "2024-06-20",
+  },
+  {
+    id: 3,
+    assignee: "Charlie Brown",
+    clientName: "GHI Ltd.",
+    name: "Jim Beam",
+    practiceArea: "Family Law",
+    workflowStatus: "Completed",
+    importantDevelopment: "Mediation successful",
+    company: "456 LLC",
+    dueDate: "2024-05-30",
+  },
+  {
+    id: 4,
+    assignee: "David Clark",
+    clientName: "JKL Inc.",
+    name: "Mary Major",
+    practiceArea: "Criminal Law",
+    workflowStatus: "On Hold",
+    importantDevelopment: "Awaiting trial date",
+    company: "789 Co.",
+    dueDate: "2024-07-01",
+  },
+];
 
 const Corporate = () => {
   const [isChecked1, setIsChecked1] = useState(false);
@@ -91,18 +139,23 @@ const Corporate = () => {
               </tr>
             </thead>
             <tbody>
-              {/* <tr className="border-b border-gray-light">
-                <td className="px-4 py-2">1</td>
-                <td className="px-4 py-2">John Doe</td>
-                <td className="px-4 py-2">Engineering</td>
-                <td className="px-4 py-2">john.doe@example.com</td>
-                <td className="px-4 py-2">123-456-7890</td>
-                <td className="px-4 py-2">987-654-3210</td>
-                <td className="px-4 py-2">Software Engineer</td>
-                <td className="px-4 py-2">ABC Company</td>
-                <td className="px-4 py-2">Ref123</td>
-                <td className="px-4 py-2">Sub Category</td>
-              </tr> */}
+              {data.map((row) => (
+                <tr key={row.id}>
+                  <td className="px-4 py-2">
+                    <Link to={`/matter-details/${row.id}/general-details`}>
+                      {row.id}
+                    </Link>{" "}
+                  </td>
+                  <td className="px-4 py-2">{row.assignee}</td>
+                  <td className="px-4 py-2">{row.clientName}</td>
+                  <td className="px-4 py-2">{row.name}</td>
+                  <td className="px-4 py-2">{row.practiceArea}</td>
+                  <td className="px-4 py-2">{row.workflowStatus}</td>
+                  <td className="px-4 py-2">{row.importantDevelopment}</td>
+                  <td className="px-4 py-2">{row.company}</td>
+                  <td className="px-4 py-2">{row.dueDate}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

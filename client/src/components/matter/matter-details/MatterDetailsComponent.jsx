@@ -13,7 +13,7 @@ export const MatterHeader = ({ title, Icon = null }) => {
   );
 };
 
-export const BillingItem = ({ title, helpingText, value }) => {
+export const BillingItem = ({ title, helpingText = "", value }) => {
   return (
     <div className="flex justify-between">
       <p className="text-black text-[18px] flex gap-2 items-center py-1">

@@ -12,11 +12,14 @@ import { AiOutlineFileText } from "react-icons/ai";
 import { RiFileList3Line } from "react-icons/ri";
 import { PiClockCountdown } from "react-icons/pi";
 import { LiaFileInvoiceSolid } from "react-icons/lia";
+import { FaCaretDown } from "react-icons/fa";
+import { HiDotsVertical } from "react-icons/hi";
 
 const MatterHeader2 = () => {
-  let page = location.pathname.split("/")[1];
+  let page = location.pathname.split("/")[3];
   let [pageState, setPageState] = useState(page.replace("-", " "));
   let [showSideNav, setShowSideNav] = useState(false);
+  const [showBtns, setShowBtns] = useState(false);
 
   const imageHandler = async (e) => {
     const file = e.target.files[0];
@@ -53,12 +56,44 @@ const MatterHeader2 = () => {
     <>
       <div className="px-4 sm:px-6 md:px-10 lg:px-24 bg-white-light justify-between py-5 flex items-center sticky top-[66px] z-[50]">
         <h1 className="text-2xl">M0000001: Matter Name</h1>
+        <div className="flex gap-x-7">
+          <div
+            className={`flex items-center  ${
+              page !== "general-details" ? "hidden" : ""
+            }`}
+          >
+            <div className="flex gap-x-4 lg:gap-x-7 max-1110px:hidden">
+              <button className="btn-white">Cancel</button>
+              <button className="btn-white">Abort</button>
+              <button className="btn-white">Pending</button>
+              <button className="btn-white">In Process</button>
+              <button className="flex items-center font-semibold">
+                Shared with public{" "}
+                <FaCaretDown size={20} className="text-blue" />
+              </button>
+            </div>
 
-        <div className="flex gap-x-4 lg:gap-x-7 hidden">
-          <button className="btn-white">Cancel</button>
-          <button className="btn-white">Abort</button>
-          <button className="btn-white">Pending</button>
-          <button className="btn-white">In Process</button>
+            <div className="relative 1110px:hidden">
+              <HiDotsVertical
+                size={22}
+                className="cursor-pointer hidden max-1110px:flex"
+                onClick={() => setShowBtns(!showBtns)}
+              />
+              {showBtns && (
+                <div className="flex gap-2 1110px:gap-5 max-1110px:absolute max-1110px:flex-col max-1110px:bg-white shadow-medium-shadow max-1110px:right-0 max-1110px:p-3 max-1110px:rounded-md">
+                  <button className="btn-white">Cancel</button>
+                  <button className="btn-white">Abort</button>
+                  <button className="btn-white">Pending</button>
+                  <button className="btn-white">In Process</button>
+                  <button className="flex items-center font-semibold">
+                    Shared with public{" "}
+                    <FaCaretDown size={20} className="text-blue" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
           <button className="btn-white bg-blue text-white font-semibold">
             Save
           </button>

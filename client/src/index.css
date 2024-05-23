@@ -40,7 +40,7 @@
       @apply btn-dark bg-blue text-white;
   } 
   .btn-white{
-        @apply whitespace-nowrap bg-white text-black text-xl border-2 border-gray-light px-4 py-2 rounded-md hover:bg-opacity-90;
+        @apply whitespace-nowrap bg-white text-black text-xl border-2 border-gray-light px-2 py-2 md:px-4 md:py-2 rounded-md hover:bg-opacity-90 max-sm:text-base ;
   }
 
   /* .input-box {

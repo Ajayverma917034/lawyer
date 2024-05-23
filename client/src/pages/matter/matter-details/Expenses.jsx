@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
-
+import { HiDotsVertical } from "react-icons/hi";
 const Expenses = () => {
+  const [menuDetials, setMenuDetails] = useState(false);
   return (
     <div className="w-full bg-white">
       <div className="px-4 pt-2 items-center">
-        <div className="flex justify-between">
-          <h1 className="text-[18px] md:text-3xl font-semibold">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl md:text-3xl font-semibold">
             Related Expenses
           </h1>
-          <div className="flex gap-5">
-            <button className="btn-white border-gray">Add Expenses</button>
+          <div className="relative">
+          <HiDotsVertical size={22} className="cursor-pointer hidden max-sm:flex" onClick={() => setMenuDetails(!menuDetials)}/>
+          {
+            menuDetials &&
+          <div className="flex gap-2 sm:gap-5 max-sm:absolute max-sm:flex-col max-sm:bg-white shadow-medium-shadow max-sm:right-0 max-sm:p-3 max-sm:rounded-md">
+            <button className="btn-white max-sm:px-1 max-sm:py-1 border-gray">Add Expenses</button>
             <button className="btn-white border-gray">Bulk Expenses</button>
             <button className="btn-white border-gray">Export to Excel</button>
+          </div>
+          }
           </div>
         </div>
       </div>

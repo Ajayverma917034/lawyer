@@ -5,9 +5,9 @@ const MatterTask = () => {
   return (
     <div className="w-full bg-white">
       <div className="px-4 pt-2 items-center">
-        <h1 className="text-[18px] md:text-3xl font-semibold">Tasks</h1>
+        <h1 className="text-2xl md:text-3xl font-semibold">Tasks</h1>
 
-        <div className="flex justify-between mt-9 gap-5">
+        <div className="flex justify-between mt-3 md:mt-9 gap-5">
           <div className="flex">
             <div class="flex items-center border-2 border-gray-light rounded-md overflow-hidden bg-white">
               <input

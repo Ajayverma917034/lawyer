@@ -7,8 +7,8 @@ const Attachment = () => {
     <div className="w-full bg-white">
       <div className="px-4 pt-2 items-center">
         <div className="flex justify-between">
-          <h1 className="text-[18px] md:text-3xl font-semibold">Attachment</h1>
-          <div className="flex gap-10">
+          <h1 className="text-2xl md:text-3xl font-semibold">Attachment</h1>
+          <div className="flex gap-3 md:gap-10">
             <button className="btn-white bg-blue text-white font-semibold flex items-center py-1">
               <IoMdAdd size={20} /> New
             </button>
@@ -20,12 +20,12 @@ const Attachment = () => {
 
         <div className="flex justify-between mt-9 gap-5 w-full">
           <h1 className="text-[18px] md:text-3xl font-semibold">Matter Id</h1>
-          <div className="flex">
+          <div className="flex max-sm:w-[60%]">
             <div class="flex items-center border-2 border-gray-light rounded-md overflow-hidden bg-white">
               <input
                 type="text"
                 placeholder="Search..."
-                class="px-4 py-2 w-full outline-none"
+                class="px-4 py-1 md:py-2 w-full outline-none"
               />
               <button class="px-4 text-gray-600 bg-white">
                 <IoSearchOutline className="text-blue" />

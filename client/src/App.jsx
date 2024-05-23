@@ -48,6 +48,9 @@ import Reminders from "./pages/matter/matter-details/Reminders";
 import Attachment from "./pages/matter/matter-details/Attachment";
 import Expenses from "./pages/matter/matter-details/Expenses";
 import TimeEntries from "./pages/matter/matter-details/TimeEntries";
+import Invoices from "./pages/matter/matter-details/Invoices";
+import RelatedMatters from "./pages/matter/matter-details/RelatedMatters";
+import RelatedContractAndDocument from "./pages/matter/matter-details/RelatedContractsAndDocuments";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -126,6 +129,12 @@ const App = () => {
             <Route path="attachment" element={<Attachment />} />
             <Route path="expenses" element={<Expenses />} />
             <Route path="time-entries" element={<TimeEntries />} />
+            <Route path="invoices" element={<Invoices />} />
+            <Route path="related-matters" element={<RelatedMatters />} />
+            <Route
+              path="related-contract-documents"
+              element={<RelatedContractAndDocument />}
+            />
           </Route>
 
           {/* contract routes  */}

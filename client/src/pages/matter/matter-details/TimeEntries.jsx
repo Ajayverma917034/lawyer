@@ -2,8 +2,10 @@ import React from "react";
 import {
   BillingItem,
   MatterHeader,
+  TimeEntriesItem,
 } from "../../../components/matter/matter-details/MatterDetailsComponent";
 import { IoSearch } from "react-icons/io5";
+import { HiDotsVertical } from "react-icons/hi";
 
 const data = [
   {
@@ -28,17 +30,27 @@ const data = [
   },
 ];
 const TimeEntries = () => {
+  const [menuDetials, setMenuDetails] = React.useState(false);
   return (
     <>
       <div className="items-center">
-        <div className="flex justify-between py-2  px-2 border-b border-gray-light">
-          <h1 className="text-[18px] md:text-3xl font-semibold">
-            Time Entries
-          </h1>
-          <div className="flex gap-5">
-            <button className="btn-white border-gray">Time Entries</button>
-            <button className="btn-white border-gray">Start Timer</button>
-            <button className="btn-white border-gray">Export to Excel</button>
+        <div className="flex justify-between items-center py-2  px-2 border-b border-gray-light">
+          <h1 className="text-2xl md:text-3xl font-semibold">Time Entries</h1>
+          <div className="relative">
+            <HiDotsVertical
+              size={22}
+              className="cursor-pointer hidden max-sm:flex"
+              onClick={() => setMenuDetails(!menuDetials)}
+            />
+            {menuDetials && (
+              <div className="flex gap-2 sm:gap-5 max-sm:absolute max-sm:flex-col max-sm:bg-white shadow-medium-shadow max-sm:right-0 max-sm:p-3 max-sm:rounded-md">
+                <button className="btn-white border-gray">Time Entries</button>
+                <button className="btn-white border-gray">Start Timer</button>
+                <button className="btn-white border-gray">
+                  Export to Excel
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -135,7 +147,7 @@ const TimeEntries = () => {
             <MatterHeader title="Balance" />
             <div className="flex flex-col px-10 py-5">
               {data.map((bill) => (
-                <BillingItem
+                <TimeEntriesItem
                   key={bill.id}
                   title={bill.title}
                   value={bill.value}

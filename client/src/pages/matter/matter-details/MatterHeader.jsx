@@ -11,19 +11,20 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineFileText } from "react-icons/ai";
 import { RiFileList3Line } from "react-icons/ri";
 import { PiClockCountdown } from "react-icons/pi";
+import { LiaFileInvoiceSolid } from "react-icons/lia";
 const SidebarLink = ({ to, fun, Icon, title }) => {
   return (
-    <Link
+    <NavLink
       to={to}
       onClick={() => fun(e.target.innerText)}
-      className="flex items-center gap-3 text-[18px] text-black mt-7"
+      className="flex items-center gap-3 text-[18px] text-black mt-6"
     >
       <Icon size={25} /> {title}
-    </Link>
+    </NavLink>
   );
 };
 const MatterHeader = () => {
-  let page = location.pathname.split("/")[1];
+  let page = location.pathname.split("/")[3];
   let [pageState, setPageState] = useState(page.replace("-", " "));
   let [showSideNav, setShowSideNav] = useState(false);
   let activeTabLine = useRef();
@@ -49,7 +50,8 @@ const MatterHeader = () => {
     <>
       <div className="px-4 sm:px-6 md:px-10 lg:px-24 bg-white-light justify-between py-5 flex items-center sticky top-[66px] z-[50]">
         <h1 className="text-2xl">M0000001: Matter Name</h1>
-        <div className="flex gap-x-4 lg:gap-x-7">
+
+        <div className="flex gap-x-4 lg:gap-x-7 hidden">
           <button className="btn-white">Cancel</button>
           <button className="btn-white">Abort</button>
           <button className="btn-white">Pending</button>
@@ -60,7 +62,7 @@ const MatterHeader = () => {
         </div>
       </div>
       <section className="relative flex py-0 m-0 max-md:flex-col bg-white">
-        <div className="sticky top-[154px] z-[50]">
+        <div className="sticky top-[130px] z-[50]">
           <div className="relative md:hidden bg-white py-1 border-b border-grey flex flex-nowrap overflow-x-auto ">
             <button
               ref={sideBarIconTab}
@@ -85,7 +87,7 @@ const MatterHeader = () => {
 
           <div
             className={
-              "min-w-[300px] !h-[calc(100vh-230px)] md:min-h-[calc(100vh-147px)] bg-white md:bg-white md:h-cover md:sticky top-[143px] overflow-y-auto md:pr-0  z-[49] md:border-gray-light md:border-r absolute max-md:top-[64px] px-7  max-md:px-16 max-md:-ml-7 duration-500 " +
+              "min-w-[300px] !h-[calc(100vh-200px)] max-md:pb-4 md:min-h-[calc(100vh-131px)] bg-white md:bg-white md:h-cover md:sticky top-[143px] overflow-y-auto md:pr-0  z-[49] md:border-gray-light md:border-r absolute max-md:top-[64px] px-7  max-md:px-16 max-md:-ml-7 duration-500 " +
               (!showSideNav
                 ? "max-md:opacity-0 max-md:pointer-events-none"
                 : "opacity-100 pointer-events-auto")
@@ -140,14 +142,20 @@ const MatterHeader = () => {
               title="Time Entries"
             />
             <SidebarLink
+              Icon={LiaFileInvoiceSolid}
+              to={"/matter-details/1/invoices"}
+              fun={setPageState}
+              title="Invoices"
+            />
+            <SidebarLink
               Icon={AiOutlineFileText}
-              to={"/"}
+              to={"/matter-details/1/related-matters"}
               fun={setPageState}
               title="Matter"
             />
             <SidebarLink
               Icon={AiOutlineFileText}
-              to={"/"}
+              to={"/matter-details/1/related-contract-documents"}
               fun={setPageState}
               title="Contract and Document"
             />

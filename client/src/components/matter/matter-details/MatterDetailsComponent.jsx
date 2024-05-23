@@ -203,3 +203,14 @@ export const SearchFieldByTyping = ({
     </div>
   );
 };
+
+export const TimeEntriesItem = ({ title, value }) => {
+  return (
+    <div className="flex justify-between">
+      <p className="text-black text-[18px] flex gap-2 items-center py-1">
+        {title}{" "}
+      </p>
+      <span className="text-xl text-black">{value}</span>
+    </div>
+  );
+};

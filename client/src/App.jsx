@@ -51,6 +51,9 @@ import TimeEntries from "./pages/matter/matter-details/TimeEntries";
 import Invoices from "./pages/matter/matter-details/Invoices";
 import RelatedMatters from "./pages/matter/matter-details/RelatedMatters";
 import RelatedContractAndDocument from "./pages/matter/matter-details/RelatedContractsAndDocuments";
+import MatterHeader2 from "./pages/matter/matter-details/MatterHeader2";
+import Email from "./pages/matter/matter-details/Email";
+import Setting from "./pages/matter/matter-details/Setting";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -122,15 +125,17 @@ const App = () => {
             path="matter/intellectual-property"
             element={<IntellectualProperty />}
           />
-          <Route path="matter-details/:id" element={<MatterHeader />}>
+          <Route path="matter-details/:id" element={<MatterHeader2 />}>
             <Route path="general-details" element={<GeneralInfo />} />
             <Route path="task" element={<MatterTask />} />
             <Route path="reminders" element={<Reminders />} />
+            <Route path="email" element={<Email />} />
             <Route path="attachment" element={<Attachment />} />
             <Route path="expenses" element={<Expenses />} />
             <Route path="time-entries" element={<TimeEntries />} />
             <Route path="invoices" element={<Invoices />} />
             <Route path="related-matters" element={<RelatedMatters />} />
+            <Route path="setting" element={<Setting />} />
             <Route
               path="related-contract-documents"
               element={<RelatedContractAndDocument />}

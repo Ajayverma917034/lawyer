@@ -59,6 +59,22 @@ const dateandtimeData = [
   { id: 5, title: "Estimated Effort", value: 0 },
   { id: 6, title: "Effective Effort", value: 0 },
 ];
+
+const stageOptions = [
+  { id: 1, lable: "None", value: "none" },
+  { id: 1, lable: "First", value: "first" },
+];
+
+const workflowoption = [
+  { id: 1, lable: "System (default)", value: "system" },
+  { id: 2, lable: "Manual ", value: "manual" },
+];
+
+const priorityOptions = [
+  { id: 1, lable: "High", value: "high" },
+  { id: 2, lable: "Low", value: "low" },
+  { id: 3, lable: "Critical", value: "ciritcal" },
+];
 const GeneralInfo = () => {
   const { addPerson, setAddPerson, addCompany, setAddCompany } =
     useContext(AddContext);
@@ -82,21 +98,51 @@ const GeneralInfo = () => {
               <SelectField
                 label="WorkFlow Used"
                 defaultValue="System WorkFlow(defalult)"
+                options={workflowoption}
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7">
-              <SelectField label="Matter Priority" value="In Progress" />
-              <SearchFieldByTyping
-                label="Stage"
-                options={practiceAreaOptions}
-                value=""
-              />
+              <div className="flex items-center justify-between w-full py-2">
+                <label
+                  className={`text-black text-xl mt-1`}
+                  htmlFor="select-field"
+                >
+                  Matter Prority
+                </label>
+                <select
+                  id="select-field"
+                  className="custom-select2 text-red"
+                  // value={selectedValue}
+                  // onChange={handleChange}
+                >
+                  {priorityOptions &&
+                    priorityOptions.map((option, i) => (
+                      <option
+                        value={option.value}
+                        key={i}
+                        className="text-black"
+                      >
+                        {option.lable}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <SelectField label="Stage" value="" options={stageOptions} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7">
               <InputField label="Internal Ref Number" value="99963" />
               <SelectField
                 label="Matter Container"
                 defaultValue="System WorkFlow(defalult)"
+                options={stageOptions}
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7">
+              <InputField label="Client Name" value="A & B Company" />
+              <SelectField
+                label="Matter Container"
+                defaultValue="System WorkFlow(defalult)"
+                options={stageOptions}
               />
             </div>
             <div className="grid grid-cols-1 ">

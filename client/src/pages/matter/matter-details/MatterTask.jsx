@@ -9,19 +9,19 @@ const MatterTask = () => {
 
         <div className="flex justify-between mt-3 md:mt-9 gap-5">
           <div className="flex">
-            <div class="flex items-center border-2 border-gray-light rounded-md overflow-hidden bg-white">
+            <div className="flex items-center border-2 border-gray-light rounded-md overflow-hidden bg-white">
               <input
                 type="text"
                 placeholder="Search Task..."
-                class="px-4 py-2 w-full outline-none"
+                className="px-4 py-2 w-full outline-none"
               />
-              <button class="px-4 text-gray-600 bg-white">
+              <button className="px-4 text-gray-600 bg-white">
                 <IoSearchOutline className="text-blue" />
               </button>
             </div>
           </div>
           <div>
-            <button className="btn-dark bg-white text-red flex items-center">
+            <button className="btn-dark bg-white text-red flex items-center font-semibold">
               <IoMdAdd size={15} /> Add New Task
             </button>
           </div>
@@ -32,15 +32,15 @@ const MatterTask = () => {
         <table className="table-auto w-full">
           <thead className="border-b border-gray-light">
             <tr>
-              <th class="px-4 py-2 font-normal text-start">ID</th>
-              <th class="px-4 py-2 font-normal text-start">Title</th>
-              <th class="px-4 py-2 font-normal text-start">Type</th>
-              <th class="px-4 py-2 font-normal text-start">Work Flow</th>
-              <th class="px-4 py-2 font-normal text-start">Description</th>
-              <th class="px-4 py-2 font-normal text-start">Priority</th>
-              <th class="px-4 py-2 font-normal text-start">Location</th>
-              <th class="px-4 py-2 font-normal text-start">Assign to</th>
-              <th class="px-4 py-2 font-normal text-start">Effort</th>
+              <th className="px-4 py-2 font-normal text-start">ID</th>
+              <th className="px-4 py-2 font-normal text-start">Title</th>
+              <th className="px-4 py-2 font-normal text-start">Type</th>
+              <th className="px-4 py-2 font-normal text-start">Work Flow</th>
+              <th className="px-4 py-2 font-normal text-start">Description</th>
+              <th className="px-4 py-2 font-normal text-start">Priority</th>
+              <th className="px-4 py-2 font-normal text-start">Location</th>
+              <th className="px-4 py-2 font-normal text-start">Assign to</th>
+              <th className="px-4 py-2 font-normal text-start">Effort</th>
             </tr>
           </thead>
           <tbody>

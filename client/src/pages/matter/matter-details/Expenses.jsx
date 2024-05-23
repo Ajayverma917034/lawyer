@@ -11,16 +11,31 @@ const Expenses = () => {
           <h1 className="text-2xl md:text-3xl font-semibold">
             Related Expenses
           </h1>
-          <div className="relative">
-          <HiDotsVertical size={22} className="cursor-pointer hidden max-sm:flex" onClick={() => setMenuDetails(!menuDetials)}/>
-          {
-            menuDetials &&
-          <div className="flex gap-2 sm:gap-5 max-sm:absolute max-sm:flex-col max-sm:bg-white shadow-medium-shadow max-sm:right-0 max-sm:p-3 max-sm:rounded-md">
-            <button className="btn-white max-sm:px-1 max-sm:py-1 border-gray">Add Expenses</button>
+          <div className="flex gap-2 sm:gap-5 max-sm:hidden">
+            <button className="btn-white max-sm:px-1 max-sm:py-1 border-gray">
+              Add Expenses
+            </button>
             <button className="btn-white border-gray">Bulk Expenses</button>
             <button className="btn-white border-gray">Export to Excel</button>
           </div>
-          }
+
+          <div className="relative sm:hidden">
+            <HiDotsVertical
+              size={22}
+              className="cursor-pointer hidden max-sm:flex"
+              onClick={() => setMenuDetails(!menuDetials)}
+            />
+            {menuDetials && (
+              <div className="flex gap-2 sm:gap-5 max-sm:absolute max-sm:flex-col max-sm:bg-white shadow-medium-shadow max-sm:right-0 max-sm:p-3 max-sm:rounded-md">
+                <button className="btn-white max-sm:px-1 max-sm:py-1 border-gray">
+                  Add Expenses
+                </button>
+                <button className="btn-white border-gray">Bulk Expenses</button>
+                <button className="btn-white border-gray">
+                  Export to Excel
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

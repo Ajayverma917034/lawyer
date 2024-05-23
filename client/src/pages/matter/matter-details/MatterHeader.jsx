@@ -113,7 +113,7 @@ const MatterHeader = () => {
             />
             <SidebarLink
               Icon={GoMail}
-              to={"/"}
+              to={"/matter-details/10/email"}
               fun={setPageState}
               title="Email"
             />

@@ -4,7 +4,7 @@ import { VscCalendar } from "react-icons/vsc";
 import { LuEye } from "react-icons/lu";
 import { GoPencil } from "react-icons/go";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export const MatterHeader = ({ title, Icon = null }) => {
   return (
     <div className="bg-blue flex items-center text-xl py-3 text-white px-5 justify-between">
@@ -84,6 +84,20 @@ export const SelectField = ({
   defaultValue = "",
   required = "",
 }) => {
+  const [selectedValue, setSelectedValue] = useState(defaultValue);
+
+  // Update the selected value state when the defaultValue prop changes
+  useEffect(() => {
+    setSelectedValue(defaultValue);
+  }, [defaultValue]);
+
+  const handleChangeSelect = (e) => {};
+  // Handle change event
+  const handleChange = (e) => {
+    setSelectedValue(e.target.value);
+    handleChangeSelect(e.target.value);
+  };
+
   return (
     <div className="flex items-center justify-between w-full py-2">
       <label
@@ -95,17 +109,21 @@ export const SelectField = ({
       <select
         id="select-field"
         className="custom-select2"
-        value={defaultValue}
-        defaultValue={defaultValue}
+        value={selectedValue}
+        onChange={handleChange}
       >
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+        {options &&
+          options.map((option, i) => (
+            <option value={option.value} key={i}>
+              {option.lable}
+            </option>
+          ))}
       </select>
     </div>
   );
 };
 export const InputField = ({ label, value, name, required = "" }) => {
+  const hanldeChangeInput = (e) => {};
   return (
     <div className="flex items-center justify-between w-full py-2">
       <label
@@ -117,6 +135,7 @@ export const InputField = ({ label, value, name, required = "" }) => {
       <input
         type="text"
         value={value}
+        onChange={hanldeChangeInput}
         className="border-b border-[#7f7f7f] text-black text-xl w-[200px] pl-2 focus:outline-none"
       />
     </div>

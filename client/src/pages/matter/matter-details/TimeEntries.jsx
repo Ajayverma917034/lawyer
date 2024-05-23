@@ -36,7 +36,15 @@ const TimeEntries = () => {
       <div className="items-center">
         <div className="flex justify-between items-center py-2  px-2 border-b border-gray-light">
           <h1 className="text-2xl md:text-3xl font-semibold">Time Entries</h1>
-          <div className="relative">
+          <div className="flex gap-2 sm:gap-5 max-sm:hidden">
+            <button className="btn-white max-sm:px-1 max-sm:py-1 border-gray">
+              Time Entries
+            </button>
+            <button className="btn-white border-gray">Start Timer</button>
+            <button className="btn-white border-gray">Export to Excel</button>
+          </div>
+
+          <div className="relative sm:hidden">
             <HiDotsVertical
               size={22}
               className="cursor-pointer hidden max-sm:flex"
@@ -44,7 +52,9 @@ const TimeEntries = () => {
             />
             {menuDetials && (
               <div className="flex gap-2 sm:gap-5 max-sm:absolute max-sm:flex-col max-sm:bg-white shadow-medium-shadow max-sm:right-0 max-sm:p-3 max-sm:rounded-md">
-                <button className="btn-white border-gray">Time Entries</button>
+                <button className="btn-white max-sm:px-1 max-sm:py-1 border-gray">
+                  Time Entries
+                </button>
                 <button className="btn-white border-gray">Start Timer</button>
                 <button className="btn-white border-gray">
                   Export to Excel

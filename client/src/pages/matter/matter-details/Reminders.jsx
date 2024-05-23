@@ -10,19 +10,19 @@ const Reminders = () => {
 
         <div className="flex justify-between mt-9 gap-5">
           <div className="flex">
-            <div class="flex items-center border-2 border-gray-light rounded-md overflow-hidden bg-white">
+            <div className="flex items-center border-2 border-gray-light rounded-md overflow-hidden bg-white">
               <input
                 type="text"
                 placeholder="Search Reminder..."
-                class="px-4 py-2 w-full outline-none"
+                className="px-4 py-2 w-full outline-none"
               />
-              <button class="px-4 text-gray-600 bg-white">
+              <button className="px-4 text-gray-600 bg-white">
                 <IoSearchOutline className="text-blue" />
               </button>
             </div>
           </div>
           <div>
-            <button className="btn-dark bg-white text-red flex items-center">
+            <button className="btn-dark bg-white font-semibold text-red flex items-center">
               <IoMdAdd size={15} /> Add New Reminder
             </button>
           </div>
@@ -33,14 +33,20 @@ const Reminders = () => {
         <table className="table-auto w-full">
           <thead className="border-b border-gray-light">
             <tr>
-              <th class="px-4 py-2 font-normal text-start">Remind On</th>
-              <th class="px-4 py-2 font-normal text-start">Time</th>
-              <th class="px-4 py-2 font-normal text-start">Summary</th>
-              <th class="px-4 py-2 font-normal text-start">Type</th>
-              <th class="px-4 py-2 font-normal text-start">Status</th>
-              <th class="px-4 py-2 font-normal text-start">Reminder User</th>
-              <th class="px-4 py-2 font-normal text-start">Related Company</th>
-              <th class="px-4 py-2 font-normal text-start">Related Person</th>
+              <th className="px-4 py-2 font-normal text-start">Remind On</th>
+              <th className="px-4 py-2 font-normal text-start">Time</th>
+              <th className="px-4 py-2 font-normal text-start">Summary</th>
+              <th className="px-4 py-2 font-normal text-start">Type</th>
+              <th className="px-4 py-2 font-normal text-start">Status</th>
+              <th className="px-4 py-2 font-normal text-start">
+                Reminder User
+              </th>
+              <th className="px-4 py-2 font-normal text-start">
+                Related Company
+              </th>
+              <th className="px-4 py-2 font-normal text-start">
+                Related Person
+              </th>
             </tr>
           </thead>
           <tbody>

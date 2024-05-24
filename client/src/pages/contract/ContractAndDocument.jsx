@@ -2,8 +2,9 @@ import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
 import React, { useState } from "react";
 import AddPerson from "../../components/contacts/addPerson.component";
 import AddCompany from "../../components/contacts/addCompany.component";
+import { Link } from "react-router-dom";
 
-const ContractAndDocument = () => {
+const ContractAndDocuments = () => {
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [addPerson, setAddPerson] = useState(false);
@@ -79,8 +80,12 @@ const ContractAndDocument = () => {
             <tbody>
               {/* Add your table rows here */}
               <tr className="border-b border-gray-light">
-                <td className="px-4 py-2">1</td>
-                <td className="px-4 py-2">John Doe</td>
+                <td className="px-4 py-2 text-blue">
+                  <Link to={"/contract-details/1/details"}>1</Link>
+                </td>
+                <td className="px-4 py-2 text-blue">
+                  <Link to={"/contract-details/1/details"}>John Doe</Link>
+                </td>
                 <td className="px-4 py-2">Engineering</td>
                 <td className="px-4 py-2">john.doe@example.com</td>
                 <td className="px-4 py-2">123-456-7890</td>
@@ -129,4 +134,4 @@ const ContractAndDocument = () => {
   );
 };
 
-export default ContractAndDocument;
+export default ContractAndDocuments;

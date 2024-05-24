@@ -54,6 +54,18 @@ import RelatedContractAndDocument from "./pages/matter/matter-details/RelatedCon
 import MatterHeader2 from "./pages/matter/matter-details/MatterHeader2";
 import Email from "./pages/matter/matter-details/Email";
 import Setting from "./pages/matter/matter-details/Setting";
+import LitigationHeader from "./pages/matter/litigation-details/LitigationHeader";
+import GeneralInfoLitigation from "./pages/matter/litigation-details/GeneralInfoLitigation";
+import AttachmentsLitigation from "./pages/matter/litigation-details/AttachmentsLitigation";
+import ExpensesLitigation from "./pages/matter/litigation-details/ExpensesLitigation";
+import TimeEntriesLitigation from "./pages/matter/litigation-details/TimeEntriesLitigation";
+import RelatedMattersLitigation from "./pages/matter/litigation-details/RelatedMattersLitigation";
+import RelatedContractAndDocumentLitigation from "./pages/matter/litigation-details/RelatedContractAndDocumentLitigation";
+import SettingLitigation from "./pages/matter/litigation-details/SettingLitigation";
+import StageActivityLitigation from "./pages/matter/litigation-details/StageActivityLitigation";
+import ContractAndDocuments from "./pages/contract/ContractAndDocument";
+import Details from "./pages/contract/contract-document-details/Details";
+import ContractAndDocumentHeader from "./pages/contract/contract-document-details/ContractAndDocumentHeader";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -141,6 +153,58 @@ const App = () => {
               element={<RelatedContractAndDocument />}
             />
           </Route>
+          <Route
+            path="litigation-case-details/:id"
+            element={<LitigationHeader />}
+          >
+            <Route path="general-details" element={<GeneralInfoLitigation />} />
+            <Route
+              path="stages-activity"
+              element={<StageActivityLitigation />}
+            />
+            <Route path="reminders" element={<Reminders />} />
+            <Route path="email" element={<Email />} />
+            <Route path="attachment" element={<AttachmentsLitigation />} />
+            <Route path="expenses" element={<ExpensesLitigation />} />
+            <Route path="time-entries" element={<TimeEntriesLitigation />} />
+            <Route path="invoices" element={<Invoices />} />
+            <Route
+              path="related-matters"
+              element={<RelatedMattersLitigation />}
+            />
+            <Route path="setting" element={<SettingLitigation />} />
+            <Route
+              path="related-contract-documents"
+              element={<RelatedContractAndDocumentLitigation />}
+            />
+          </Route>
+
+          {/* create contract and document */}
+          <Route
+            path="contract-details/:id"
+            element={<ContractAndDocumentHeader />}
+          >
+            <Route path="details" element={<Details />} />
+            <Route
+              path="stages-activity"
+              element={<StageActivityLitigation />}
+            />
+            <Route path="reminders" element={<Reminders />} />
+            <Route path="email" element={<Email />} />
+            <Route path="attachment" element={<AttachmentsLitigation />} />
+            <Route path="expenses" element={<ExpensesLitigation />} />
+            <Route path="time-entries" element={<TimeEntriesLitigation />} />
+            <Route path="invoices" element={<Invoices />} />
+            <Route
+              path="related-matters"
+              element={<RelatedMattersLitigation />}
+            />
+            <Route path="setting" element={<SettingLitigation />} />
+            <Route
+              path="related-contract-documents"
+              element={<RelatedContractAndDocumentLitigation />}
+            />
+          </Route>
 
           {/* contract routes  */}
           <Route
@@ -148,6 +212,7 @@ const App = () => {
             element={<ContractAndDocument />}
           />
           <Route path="contracts/document" element={<ContractAndDocument />} />
+          <Route path="contracts&document" element={<ContractAndDocuments />} />
 
           {/* task routes  */}
           <Route path="tasks" element={<AllTasks />} />

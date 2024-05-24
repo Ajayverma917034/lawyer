@@ -51,7 +51,7 @@ const MatterHeader = () => {
       <div className="px-4 sm:px-6 md:px-10 lg:px-24 bg-white-light justify-between py-5 flex items-center sticky top-[66px] z-[50]">
         <h1 className="text-2xl">M0000001: Matter Name</h1>
 
-        <div className="flex gap-x-4 lg:gap-x-7 hidden">
+        <div className="flex gap-x-4 lg:gap-x-7">
           <button className="btn-white">Cancel</button>
           <button className="btn-white">Abort</button>
           <button className="btn-white">Pending</button>

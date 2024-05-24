@@ -40,7 +40,8 @@ const Navbar = () => {
 
   const contractAndDocuemntsMenu = [
     { id: 1, navigate: "/", name: "All Contracts" },
-    { id: 1, navigate: "/documents", name: "Create a document" },
+    { id: 2, navigate: "/documents", name: "Create a document" },
+    { id: 3, navigate: "/contracts&document", name: "Contracts And Documents" },
   ];
   const reportMenu = [{ id: 1, navigate: "/", name: "All Reports" }];
   const billingMenu = [{ id: 1, navigate: "/", name: "All Billing" }];

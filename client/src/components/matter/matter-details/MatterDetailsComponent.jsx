@@ -141,9 +141,9 @@ export const InputField = ({ label, value, name, required = "" }) => {
     </div>
   );
 };
-export const DisplayField = ({ label, value }) => {
+export const DisplayField = ({ label, value, className = "" }) => {
   return (
-    <div className="flex items-center justify-between w-full py-2">
+    <div className={`flex items-center justify-between w-full py-2`}>
       <label
         className="text-black text-xl required mt-1"
         htmlFor="select-field"
@@ -151,7 +151,9 @@ export const DisplayField = ({ label, value }) => {
         {label}
       </label>
       <div className="w-[200px]">
-        <p className="font-semibold text-[18px] text-blue">{value}</p>
+        <p className={`font-semibold text-[18px] text-blue ${className}`}>
+          {value}
+        </p>
       </div>
     </div>
   );

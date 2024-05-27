@@ -185,10 +185,7 @@ const App = () => {
             element={<ContractAndDocumentHeader />}
           >
             <Route path="details" element={<Details />} />
-            <Route
-              path="stages-activity"
-              element={<StageActivityLitigation />}
-            />
+            <Route path="attachments" element={<StageActivityLitigation />} />
             <Route path="reminders" element={<Reminders />} />
             <Route path="email" element={<Email />} />
             <Route path="attachment" element={<AttachmentsLitigation />} />

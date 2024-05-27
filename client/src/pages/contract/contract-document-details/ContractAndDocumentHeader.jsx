@@ -13,8 +13,9 @@ import { MdOutlineAttachment } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineFileText } from "react-icons/ai";
 import { RiFileList3Line } from "react-icons/ri";
-import { PiClockCountdown } from "react-icons/pi";
+import { PiClockCountdown, PiFilesDuotone } from "react-icons/pi";
 import { FaCaretDown } from "react-icons/fa";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const ContractAndDocumentHeader = () => {
   let page = location.pathname.split("/")[3];
@@ -100,7 +101,7 @@ const ContractAndDocumentHeader = () => {
             </NavLink>
 
             <NavLink
-              to={"/contract-details/1/attachment"}
+              to={"/contract-details/1/attachments"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
@@ -113,7 +114,7 @@ const ContractAndDocumentHeader = () => {
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
-              <SiTicktick size={25} />
+              <IoIosCheckmarkCircleOutline size={25} />
               Approval Center
             </NavLink>
 
@@ -183,8 +184,8 @@ const ContractAndDocumentHeader = () => {
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
-              <AiOutlineFileText size={25} />
-              Related Contract and Docs
+              <PiFilesDuotone size={25} />
+              Contract and Documents
             </NavLink>
             <NavLink
               to={"/contract-details/1/setting"}

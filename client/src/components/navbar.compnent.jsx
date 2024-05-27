@@ -39,9 +39,9 @@ const Navbar = () => {
   ];
 
   const contractAndDocuemntsMenu = [
-    { id: 1, navigate: "/", name: "All Contracts" },
-    { id: 2, navigate: "/documents", name: "Create a document" },
-    { id: 3, navigate: "/contracts&document", name: "Contracts And Documents" },
+    { id: 1, navigate: "/contracts/all-contracts", name: "All Contracts" },
+    { id: 2, navigate: "/documents", name: "Quick Contract Builder" },
+    { id: 3, navigate: "/contracts&document", name: "Create Custom" },
   ];
   const reportMenu = [{ id: 1, navigate: "/", name: "All Reports" }];
   const billingMenu = [{ id: 1, navigate: "/", name: "All Billing" }];

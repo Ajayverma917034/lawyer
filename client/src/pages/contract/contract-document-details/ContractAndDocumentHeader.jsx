@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { SiTicktick } from "react-icons/si";
+import { GiCornerFlag } from "react-icons/gi";
+import { TbListDetails } from "react-icons/tb";
 import { Camera, CameraAlt, Menu } from "@mui/icons-material";
 import { SlExclamation } from "react-icons/sl";
 import { LuClipboardEdit } from "react-icons/lu";
@@ -53,7 +56,7 @@ const ContractAndDocumentHeader = () => {
   return (
     <>
       <div className="px-4 sm:px-6 md:px-10 lg:px-24 bg-white-light justify-between py-5 flex items-center sticky top-[66px] z-[50]">
-        <h1 className="text-2xl">CT01: Agreement Name</h1>
+        <h1 className="text-2xl">CT01: Contract Name</h1>
       </div>
       <section className="elative flex py-0 m-0 max-md:flex-col bg-white">
         <div className="sticky top-[130px] z-[50]">
@@ -88,50 +91,16 @@ const ContractAndDocumentHeader = () => {
             }
           >
             <NavLink
-              to={"/matter-details/10/general-details"}
+              to={"/contract-details/10/details"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
-              <SlExclamation size={25} />
-              General Info
+              <TbListDetails size={25} />
+              Details
             </NavLink>
 
             <NavLink
-              to={"/matter-details/10/task"}
-              onClick={(e) => setPageState(e.target.innerText)}
-              className="flex items-center gap-3 text-[18px] text-black mt-6"
-            >
-              <LuClipboardEdit size={25} /> Task
-            </NavLink>
-
-            <NavLink
-              to={"/matter-details/10/reminders"}
-              onClick={(e) => setPageState(e.target.innerText)}
-              className="flex items-center gap-3 text-[18px] text-black mt-6"
-            >
-              <BsBell size={25} />
-              Reminder
-            </NavLink>
-
-            <NavLink
-              to={"/matter-details/10/email"}
-              onClick={(e) => setPageState(e.target.innerText)}
-              className="flex items-center gap-3 text-[18px] text-black mt-6"
-            >
-              <GoMail size={25} />
-              Email
-            </NavLink>
-            <NavLink
-              to={"/matter-details/10/invoices"}
-              onClick={(e) => setPageState(e.target.innerText)}
-              className="flex items-center gap-3 text-[18px] text-black mt-6"
-            >
-              <LiaMoneyCheckAltSolid size={25} />
-              Bills
-            </NavLink>
-
-            <NavLink
-              to={"/matter-details/1/attachment"}
+              to={"/contract-details/1/attachment"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
@@ -140,7 +109,51 @@ const ContractAndDocumentHeader = () => {
             </NavLink>
 
             <NavLink
-              to={"/matter-details/1/expenses"}
+              to={"/contract-details/1/attachment"}
+              onClick={(e) => setPageState(e.target.innerText)}
+              className="flex items-center gap-3 text-[18px] text-black mt-6"
+            >
+              <SiTicktick size={25} />
+              Approval Center
+            </NavLink>
+
+            <NavLink
+              to={"/contract-details/1/attachment"}
+              onClick={(e) => setPageState(e.target.innerText)}
+              className="flex items-center gap-3 text-[18px] text-black mt-6"
+            >
+              <GiCornerFlag size={25} />
+              Milestone
+            </NavLink>
+
+            <NavLink
+              to={"/contract-details/10/task"}
+              onClick={(e) => setPageState(e.target.innerText)}
+              className="flex items-center gap-3 text-[18px] text-black mt-6"
+            >
+              <LuClipboardEdit size={25} /> Task
+            </NavLink>
+
+            <NavLink
+              to={"/contract-details/10/email"}
+              onClick={(e) => setPageState(e.target.innerText)}
+              className="flex items-center gap-3 text-[18px] text-black mt-6"
+            >
+              <GoMail size={25} />
+              Email
+            </NavLink>
+
+            <NavLink
+              to={"/contract-details/1/time-entries"}
+              onClick={(e) => setPageState(e.target.innerText)}
+              className="flex items-center gap-3 text-[18px] text-black mt-6"
+            >
+              <PiClockCountdown size={25} />
+              Time Entries
+            </NavLink>
+
+            <NavLink
+              to={"/contract-details/1/expenses"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
@@ -149,31 +162,32 @@ const ContractAndDocumentHeader = () => {
             </NavLink>
 
             <NavLink
-              to={"/matter-details/1/time-entries"}
+              to={"/contract-details/10/reminders"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
-              <PiClockCountdown size={25} />
-              Time Entries
+              <BsBell size={25} />
+              Reminder
             </NavLink>
+
             <NavLink
-              to={"/matter-details/1/related-matters"}
-              onClick={(e) => setPageState(e.target.innerText)}
-              className="flex items-center gap-3 text-[18px] text-black mt-6"
-            >
-              <AiOutlineFileText size={25} />
-              Related Matter
-            </NavLink>
-            <NavLink
-              to={"/matter-details/1/related-contract-documents"}
+              to={"/contract-details/1/related-matters"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
               <AiOutlineFileText size={25} />
-              Contract and Document
+              Matter
             </NavLink>
             <NavLink
-              to={"/matter-details/1/setting"}
+              to={"/contract-details/1/related-contract-documents"}
+              onClick={(e) => setPageState(e.target.innerText)}
+              className="flex items-center gap-3 text-[18px] text-black mt-6"
+            >
+              <AiOutlineFileText size={25} />
+              Related Contract and Docs
+            </NavLink>
+            <NavLink
+              to={"/contract-details/1/setting"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >

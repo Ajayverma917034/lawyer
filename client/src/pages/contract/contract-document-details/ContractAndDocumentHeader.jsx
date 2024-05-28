@@ -14,7 +14,9 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineFileText } from "react-icons/ai";
 import { RiFileList3Line } from "react-icons/ri";
 import { PiClockCountdown, PiFilesDuotone } from "react-icons/pi";
+import { HiPencil } from "react-icons/hi";
 import { FaCaretDown } from "react-icons/fa";
+import { HiDotsVertical } from "react-icons/hi";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const ContractAndDocumentHeader = () => {
@@ -58,8 +60,26 @@ const ContractAndDocumentHeader = () => {
     <>
       <div className="px-4 sm:px-6 md:px-10 lg:px-24 bg-white-light justify-between py-5 flex items-center sticky top-[66px] z-[50]">
         <h1 className="text-2xl">CT01: Contract Name</h1>
+        <div className="flex items-center gap-2">
+          <div className="flex  gap-4 border-r-2 border-gray pr-4">
+            <button className="btn-white">Cancelled</button>
+            <button className="btn-white">ExecUted</button>
+            <button className="btn-white">Filling & drafting</button>
+            <button className="btn-white">More</button>
+            {/* <label class="switch">
+              <input type="checkbox"/>
+              <span class="slider round"></span>
+            </label> */}
+          </div>
+          <div className=" bg-white rounded-full p-2 text-blue">
+            <HiPencil className="size-6" />
+          </div>
+          <div className=" bg-white rounded-full p-2 text-blue">
+            <HiDotsVertical className="size-6" />
+          </div>
+        </div>
       </div>
-      <section className="elative flex py-0 m-0 max-md:flex-col bg-white">
+      <section className="relative flex py-0 m-0 max-md:flex-col bg-white">
         <div className="sticky top-[130px] z-[50]">
           <div className="relative md:hidden bg-white py-1 border-b border-grey flex flex-nowrap overflow-x-auto ">
             <button
@@ -85,7 +105,7 @@ const ContractAndDocumentHeader = () => {
 
           <div
             className={
-              "min-w-[300px] !h-[calc(100vh-200px)] max-md:pb-4 md:min-h-[calc(100vh-131px)] bg-white md:bg-white md:h-cover md:sticky top-[130px] overflow-y-auto md:pr-0  z-[49] md:border-gray-light md:border-r absolute max-md:top-[64px] px-7  max-md:px-16 max-md:-ml-7 duration-500 " +
+              "min-w-[300px] !h-[calc(100vh-200px)] max-md:pb-4 md:min-h-[calc(100vh-143px)] bg-white md:bg-white md:h-cover md:sticky top-[130px] overflow-y-auto md:pr-0 z-[49] md:border-gray-light md:border-r absolute max-md:top-[64px] px-7  max-md:px-16 max-md:-ml-7 duration-500 " +
               (!showSideNav
                 ? "max-md:opacity-0 max-md:pointer-events-none"
                 : "opacity-100 pointer-events-auto")
@@ -110,7 +130,7 @@ const ContractAndDocumentHeader = () => {
             </NavLink>
 
             <NavLink
-              to={"/contract-details/1/attachment"}
+              to={"/contract-details/1/approvral-center"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
@@ -119,7 +139,7 @@ const ContractAndDocumentHeader = () => {
             </NavLink>
 
             <NavLink
-              to={"/contract-details/1/attachment"}
+              to={"/contract-details/1/milestones"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >
@@ -128,7 +148,7 @@ const ContractAndDocumentHeader = () => {
             </NavLink>
 
             <NavLink
-              to={"/contract-details/10/task"}
+              to={"/contract-details/10/tasks"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"
             >

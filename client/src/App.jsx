@@ -66,6 +66,16 @@ import StageActivityLitigation from "./pages/matter/litigation-details/StageActi
 import ContractAndDocuments from "./pages/contract/ContractAndDocument";
 import Details from "./pages/contract/contract-document-details/Details";
 import ContractAndDocumentHeader from "./pages/contract/contract-document-details/ContractAndDocumentHeader";
+import RemindersContract from "./pages/contract/contract-document-details/RemindersContract";
+import ExpensesContract from "./pages/contract/contract-document-details/ExpensesContract";
+import TimeEntriesContract from "./pages/contract/contract-document-details/TimeEntriesContract";
+import MattersContract from "./pages/contract/contract-document-details/MattersContract";
+import ContractAndDocumentContract from "./pages/contract/contract-document-details/ContractAndDocumentContract";
+import SettingContract from "./pages/contract/contract-document-details/SettingContract";
+import AttachmentsContract from "./pages/contract/contract-document-details/AttachmentsContract";
+import ApprovalCenterContract from "./pages/contract/contract-document-details/ApprovalCenterContract";
+import MilestoneContract from "./pages/contract/contract-document-details/MilestoneContract";
+import TaskContract from "./pages/contract/contract-document-details/TaskContract";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -185,21 +195,24 @@ const App = () => {
             element={<ContractAndDocumentHeader />}
           >
             <Route path="details" element={<Details />} />
-            <Route path="attachments" element={<StageActivityLitigation />} />
-            <Route path="reminders" element={<Reminders />} />
+            <Route path="attachments" element={<AttachmentsContract />} />
+            <Route
+              path="approvral-center"
+              element={<ApprovalCenterContract />}
+            />
+            <Route path="milestones" element={<MilestoneContract />} />
+            <Route path="tasks" element={<TaskContract />} />
+            <Route path="reminders" element={<RemindersContract />} />
             <Route path="email" element={<Email />} />
             <Route path="attachment" element={<AttachmentsLitigation />} />
-            <Route path="expenses" element={<ExpensesLitigation />} />
-            <Route path="time-entries" element={<TimeEntriesLitigation />} />
+            <Route path="expenses" element={<ExpensesContract />} />
+            <Route path="time-entries" element={<TimeEntriesContract />} />
             <Route path="invoices" element={<Invoices />} />
-            <Route
-              path="related-matters"
-              element={<RelatedMattersLitigation />}
-            />
-            <Route path="setting" element={<SettingLitigation />} />
+            <Route path="related-matters" element={<MattersContract />} />
+            <Route path="setting" element={<SettingContract />} />
             <Route
               path="related-contract-documents"
-              element={<RelatedContractAndDocumentLitigation />}
+              element={<ContractAndDocumentContract />}
             />
           </Route>
 

@@ -7,6 +7,7 @@ import { filterPaginationData } from "../../common/filter-pagination-data";
 import { formatDate } from "../../common/date-formater";
 import LoadPrevBtn from "../../common/LoadPreBtn";
 import LoadNextBtn from "../../common/LoadNextBtn";
+import { Link } from "react-router-dom";
 
 const AllHearings = () => {
   const [hearings, setHearings] = useState(null);
@@ -128,8 +129,16 @@ const AllHearings = () => {
                 ) : (
                   hearings.results?.map((hearing, index) => (
                     <tr key={index}>
-                      <td class="px-4 py-2 border-r">{index + 1}</td>
-                      <td class="px-4 py-2 border-r">{hearing.name}</td>
+                      <th class="px-4 py-2 border-r">
+                        <Link to={`/hearing-details/${index + 1}`}>
+                          {index + 1}
+                        </Link>
+                      </th>
+                      <th class="px-4 py-2 border-r">
+                        <Link to={`/hearing-details/${index + 1}`}>
+                          {hearing.name}
+                        </Link>
+                      </th>
                       <td class="px-4 py-2 border-r">{hearing.hearingType}</td>
                       <td class="px-4 py-2 border-r">
                         {formatDate(hearing.hearingDate)}

@@ -76,6 +76,7 @@ import AttachmentsContract from "./pages/contract/contract-document-details/Atta
 import ApprovalCenterContract from "./pages/contract/contract-document-details/ApprovalCenterContract";
 import MilestoneContract from "./pages/contract/contract-document-details/MilestoneContract";
 import TaskContract from "./pages/contract/contract-document-details/TaskContract";
+import HearingDetails from "./pages/hearing/HearingDetails";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -126,6 +127,8 @@ const App = () => {
           <Route path="dashboard/reminders" element={<AllReminders />} />
           <Route path="dashboard/cases" element={<AllCases />} />
           <Route path="dashboard/hearings" element={<AllHearings />} />
+
+          <Route path="hearing-details/:id" element={<HearingDetails />} />
 
           {/* profile routes  */}
           <Route path="profile" element={<Sidebar />}>

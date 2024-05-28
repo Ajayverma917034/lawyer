@@ -130,12 +130,10 @@ const AllHearings = () => {
                   hearings.results?.map((hearing, index) => (
                     <tr key={index}>
                       <th class="px-4 py-2 border-r">
-                        <Link to={`/hearing-details/${index + 1}`}>
-                          {index + 1}
-                        </Link>
+                        <Link to={`/hearing-details/T000003`}>{index + 1}</Link>
                       </th>
                       <th class="px-4 py-2 border-r">
-                        <Link to={`/hearing-details/${index + 1}`}>
+                        <Link to={`/hearing-details/T000003`}>
                           {hearing.name}
                         </Link>
                       </th>

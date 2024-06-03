@@ -77,6 +77,12 @@ import ApprovalCenterContract from "./pages/contract/contract-document-details/A
 import MilestoneContract from "./pages/contract/contract-document-details/MilestoneContract";
 import TaskContract from "./pages/contract/contract-document-details/TaskContract";
 import HearingDetails from "./pages/hearing/HearingDetails";
+import ClientHeader from "./pages/client/ClientHeader";
+import ClientGeneralInfo from "./pages/client/ClientGeneralInfo";
+import ClientOtherInfo from "./pages/client/ClientOtherInfo";
+import ClientAttachments from "./pages/client/ClientAttachments";
+import ClientPartenerShares from "./pages/client/ClientPartenerShares";
+import Clients from "./pages/client/Clients";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -248,6 +254,15 @@ const App = () => {
 
           {/* report routes  */}
           <Route index element={<Report />} />
+
+          {/* client routes  */}
+          <Route path="clients" element={<Clients />} />
+          <Route path="client/:id" element={<ClientHeader />}>
+            <Route index path="general-info" element={<ClientGeneralInfo />} />
+            <Route path="other-details" element={<ClientOtherInfo />} />
+            <Route path="attachment" element={<ClientAttachments />} />
+            <Route path="partner-shares" element={<ClientPartenerShares />} />
+          </Route>
 
           <Route path="about-us" element={<About />} />
           <Route path="contact" element={<About />} />

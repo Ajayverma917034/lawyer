@@ -32,12 +32,12 @@
   }
 
    .btn-dark{
-      @apply whitespace-nowrap bg-blue text-white rounded-md py-1 px-3 text-base capitalize hover:bg-opacity-80;
+      @apply whitespace-nowrap bg-blue text-white rounded-[15px] py-2 px-4 text-base capitalize hover:bg-opacity-80;
     }
   
 
   .btn-light{
-      @apply btn-dark bg-blue text-white;
+      @apply btn-dark bg-white text-blue;
   } 
   .btn-white{
         @apply whitespace-nowrap bg-white text-black text-xl border-2 border-gray-light px-2 py-2 md:px-4 md:py-2 rounded-md hover:bg-opacity-90 max-sm:text-base ;

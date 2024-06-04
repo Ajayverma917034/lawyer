@@ -51,7 +51,7 @@ const subTotalData = [
     value: "0.0 INR",
   },
 ];
-const Invoices = () => {
+const MatterInvoices = () => {
   const [menuDetials, setMenuDetails] = React.useState(false);
   return (
     <>
@@ -128,4 +128,4 @@ const Invoices = () => {
   );
 };
 
-export default Invoices;
+export default MatterInvoices;

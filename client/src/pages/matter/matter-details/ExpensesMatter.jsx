@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiDotsVertical } from "react-icons/hi";
-const Expenses = () => {
+const ExpensesMatter = () => {
   const [menuDetials, setMenuDetails] = useState(false);
   return (
     <div className="w-full bg-white">
@@ -70,4 +70,4 @@ const Expenses = () => {
   );
 };
 
-export default Expenses;
+export default ExpensesMatter;

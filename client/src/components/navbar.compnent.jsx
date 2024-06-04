@@ -47,6 +47,8 @@ const Navbar = () => {
   const billingMenu = [
     { id: 1, navigate: "/invoices", name: "All Invoices" },
     { id: 2, navigate: "/clients", name: "Clients" },
+    { id: 3, navigate: "/invoices", name: "Invoices" },
+    { id: 4, navigate: "/expenses", name: "Expenses" },
   ];
   const toolsMenu = [
     { id: 1, navigate: "/gst-calculator", name: "GST Calculator" },

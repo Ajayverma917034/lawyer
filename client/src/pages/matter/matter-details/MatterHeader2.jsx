@@ -209,6 +209,14 @@ const MatterHeader2 = () => {
               Related Matter
             </NavLink>
             <NavLink
+              to={"/matter-details/1/invoices"}
+              onClick={(e) => setPageState(e.target.innerText)}
+              className="flex items-center gap-3 text-[18px] text-black mt-6"
+            >
+              <AiOutlineFileText size={25} />
+              Invoices
+            </NavLink>
+            <NavLink
               to={"/matter-details/1/related-contract-documents"}
               onClick={(e) => setPageState(e.target.innerText)}
               className="flex items-center gap-3 text-[18px] text-black mt-6"

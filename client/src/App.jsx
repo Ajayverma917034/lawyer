@@ -15,7 +15,6 @@ import PersonalInfo from "./pages/profile/PersonalInfo";
 import Address from "./pages/profile/Address";
 import UpdatePassword from "./pages/profile/UpdatePassword";
 import Persons from "./pages/contacts/Persons";
-import DashboardNavbar from "./components/dashboard/dashboard.navbar";
 import Companies from "./pages/contacts/Companies";
 import Corporate from "./pages/matter/Corporate";
 import LitigationCase from "./pages/matter/LitigationCase";
@@ -41,14 +40,13 @@ import AddLitigationCase from "./components/matter/AddLitigationCase";
 import AddIntellectualProperty from "./components/matter/AddIntellectualProperty";
 import AddCompany from "./components/contacts/addCompany.component";
 import AddPerson from "./components/contacts/addPerson.component";
-import MatterHeader from "./pages/matter/matter-details/MatterHeader";
 import GeneralInfo from "./pages/matter/matter-details/GeneralInfo";
 import MatterTask from "./pages/matter/matter-details/MatterTask";
 import Reminders from "./pages/matter/matter-details/Reminders";
 import Attachment from "./pages/matter/matter-details/Attachment";
-import Expenses from "./pages/matter/matter-details/Expenses";
+import ExpensesMatter from "./pages/matter/matter-details/ExpensesMatter";
 import TimeEntries from "./pages/matter/matter-details/TimeEntries";
-import Invoices from "./pages/matter/matter-details/Invoices";
+import MatterInvoices from "./pages/matter/matter-details/MatterInvoices";
 import RelatedMatters from "./pages/matter/matter-details/RelatedMatters";
 import RelatedContractAndDocument from "./pages/matter/matter-details/RelatedContractsAndDocuments";
 import MatterHeader2 from "./pages/matter/matter-details/MatterHeader2";
@@ -83,6 +81,8 @@ import ClientOtherInfo from "./pages/client/ClientOtherInfo";
 import ClientAttachments from "./pages/client/ClientAttachments";
 import ClientPartenerShares from "./pages/client/ClientPartenerShares";
 import Clients from "./pages/client/Clients";
+import Invoices from "./pages/invoices/Invoices";
+import Expenses from "./pages/expenses/Expenses";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -162,9 +162,9 @@ const App = () => {
             <Route path="reminders" element={<Reminders />} />
             <Route path="email" element={<Email />} />
             <Route path="attachment" element={<Attachment />} />
-            <Route path="expenses" element={<Expenses />} />
+            <Route path="expenses" element={<ExpensesMatter />} />
             <Route path="time-entries" element={<TimeEntries />} />
-            <Route path="invoices" element={<Invoices />} />
+            <Route path="invoices" element={<MatterInvoices />} />
             <Route path="related-matters" element={<RelatedMatters />} />
             <Route path="setting" element={<Setting />} />
             <Route
@@ -186,7 +186,7 @@ const App = () => {
             <Route path="attachment" element={<AttachmentsLitigation />} />
             <Route path="expenses" element={<ExpensesLitigation />} />
             <Route path="time-entries" element={<TimeEntriesLitigation />} />
-            <Route path="invoices" element={<Invoices />} />
+            <Route path="invoices" element={<MatterInvoices />} />
             <Route
               path="related-matters"
               element={<RelatedMattersLitigation />}
@@ -216,7 +216,7 @@ const App = () => {
             <Route path="attachment" element={<AttachmentsLitigation />} />
             <Route path="expenses" element={<ExpensesContract />} />
             <Route path="time-entries" element={<TimeEntriesContract />} />
-            <Route path="invoices" element={<Invoices />} />
+            {/* <Route path="invoices" element={<Invoices />} /> */}
             <Route path="related-matters" element={<MattersContract />} />
             <Route path="setting" element={<SettingContract />} />
             <Route
@@ -263,6 +263,9 @@ const App = () => {
             <Route path="attachment" element={<ClientAttachments />} />
             <Route path="partner-shares" element={<ClientPartenerShares />} />
           </Route>
+
+          <Route path="invoices" element={<Invoices />} />
+          <Route path="expenses" element={<Expenses />} />
 
           <Route path="about-us" element={<About />} />
           <Route path="contact" element={<About />} />

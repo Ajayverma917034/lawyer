@@ -45,10 +45,9 @@ const Navbar = () => {
   ];
   const reportMenu = [{ id: 1, navigate: "/", name: "All Reports" }];
   const billingMenu = [
-    { id: 1, navigate: "/invoices", name: "All Invoices" },
-    { id: 2, navigate: "/clients", name: "Clients" },
-    { id: 3, navigate: "/invoices", name: "Invoices" },
-    { id: 4, navigate: "/expenses", name: "Expenses" },
+    { id: 1, navigate: "/clients", name: "Clients" },
+    { id: 2, navigate: "/invoices", name: "Invoices" },
+    { id: 3, navigate: "/expenses", name: "Expenses" },
   ];
   const toolsMenu = [
     { id: 1, navigate: "/gst-calculator", name: "GST Calculator" },

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import { DataGrid } from "@mui/x-data-grid";
 import AddExpenses from "../../components/expenses/AddExpenses";
+import { Link } from "react-router-dom";
 
 const Expenses = () => {
   const [addExpenses, setAddExpenses] = useState(false);
@@ -14,7 +15,16 @@ const Expenses = () => {
       width: 110,
       editable: true,
     },
-    { field: "id", headerName: "Expenses ID", width: 150 },
+    {
+      field: "id",
+      headerName: "Expenses ID",
+      width: 150,
+      renderCell: (params) => (
+        <Link to={`/expense/${params.row.id}/general-info`} underline="none">
+          {params.row.id}
+        </Link>
+      ),
+    },
     {
       field: "reference",
       headerName: "Reference",

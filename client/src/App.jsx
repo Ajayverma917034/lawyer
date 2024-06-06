@@ -83,6 +83,8 @@ import ClientPartenerShares from "./pages/client/ClientPartenerShares";
 import Clients from "./pages/client/Clients";
 import Invoices from "./pages/invoices/Invoices";
 import Expenses from "./pages/expenses/Expenses";
+import ExpensesHeader from "./pages/expenses/ExpensesHeader";
+import ExpensesGeneral from "./pages/expenses/ExpensesGeneral";
 
 export const AddContext = createContext({});
 const App = () => {
@@ -266,6 +268,9 @@ const App = () => {
 
           <Route path="invoices" element={<Invoices />} />
           <Route path="expenses" element={<Expenses />} />
+          <Route path="expense/:id" element={<ExpensesHeader />}>
+            <Route path="general-info" element={<ExpensesGeneral />} />
+          </Route>
 
           <Route path="about-us" element={<About />} />
           <Route path="contact" element={<About />} />

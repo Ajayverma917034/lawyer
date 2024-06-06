@@ -2,22 +2,9 @@ import { Check, DownloadOutlined, SearchOutlined } from "@mui/icons-material";
 import React, { useContext, useState } from "react";
 import AddPerson from "../../components/contacts/addPerson.component";
 import { Link } from "react-router-dom";
-import { AddContext } from "../../App";
-import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 
 const Invoices = () => {
-  const [isChecked1, setIsChecked1] = useState(false);
-  const [isChecked2, setIsChecked2] = useState(false);
-  const { addPerson, setAddPerson } = useContext(AddContext);
-
-  const toggleCheckbox1 = () => {
-    setIsChecked1(!isChecked1);
-  };
-  const toggleCheckbox2 = () => {
-    setIsChecked2(!isChecked2);
-  };
-
   const columns = [
     { field: "id", headerName: "Invoice ID", width: 150 },
     {
@@ -142,12 +129,7 @@ const Invoices = () => {
           <div className="flex gap-2 mt-5">
             <h1 className="text-2xl md:text-2xl lg:text-3xl">Invoices</h1>
 
-            <button
-              className="ml-auto btn-dark"
-              onClick={() => setAddPerson(!addPerson)}
-            >
-              Add New
-            </button>
+            <button className="ml-auto btn-dark">Add New</button>
           </div>
 
           <div className="flex justify-between mt-2 gap-5 items-center flex-wrap">
@@ -200,34 +182,6 @@ const Invoices = () => {
             disableRowSelectionOnClick
           />
         </div>
-
-        {/* <div className="flex gap-6 px-4 py-2 border-b border-gray-light bg-white flex-wrap">
-          <div>Page 1 of 1</div>
-          <div className="flex gap-4">
-            <button className="text-blue">Prev</button>
-            <button className="text-blue">Next</button>
-          </div>
-          <div className="ml-auto flex gap-5">
-            <label
-              className="flex items-center space-x-2 cursor-pointer"
-              onClick={toggleCheckbox1}
-            >
-              <span className="w-5 h-5 border border-gray-light rounded-sm flex justify-center items-center bg-white">
-                {isChecked1 && <Check />}
-              </span>
-              <span className="text-base font-medium">Public</span>
-            </label>
-            <label
-              className="flex items-center space-x-2 cursor-pointer"
-              onClick={toggleCheckbox2}
-            >
-              <span className="w-5 h-5 border border-gray-light rounded-sm flex justify-center items-center">
-                {isChecked2 && <Check />}
-              </span>
-              <span className="text-base font-medium">Private</span>
-            </label>
-          </div>
-        </div> */}
       </div>
     </>
   );

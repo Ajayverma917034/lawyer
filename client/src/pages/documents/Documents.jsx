@@ -6,7 +6,7 @@ const Documents = () => {
   return (
     <div className="px-3 md:px-22 lg:px-28 flex flex-col w-full items-center pt-10 md:pt-20 bg-white-light min-h-[80vh]">
       <h1 className="text-2xl md:text-2xl lg:text-3xl font-bold text-center">
-        Efficiently generate legal paperwork with simplicity and speed!
+        Efficiently generate paperwork with simplicity and speed!
       </h1>
       <p className="md:text-xl lg:text-2xl mt-3 text-center md:max-w-[50rem] lg:max-w-[65rem]">
         A modernized digital system provides user-friendly forms to effortlessly

@@ -40,7 +40,7 @@ const Navbar = () => {
 
   const contractAndDocuemntsMenu = [
     { id: 1, navigate: "/contracts/all-contracts", name: "All Contracts" },
-    { id: 2, navigate: "/documents", name: "Quick Contract Builder" },
+    // { id: 2, navigate: "/documents", name: "Quick Contract Builder" },
     { id: 3, navigate: "/contracts&document", name: "Create Custom" },
   ];
   const reportMenu = [{ id: 1, navigate: "/", name: "All Reports" }];
@@ -112,7 +112,7 @@ const Navbar = () => {
     <>
       <nav className="padding py-2 1374px:py-3 flex items-center bg-blue z-[100] sticky top-0">
         <Link to="/">
-          <img src={logo} alt="Legal Tax Link" className="w-20 1374px:w-24" />
+          <img src={logo} alt="Logo" className="w-20 1374px:w-24" />
         </Link>
         <div
           className={`w-full max-1374px:transition-transform max-1374px:duration-300 max-1374px:hidden max-1374px:z-50 ${
@@ -287,35 +287,7 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            <div className="relative flex items-center ">
-              <Link
-                className="flex items-center text-[15px] max-1374px:text-[22px] max-1374px:py-2 relative"
-                onClick={() => handleShowSubMenu(5, true)}
-              >
-                Tools <MdArrowDropDown size={25} />
-                {/* Submenu for Contacts */}
-              </Link>
-              {showSubMenus[5].value && (
-                <div className="absolute top-10 z-[110] right-0 min-w-[15rem] bg-white rounded-md shadow-lg left-1/2 transform -translate-x-1/2">
-                  <ul className="py-2 flex flex-col">
-                    {toolsMenu.map((item) => (
-                      <Fragment key={item.id}>
-                        <Link
-                          to={`${item.navigate}`}
-                          onClick={() => {
-                            handleCloseSubMenu(5);
-                          }}
-                          className="px-4 py-1 text-[16px] font-medium cursor-pointer hover:bg-gray-200 text-blue hover:bg-blue hover:text-white"
-                        >
-                          {item.name}
-                        </Link>
-                        <hr className="border-1 border-[#b3b3b3] last:border-0" />
-                      </Fragment>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+            
             <div className="max-1374px:hidden max-1374px:opacity-0 flex items-center">
               <CreateBtn
                 showSubMenus={showSubMenus}
@@ -436,7 +408,7 @@ const Navbar = () => {
 export default Navbar;
 // <div className="flex justify-between px-3 md:px-22 lg:px-28 py-3 bg-blue text-white relative">
 //   <Link to="/">
-//     <img src={logo} alt="Legal Tax Link" className="w-16" />
+//     <img src={logo} alt=" Link" className="w-16" />
 //   </Link>
 
 //   <ul

@@ -8,7 +8,7 @@ const CompanyDetials = () => {
       category: "Company",
       subCategory: "Lawyer",
       email: "abc@gmail.com",
-      website: "legaltaxlink.com",
+      website: "xyz.com",
     },
     address: {
       address: "123, abc street",

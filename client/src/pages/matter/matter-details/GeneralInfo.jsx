@@ -45,10 +45,10 @@ const billingInfo = [
 ];
 
 const peopleInfo = [
-  { id: 1, title: "Assign Team", value: "Legal Tax Link" },
-  { id: 2, title: "Assignee", value: "Legal Tax Link" },
-  { id: 3, title: "Reffered By", value: "Legal Tax Link" },
-  { id: 4, title: "Requested By", value: "Legal Tax Link" },
+  { id: 1, title: "Assign Team", value: "XYZ" },
+  { id: 2, title: "Assignee", value: "XYZ" },
+  { id: 3, title: "Reffered By", value: "XYZ" },
+  { id: 4, title: "Requested By", value: "XYZ" },
 ];
 
 const dateandtimeData = [

@@ -129,16 +129,16 @@ const CreateBtn = ({ handleCloseSubMenu, showSubMenus, handleShowSubMenu }) => {
               funStatus={addReminder}
               handleCloseSubMenu={handleCloseSubMenu}
             />
-            <NavigateLink
-              title="Income Tax Calculator"
-              handleCloseSubMenu={handleCloseSubMenu}
-              navigateTo={"/income-tax-calculator"}
-            />
-            <NavigateLink
-              title="GST Calculator"
-              handleCloseSubMenu={handleCloseSubMenu}
-              navigateTo={"/gst-calculator"}
-            />
+              {/* <NavigateLink
+                title="Income Tax Calculator"
+                handleCloseSubMenu={handleCloseSubMenu}
+                navigateTo={"/income-tax-calculator"}
+              />
+              <NavigateLink
+                title="GST Calculator"
+                handleCloseSubMenu={handleCloseSubMenu}
+                navigateTo={"/gst-calculator"}
+              /> */}
           </ul>
         </div>
       )}

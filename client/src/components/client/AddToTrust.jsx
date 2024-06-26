@@ -101,7 +101,7 @@ const AddToTrust = ({ open, setOpen }) => {
             className="col-span-2 focus:outline-none border border-gray py-2 px-2 rounded-md"
           >
             <option value="INR">Harshit</option>
-            <option value="USD">Team Legal Tax Link</option>
+            <option value="USD">Team XYZ</option>
           </select>
         </div>
         <div className="col-span-2 grid grid-cols-3 gap-x-3 items-center">
